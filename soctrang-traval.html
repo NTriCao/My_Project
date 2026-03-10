@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sóc Trăng Du Lịch</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  :root {
+    --green: #2E7D52;
+    --green-light: #E8F5EE;
+    --orange: #E8630A;
+    --orange-light: #FFF0E6;
+    --dark: #1A1A1A;
+    --gray: #666;
+    --gray-light: #F7F7F5;
+    --white: #FFFFFF;
+    --border: #E8E8E4;
+  }
+
+  body { font-family: 'Be Vietnam Pro', sans-serif; color: var(--dark); background: var(--white); }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 99;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-icon { width: 36px; height: 36px; background: var(--green); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .logo-text { font-weight: 800; font-size: 17px; color: var(--dark); }
+  .logo-text span { color: var(--green); }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links a {
+    padding: 8px 16px; border-radius: 8px;
+    text-decoration: none; font-size: 14px; font-weight: 500; color: var(--gray);
+    transition: all 0.2s;
+  }
+  .nav-links a:hover { background: var(--gray-light); color: var(--dark); }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #1B4D35 0%, #2E7D52 50%, #E8630A 100%);
+    padding: 80px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='%23ffffff' fill-opacity='0.05'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.9);
+    padding: 6px 16px; border-radius: 20px;
+    font-size: 13px; font-weight: 500;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Merriweather', serif;
+    font-size: clamp(40px, 7vw, 80px);
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .hero h1 em { font-style: italic; color: #FFD580; }
+  .hero p {
+    font-size: 17px; color: rgba(255,255,255,0.8);
+    max-width: 520px; margin: 0 auto 36px;
+    line-height: 1.7; position: relative;
+  }
+  .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; }
+  .btn { padding: 13px 28px; border-radius: 10px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s; display: inline-block; }
+  .btn-white { background: #fff; color: var(--green); }
+  .btn-white:hover { background: #f0f0f0; transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.5); }
+  .btn-outline:hover { background: rgba(255,255,255,0.1); }
+  .hero-stats {
+    display: flex; justify-content: center; gap: 48px;
+    margin-top: 56px; padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    flex-wrap: wrap; position: relative;
+  }
+  .stat { text-align: center; }
+  .stat-n { font-size: 28px; font-weight: 800; color: #FFD580; }
+  .stat-l { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 2px; }
+
+  /* SECTION */
+  .section { padding: 72px 40px; }
+  .section-alt { background: var(--gray-light); }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-header { margin-bottom: 48px; }
+  .section-header h2 { font-family: 'Merriweather', serif; font-size: clamp(24px, 4vw, 36px); margin-bottom: 10px; }
+  .section-header h2 em { color: var(--green); font-style: italic; }
+  .section-header p { font-size: 15px; color: var(--gray); line-height: 1.7; max-width: 560px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green); background: var(--green-light); padding: 4px 10px; border-radius: 4px; margin-bottom: 12px; }
+
+  /* DESTINATIONS */
+  .dest-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .dest-card {
+    border-radius: 16px; overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--white);
+    transition: all 0.25s;
+  }
+  .dest-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); border-color: transparent; }
+  .dest-thumb {
+    height: 160px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 64px;
+    position: relative;
+  }
+  .dest-thumb-badge {
+    position: absolute; top: 12px; left: 12px;
+    background: rgba(0,0,0,0.45); color: #fff;
+    font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 4px;
+    backdrop-filter: blur(6px);
+  }
+  .dest-body { padding: 20px; }
+  .dest-body h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .dest-body p { font-size: 13px; color: var(--gray); line-height: 1.65; margin-bottom: 14px; }
+  .dest-tip {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12px; color: var(--orange); font-weight: 600;
+    background: var(--orange-light); padding: 7px 10px; border-radius: 8px;
+  }
+
+  /* CULTURE */
+  .culture-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .culture-visual {
+    display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px;
+    height: 360px;
+  }
+  .cv-card {
+    border-radius: 14px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 8px;
+    font-size: 36px;
+  }
+  .cv-card:first-child { grid-row: span 2; font-size: 56px; }
+  .cv-card span { font-size: 12px; font-weight: 600; text-align: center; line-height: 1.4; }
+  .cv-green { background: var(--green); color: #fff; }
+  .cv-orange { background: var(--orange); color: #fff; }
+  .cv-light { background: var(--green-light); color: var(--green); }
+  .cv-orange-light { background: var(--orange-light); color: var(--orange); }
+  .culture-text h2 { font-family: 'Merriweather', serif; font-size: clamp(22px, 3vw, 32px); margin-bottom: 14px; line-height: 1.3; }
+  .culture-text h2 em { color: var(--green); font-style: italic; }
+  .culture-text > p { font-size: 15px; color: var(--gray); line-height: 1.8; margin-bottom: 24px; }
+  .culture-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+  .pill { padding: 8px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; background: var(--white); border: 1px solid var(--border); color: var(--dark); }
+  .festival-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+  .festival-item { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .fi-icon { font-size: 22px; flex-shrink: 0; }
+  .fi-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+  .fi-time { font-size: 12px; color: var(--green); font-weight: 500; }
+
+  /* FOOD */
+  .food-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .food-card {
+    padding: 24px; border-radius: 14px;
+    background: var(--white); border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .food-card:hover { border-color: var(--orange); box-shadow: 0 4px 20px rgba(232,99,10,0.1); }
+  .food-icon { font-size: 40px; margin-bottom: 12px; display: block; }
+  .food-name { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .food-desc { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+  /* MARKET */
+  .market-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .market-info h2 { font-family: 'Merriweather', serif; font-size: clamp(22px, 3vw, 32px); margin-bottom: 14px; line-height: 1.3; }
+  .market-info h2 em { color: var(--orange); font-style: italic; }
+  .market-info > p { font-size: 15px; color: var(--gray); line-height: 1.8; margin-bottom: 28px; }
+  .time-list { list-style: none; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+  .time-item { display: flex; align-items: center; padding: 16px 20px; gap: 16px; border-bottom: 1px solid var(--border); background: var(--white); }
+  .time-item:last-child { border-bottom: none; }
+  .time-item.hot { background: var(--orange-light); }
+  .t-time { font-size: 15px; font-weight: 700; color: var(--orange); width: 56px; flex-shrink: 0; }
+  .t-desc { font-size: 13px; color: var(--dark); font-weight: 600; }
+  .t-sub { font-size: 12px; color: var(--gray); margin-top: 2px; }
+  .market-card {
+    background: var(--green); border-radius: 16px; padding: 32px;
+    color: #fff;
+  }
+  .market-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+  .market-card > p { font-size: 14px; opacity: 0.85; line-height: 1.7; margin-bottom: 20px; }
+  .market-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .mf { display: flex; gap: 10px; font-size: 13px; opacity: 0.9; align-items: flex-start; }
+  .mf::before { content: '✓'; flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+
+  /* TIPS */
+  .tips-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .tip-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 24px; }
+  .tip-card:hover { border-color: var(--green); }
+  .tip-icon { font-size: 32px; margin-bottom: 14px; }
+  .tip-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; }
+  .tip-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .tip-list li { font-size: 13px; color: var(--gray); padding-left: 16px; position: relative; line-height: 1.55; }
+  .tip-list li::before { content: '·'; position: absolute; left: 2px; color: var(--green); font-size: 20px; line-height: 1.1; font-weight: 700; }
+
+  /* FOOTER */
+  footer { background: #1C2B1C; color: rgba(255,255,255,0.65); padding: 48px 40px 28px; }
+  .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; flex-wrap: wrap; margin-bottom: 36px; }
+  .footer-brand h3 { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 10px; }
+  .footer-brand p { font-size: 13px; line-height: 1.7; max-width: 280px; }
+  .footer-links h4 { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 14px; font-weight: 600; }
+  .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+  .footer-links a:hover { color: #fff; }
+  .footer-bottom { max-width: 1100px; margin: 0 auto; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; font-size: 12px; color: rgba(255,255,255,0.3); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .section { padding: 56px 20px; }
+    .dest-grid, .food-grid { grid-template-columns: 1fr 1fr; }
+    .culture-strip, .market-wrap { grid-template-columns: 1fr; }
+    .tips-grid { grid-template-columns: 1fr 1fr; }
+    .culture-visual { height: 240px; }
+    .hero { padding: 60px 20px; }
+    .hero-stats { gap: 28px; }
+  }
+  @media (max-width: 560px) {
+    .dest-grid, .food-grid, .tips-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ANIMATIONS */
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .fade-in.show { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">🌴</div>
+    <div class="logo-text">Sóc <span>Trăng</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="#destinations">Điểm Đến</a>
+    <a href="#culture">Văn Hóa</a>
+    <a href="#food">Ẩm Thực</a>
+    <a href="#market">Chợ Nổi</a>
+    <a href="#tips">Cẩm Nang</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🌺 Đồng bằng sông Cửu Long</div>
+  <h1>Khám phá<br><em>Sóc Trăng</em></h1>
+  <p>Vùng đất giao thoa ba nền văn hóa Kinh – Khmer – Hoa với những ngôi chùa cổ kính, lễ hội rực rỡ và ẩm thực đặc sắc.</p>
+  <div class="hero-btns">
+    <a href="#destinations" class="btn btn-white">Xem Điểm Tham Quan</a>
+    <a href="#food" class="btn btn-outline">Ẩm Thực Đặc Sản</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n">400+</div><div class="stat-l">Năm lịch sử</div></div>
+    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Dân tộc anh em</div></div>
+    <div class="stat"><div class="stat-n">26.8°</div><div class="stat-l">Nhiệt độ TB</div></div>
+    <div class="stat"><div class="stat-n">5+</div><div class="stat-l">Điểm tham quan</div></div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section class="section" id="destinations">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="tag">Điểm Tham Quan</div>
+      <h2>Những ngôi chùa <em>nổi tiếng</em></h2>
+      <p>Khám phá kiến trúc Khmer độc đáo và những điểm đến văn hóa đặc sắc của Sóc Trăng.</p>
+    </div>
+    <div class="dest-grid">
+      <div class="dest-card fade-in">
+        <div class="dest-thumb" style="background:linear-gradient(135deg,#1B4D35,#3DA066)">
+          🦇
+          <div class="dest-thumb-badge">Di tích quốc gia</div>
+        </div>
+        <div class="dest-body">
+          <h3>Chùa Dơi (Mahatup)</h3>
+          <p>Ngôi chùa Khmer hơn 400 năm tuổi. Mái cong trang trí rắn thần Naga, nơi hàng nghìn con dơi sinh sống trên tán cổ thụ.</p>
+          <div class="dest-tip">⏰ Đến lúc 17–18h ngắm dơi bay</div>
+        </div>
+      </div>
+      <div class="dest-card fade-in" style="transition-delay:0.1s">
+        <div class="dest-thumb" style="background:linear-gradient(135deg,#7B3F00,#C4690A)">
+          🏺
+          <div class="dest-thumb-badge">Xây dựng 1815</div>
+        </div>
+        <div class="dest-body">
+          <h3>Chùa Chén Kiểu</h3>
+          <p>Tường và cột được khảm hàng nghìn mảnh chén đĩa sứ ghép thành hoa văn tinh xảo — độc nhất ở miền Tây.</p>
+          <div class="dest-tip">📸 Sáng sớm chụp ảnh đẹp nhất</div>
+        </div>
+      </div>
+      <div class="dest-card fade-in" style="transition-delay:0.2s">
+        <div class="dest-thumb" style="background:linear-gradient(135deg,#5B0E8A,#9B30D0)">
+          🪷
+          <div class="dest-thumb-badge">Diện tích 8.5 ha</div>
+        </div>
+        <div class="dest-body">
+          <h3>Chùa Phật Học 2</h3>
+          <p>Tượng Phật Niết Bàn dài 17m, ao sen, núi nhân tạo. Không gian yên bình, miễn phí giữ xe và mượn nón lá.</p>
+          <div class="dest-tip">✅ Vào cửa & giữ xe miễn phí</div>
+        </div>
+      </div>
+      <div class="dest-card fade-in" style="transition-delay:0.1s">
+        <div class="dest-thumb" style="background:linear-gradient(135deg,#8B3A00,#D4700A)">
+          🛕
+          <div class="dest-thumb-badge">Xây dựng 1785</div>
+        </div>
+        <div class="dest-body">
+          <h3>Chùa Som Rong</h3>
+          <p>Diện tích 5 ha, 12 đời trụ trì. Tượng Phật Niết Bàn ngoài trời khổng lồ dài 63m — lớn nhất khu vực.</p>
+          <div class="dest-tip">🌅 Sáng sớm yên tĩnh và đẹp</div>
+        </div>
+      </div>
+      <div class="dest-card fade-in" style="transition-delay:0.2s">
+        <div class="dest-thumb" style="background:linear-gradient(135deg,#0A3050,#1A70C0)">
+          ⛵
+          <div class="dest-thumb-badge">Họp từ 4h sáng</div>
+        </div>
+        <div class="dest-body">
+          <h3>Chợ Nổi Ngã Năm</h3>
+          <p>Giao điểm 5 nhánh sông, sôi động nhất lúc 5–6h sáng. Dịp Tết có đến 400 ghe xuồng tụ họp.</p>
+          <div class="dest-tip">⏰ Phải đến trước 6h sáng</div>
+        </div>
+      </div>
+      <div class="dest-card fade-in" style="transition-delay:0.3s">
+        <div class="dest-thumb" style="background:linear-gradient(135deg,#8B6914,#DAA520)">
+          🏯
+          <div class="dest-thumb-badge">Mới 28/01/2026</div>
+        </div>
+        <div class="dest-body">
+          <h3>Liên Hoa Bảo Tháp</h3>
+          <p>Tháp hoa sen 3 tầng cao 68m vừa khánh thành. Tượng Phật dát vàng bên trong. Đẹp lung linh vào buổi tối.</p>
+          <div class="dest-tip">✨ Điểm mới hot nhất 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CULTURE -->
+<section class="section section-alt" id="culture">
+  <div class="container">
+    <div class="culture-strip">
+      <div class="culture-visual fade-in">
+        <div class="cv-card cv-green">🛕<span>Kiến Trúc Khmer</span></div>
+        <div class="cv-card cv-orange">🏮<span>Văn Hóa Hoa</span></div>
+        <div class="cv-card cv-light">🌸<span>Dân Tộc Kinh</span></div>
+        <div class="cv-card cv-orange-light">🎊<span>Lễ Hội</span></div>
+      </div>
+      <div class="culture-text fade-in">
+        <div class="tag">Văn Hóa</div>
+        <h2>Giao thoa <em>ba dân tộc</em></h2>
+        <p>Sóc Trăng là nơi văn hóa Kinh – Khmer – Hoa cùng tồn tại, tạo nên bản sắc độc đáo qua kiến trúc chùa chiền, lễ hội và ẩm thực.</p>
+        <div class="culture-pills">
+          <span class="pill">Dân Tộc Kinh</span>
+          <span class="pill">Dân Tộc Khmer</span>
+          <span class="pill">Dân Tộc Hoa</span>
+        </div>
+        <ul class="festival-list">
+          <li class="festival-item">
+            <span class="fi-icon">🌕</span>
+            <div><div class="fi-name">Lễ Hội Ok Om Bok</div><div class="fi-time">Tháng 10 âm lịch — Cúng trăng truyền thống Khmer</div></div>
+          </li>
+          <li class="festival-item">
+            <span class="fi-icon">🚣</span>
+            <div><div class="fi-name">Đua Ghe Ngo</div><div class="fi-time">Tháng 10 âm lịch — Đua thuyền trên sông Maspero</div></div>
+          </li>
+          <li class="festival-item">
+            <span class="fi-icon">🎊</span>
+            <div><div class="fi-name">Tết Chol Chnam Thmay</div><div class="fi-time">Tháng 4 dương lịch — Năm mới của người Khmer</div></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOD -->
+<section class="section" id="food">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="tag">Ẩm Thực</div>
+      <h2>Đặc sản <em>không thể bỏ lỡ</em></h2>
+      <p>Từ bánh pía thơm lừng đến tô bún nước lèo đậm đà — hương vị ba dân tộc trong từng món ăn.</p>
+    </div>
+    <div class="food-grid">
+      <div class="food-card fade-in">
+        <span class="food-icon">🥮</span>
+        <div class="food-name">Bánh Pía</div>
+        <div class="food-desc">Di sản văn hóa phi vật thể quốc gia. Thương hiệu Tân Huê Viên nổi tiếng từ năm 1985. Món quà ý nghĩa khi về.</div>
+      </div>
+      <div class="food-card fade-in" style="transition-delay:0.1s">
+        <span class="food-icon">🍜</span>
+        <div class="food-name">Bún Nước Lèo</div>
+        <div class="food-desc">Nước dùng mắm cá lóc đậm đà, ăn kèm rau sống. Tinh hoa ẩm thực Khmer–Kinh không nơi nào ngon bằng.</div>
+      </div>
+      <div class="food-card fade-in" style="transition-delay:0.2s">
+        <span class="food-icon">🌭</span>
+        <div class="food-name">Lạp Xưởng</div>
+        <div class="food-desc">Lạp xưởng đỏ thơm theo công thức người Hoa. Đặc sản được nhiều du khách mua về làm quà.</div>
+      </div>
+      <div class="food-card fade-in" style="transition-delay:0.1s">
+        <span class="food-icon">🧆</span>
+        <div class="food-name">Bánh Cống</div>
+        <div class="food-desc">Chiên giòn rụm nhân tôm thịt, ăn với rau sống và nước chấm chua ngọt. Món đường phố đặc trưng.</div>
+      </div>
+      <div class="food-card fade-in" style="transition-delay:0.2s">
+        <span class="food-icon">🥗</span>
+        <div class="food-name">Bún Gỏi Dà</div>
+        <div class="food-desc">Bún kết hợp rau sống, tôm thịt với nước chấm chua ngọt độc đáo. Tươi mát và nhẹ bụng.</div>
+      </div>
+      <div class="food-card fade-in" style="transition-delay:0.3s">
+        <span class="food-icon">🍒</span>
+        <div class="food-name">Trái Sơ Ri</div>
+        <div class="food-desc">Trái đỏ nhỏ vị chua ngọt, giàu vitamin C. Bán nhiều ven đường gần Chùa Dơi — ăn giải khát rất ngon.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET -->
+<section class="section section-alt" id="market">
+  <div class="container">
+    <div class="market-wrap">
+      <div class="fade-in">
+        <div class="tag">Chợ Nổi</div>
+        <div class="market-info">
+          <h2>Ngã Năm —<br><em>5 dòng sông</em> gặp nhau</h2>
+          <p>Trung tâm giao thương sông nước hình thành từ thời Pháp thuộc. Ghe treo hàng trên cây sào — nét văn hóa miền Tây độc nhất.</p>
+        </div>
+        <ul class="time-list">
+          <li class="time-item">
+            <div class="t-time">4–5h</div>
+            <div><div class="t-desc">Ghe bắt đầu tụ họp</div><div class="t-sub">Chợ dần nhộn nhịp</div></div>
+          </li>
+          <li class="time-item hot">
+            <div class="t-time">5–6h</div>
+            <div><div class="t-desc">⭐ Đông và sôi động nhất</div><div class="t-sub">Thời điểm lý tưởng để tham quan</div></div>
+          </li>
+          <li class="time-item">
+            <div class="t-time">7–9h</div>
+            <div><div class="t-desc">Chợ thưa dần</div><div class="t-sub">Hoạt động buôn bán giảm sau 9h</div></div>
+          </li>
+          <li class="time-item">
+            <div class="t-time">Tết</div>
+            <div><div class="t-desc">400+ ghe xuồng</div><div class="t-sub">Nhộn nhịp nhất dịp Tết Nguyên Đán</div></div>
+          </li>
+        </ul>
+      </div>
+      <div class="market-card fade-in">
+        <span style="font-size:52px;display:block;margin-bottom:16px">⛵</span>
+        <h3>Trải nghiệm văn hóa sông nước</h3>
+        <p>Ăn sáng trên ghe với bún nước lèo, hủ tiếu, cà phê. Không khí bình dị, chân thực của người dân miền Tây.</p>
+        <ul class="market-features">
+          <li class="mf">Ghe treo hàng trên cây sào — cách bán truyền thống</li>
+          <li class="mf">Nông sản tươi từ khắp vùng đồng bằng</li>
+          <li class="mf">Ăn sáng trên ghe: bún, hủ tiếu, cơm tấm, cà phê</li>
+          <li class="mf">Hình thành từ thời kênh đào Quản Lộ – Phụng Hiệp</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPS -->
+<section class="section" id="tips">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="tag">Cẩm Nang</div>
+      <h2>Mẹo cho <em>chuyến đi hoàn hảo</em></h2>
+      <p>Những điều cần biết để có trải nghiệm tốt nhất khi đến Sóc Trăng.</p>
+    </div>
+    <div class="tips-grid">
+      <div class="tip-card fade-in">
+        <div class="tip-icon">🌤️</div>
+        <div class="tip-title">Thời Điểm Đi</div>
+        <ul class="tip-list">
+          <li>Nhiệt độ 26.8°C, đi được quanh năm</li>
+          <li>Tháng 10 âm lịch: Ok Om Bok & đua ghe Ngo</li>
+          <li>Tết Nguyên Đán: chợ nổi đông nhất</li>
+          <li>Mùa khô (tháng 12–4): di chuyển dễ nhất</li>
+        </ul>
+      </div>
+      <div class="tip-card fade-in" style="transition-delay:0.1s">
+        <div class="tip-icon">📍</div>
+        <div class="tip-title">Giờ Tham Quan</div>
+        <ul class="tip-list">
+          <li>Chùa Dơi: 17–18h ngắm dơi bay</li>
+          <li>Chợ Nổi Ngã Năm: đến trước 6h sáng</li>
+          <li>Liên Hoa Bảo Tháp: buổi tối đẹp nhất</li>
+          <li>Chùa Som Rong: sáng sớm yên tĩnh</li>
+        </ul>
+      </div>
+      <div class="tip-card fade-in" style="transition-delay:0.2s">
+        <div class="tip-icon">🛍️</div>
+        <div class="tip-title">Đặc Sản Mua Về</div>
+        <ul class="tip-list">
+          <li>Bánh pía Tân Huê Viên — số 1</li>
+          <li>Lạp xưởng Sóc Trăng thơm ngon</li>
+          <li>Trái sơ ri đỏ gần Chùa Dơi</li>
+          <li>Bánh cống nóng giòn gần Chùa Som Rong</li>
+        </ul>
+      </div>
+      <div class="tip-card fade-in" style="transition-delay:0.3s">
+        <div class="tip-icon">💡</div>
+        <div class="tip-title">Lưu Ý</div>
+        <ul class="tip-list">
+          <li>Mặc trang phục kín đáo khi vào chùa</li>
+          <li>Chùa Phật Học 2 miễn phí giữ xe & nón lá</li>
+          <li>Mang tiền mặt khi đi chợ nổi sáng sớm</li>
+          <li>Tôn trọng không gian tâm linh</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>🌴 Sóc Trăng Du Lịch</h3>
+      <p>Vùng đất giao thoa Kinh – Khmer – Hoa với bản sắc văn hóa độc đáo, chùa chiền cổ kính và ẩm thực đặc sắc tại Đồng bằng sông Cửu Long.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Điểm Tham Quan</h4>
+      <ul>
+        <li><a href="#">Chùa Dơi</a></li>
+        <li><a href="#">Chùa Chén Kiểu</a></li>
+        <li><a href="#">Chùa Phật Học 2</a></li>
+        <li><a href="#">Chùa Som Rong</a></li>
+        <li><a href="#">Chợ Nổi Ngã Năm</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Khám Phá</h4>
+      <ul>
+        <li><a href="#">Văn Hóa & Lễ Hội</a></li>
+        <li><a href="#">Ẩm Thực Đặc Sản</a></li>
+        <li><a href="#">Cẩm Nang Du Lịch</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Sóc Trăng Du Lịch</span>
+    <span>🌡️ 26.8°C · Thời tiết dễ chịu quanh năm</span>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
