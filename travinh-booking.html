@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đăng Ký Tour – Trà Vinh</title>
+<link rel="icon" type="image/png" href="https://ntricao.github.io/My_Project/travinh-traval.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --terra: #8B4513;
+    --gold: #C9A84C;
+    --ivory: #F5F0E8;
+    --deep: #1A1208;
+    --khmer-red: #B5451B;
+    --sand: #D4B896;
+    --copper: #A0522D;
+    --cream: #FAF6EE;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--deep);
+    font-family: 'Noto Serif', serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* === CURSOR === */
+  * { cursor: none !important; }
+  .cursor {
+    width: 10px; height: 10px;
+    background: var(--gold); border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transition: transform 0.1s ease;
+    mix-blend-mode: multiply;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--copper); border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+    transition: transform 0.18s ease;
+    transform: translate(-13px, -13px);
+  }
+
+  /* === NAV === */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 22px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(26,18,8,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo img {
+    height: 42px; width: 42px; object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+    transition: transform 0.3s;
+  }
+  .nav-logo:hover img { transform: scale(1.1) rotate(-4deg); }
+  .nav-logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 900;
+    color: var(--gold); letter-spacing: 2px;
+  }
+  .nav-logo-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--sand);
+    opacity: 0.7;
+  }
+  .nav-back {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--sand);
+    text-decoration: none; opacity: 0.8;
+    display: flex; align-items: center; gap: 8px;
+    transition: color 0.3s, opacity 0.3s;
+  }
+  .nav-back:hover { color: var(--gold); opacity: 1; }
+
+  /* === HERO === */
+  .hero {
+    height: 46vh; min-height: 320px;
+    position: relative;
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 60px 60px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(160deg, rgba(139,69,19,0.65) 0%, rgba(26,18,8,0.88) 100%),
+      url('https://images2.thanhnien.vn/Uploaded/nambh/2023_01_09/218463980-4016129935162546-710311584089793300-n-4016129928495880-8525.jpg') center/cover no-repeat;
+  }
+  .hero-pattern {
+    position: absolute; inset: 0; opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 4 L76 40 L40 76 L4 40 Z' fill='none' stroke='%23C9A84C' stroke-width='1'/%3E%3Cpath d='M40 14 L66 40 L40 66 L14 40 Z' fill='none' stroke='%23C9A84C' stroke-width='0.5'/%3E%3Ccircle cx='40' cy='40' r='6' fill='none' stroke='%23C9A84C' stroke-width='0.5'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; letter-spacing: 5px;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 14px;
+    animation: fadeUp 0.8s 0.2s both;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 6vw, 80px);
+    font-weight: 900; line-height: 0.95;
+    color: var(--ivory);
+    animation: fadeUp 0.8s 0.4s both;
+  }
+  .hero-title em { color: var(--gold); font-style: italic; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* === MAIN CONTENT === */
+  .page-body {
+    padding: 80px 60px 100px;
+    position: relative;
+  }
+  .page-body::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cpath d='M60 10 L110 60 L60 110 L10 60 Z' fill='none' stroke='%23C9A84C' stroke-width='0.4' opacity='0.1'/%3E%3C/svg%3E") repeat;
+    pointer-events: none;
+  }
+
+  .page-layout {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+  }
+
+  /* === FORM === */
+  .form-wrap {
+    background: white;
+    border: 1px solid rgba(139,69,19,0.12);
+    padding: 56px 60px;
+    box-shadow: 0 20px 80px rgba(26,18,8,0.07);
+  }
+  .form-section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--copper); margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(139,69,19,0.1);
+  }
+  .form-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 22px; margin-bottom: 32px;
+  }
+  .form-field { display: flex; flex-direction: column; gap: 7px; }
+  .form-field.full { grid-column: 1 / -1; }
+  .form-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--copper);
+  }
+  .form-input, .form-select, .form-textarea {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px; color: var(--deep);
+    background: var(--cream);
+    border: 1px solid rgba(139,69,19,0.18);
+    padding: 13px 16px;
+    outline: none; width: 100%;
+    transition: border-color 0.3s, background 0.3s;
+    cursor: pointer !important;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--gold); background: white;
+  }
+  .form-input.error { border-color: #c0392b; }
+  .form-textarea { resize: vertical; min-height: 100px; }
+  .form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238B4513' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 16px center;
+    background-color: var(--cream);
+  }
+
+  /* Tour cards */
+  .tour-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin-bottom: 32px;
+  }
+  .tour-card {
+    border: 1px solid rgba(139,69,19,0.18);
+    padding: 22px 16px; text-align: center;
+    cursor: pointer !important;
+    transition: all 0.3s; background: var(--cream);
+    user-select: none; position: relative;
+  }
+  .tour-card:hover { border-color: var(--gold); background: white; }
+  .tour-card.selected {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.06);
+  }
+  .tour-card.selected::after {
+    content: '✓';
+    position: absolute; top: 8px; right: 10px;
+    font-size: 12px; color: var(--gold);
+    font-family: sans-serif; font-weight: 700;
+  }
+  .tour-card-icon { font-size: 32px; display: block; margin-bottom: 10px; }
+  .tour-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px; font-weight: 700;
+    color: var(--deep); margin-bottom: 6px; line-height: 1.3;
+  }
+  .tour-card-duration {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; color: #888; margin-bottom: 4px;
+  }
+  .tour-card-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px; font-weight: 700;
+    color: var(--terra);
+  }
+
+  /* Submit */
+  .form-submit {
+    width: 100%; padding: 20px;
+    background: var(--terra); color: var(--ivory);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px; font-weight: 600;
+    letter-spacing: 4px; text-transform: uppercase;
+    border: none; cursor: pointer !important;
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 8px;
+  }
+  .form-submit:hover { background: var(--khmer-red); transform: translateY(-2px); }
+  .form-submit:active { transform: translateY(0); }
+  .form-note {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px; color: #aaa;
+    text-align: center; margin-top: 18px; font-style: italic;
+  }
+  .error-msg {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px; color: #c0392b;
+    margin-top: 6px; display: none;
+  }
+
+  /* === SIDEBAR === */
+  .sidebar { display: flex; flex-direction: column; gap: 24px; }
+
+  .sidebar-card {
+    background: var(--deep);
+    padding: 36px 32px;
+    border: 1px solid rgba(201,168,76,0.12);
+  }
+  .sidebar-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--gold); margin-bottom: 20px;
+  }
+  .sidebar-item {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .sidebar-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .sidebar-item-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .sidebar-item-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold);
+    opacity: 0.7; margin-bottom: 4px;
+  }
+  .sidebar-item-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; color: var(--ivory); line-height: 1.5;
+  }
+
+  .sidebar-tour-detail {
+    background: white;
+    border: 1px solid rgba(139,69,19,0.12);
+    padding: 32px;
+  }
+  .sidebar-tour-detail .sidebar-card-title { color: var(--terra); }
+  .tour-includes {
+    list-style: none; margin-top: 4px;
+  }
+  .tour-includes li {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; color: #5A4838;
+    padding: 8px 0; border-bottom: 1px solid rgba(139,69,19,0.08);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .tour-includes li:last-child { border-bottom: none; }
+  .tour-includes li::before {
+    content: '✦'; color: var(--gold); font-size: 10px; flex-shrink: 0;
+  }
+  .tour-total {
+    margin-top: 20px; padding-top: 16px;
+    border-top: 2px solid rgba(139,69,19,0.15);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .tour-total-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--copper);
+  }
+  .tour-total-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; font-weight: 900; color: var(--terra);
+  }
+
+  /* === SUCCESS STATE === */
+  .success-screen {
+    display: none;
+    text-align: center; padding: 100px 40px;
+    max-width: 600px; margin: 0 auto;
+  }
+  .success-icon { font-size: 80px; display: block; margin-bottom: 28px;
+    animation: pop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+  @keyframes pop {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+  .success-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px; font-weight: 900;
+    color: var(--terra); margin-bottom: 16px;
+  }
+  .success-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-style: italic;
+    color: #6A5040; line-height: 1.7; margin-bottom: 40px;
+  }
+  .success-detail {
+    background: white; border: 1px solid rgba(139,69,19,0.12);
+    padding: 32px 40px; text-align: left;
+    margin-bottom: 40px;
+  }
+  .success-row {
+    display: flex; justify-content: space-between;
+    padding: 10px 0; border-bottom: 1px solid rgba(139,69,19,0.08);
+    font-family: 'Cormorant Garamond', serif; font-size: 17px;
+  }
+  .success-row:last-child { border-bottom: none; }
+  .success-row span:first-child { color: var(--copper); letter-spacing: 1px; }
+  .success-row span:last-child  { color: var(--deep); font-weight: 600; }
+  .btn-back {
+    display: inline-block;
+    background: var(--gold); color: var(--deep);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    padding: 16px 40px; text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+    cursor: pointer !important;
+  }
+  .btn-back:hover { background: var(--copper); color: var(--ivory); transform: translateY(-2px); }
+
+  /* === FOOTER === */
+  .page-footer {
+    padding: 32px 60px;
+    background: var(--deep);
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+  .page-footer-copy {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px; color: rgba(212,184,150,0.4);
+    letter-spacing: 1px;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 900px) {
+    nav { padding: 18px 24px; }
+    .hero { padding: 0 24px 48px; }
+    .page-body { padding: 48px 24px 80px; }
+    .page-layout { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .form-wrap { padding: 36px 28px; }
+    .tour-grid { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-field.full { grid-column: 1; }
+    .page-footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="travinh-travel.html" class="nav-logo">
+    <img src="https://ntricao.github.io/My_Project/travinh-traval.png" alt="Trà Vinh Logo">
+    <div>
+      <div class="nav-logo-text">TRÀ VINH</div>
+      <div class="nav-logo-sub" id="nav-sub">Giao Thoa Văn Hoá</div>
+    </div>
+  </a>
+  <div style="display:flex;align-items:center;gap:24px">
+    <div style="display:flex;gap:12px">
+      <a href="#" onclick="switchLang('vi');return false;" id="lang-vi" style="font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:2px;color:var(--gold);text-decoration:none;cursor:pointer !important">VI</a>
+      <span style="color:rgba(212,184,150,0.3);font-size:12px">|</span>
+      <a href="#" onclick="switchLang('en');return false;" id="lang-en" style="font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:2px;color:rgba(212,184,150,0.5);text-decoration:none;cursor:pointer !important">EN</a>
+      <span style="color:rgba(212,184,150,0.3);font-size:12px">|</span>
+      <a href="#" onclick="switchLang('zh');return false;" id="lang-zh" style="font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:2px;color:rgba(212,184,150,0.5);text-decoration:none;cursor:pointer !important">中文</a>
+    </div>
+    <a href="travinh-travel.html" class="nav-back" id="nav-back">← Quay lại trang chính</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <p class="hero-eyebrow" id="hero-eyebrow">Đồng Bằng Sông Cửu Long · Việt Nam</p>
+  <h1 class="hero-title" id="hero-title">Đăng Ký<br><em id="hero-title-em">Tour Trà Vinh</em></h1>
+</section>
+
+<!-- PAGE BODY -->
+<div class="page-body">
+  <div class="page-layout" id="main-layout">
+
+    <!-- FORM -->
+    <div>
+      <div class="form-wrap" id="form-wrap">
+
+        <!-- Tour selection -->
+        <div class="form-section-title" id="sec1">01 · Chọn Gói Tour</div>
+        <div class="tour-grid">
+          <div class="tour-card selected" data-tour="Văn Hoá & Chùa" data-price="450.000" data-days="1" onclick="selectTour(this)">
+            <span class="tour-card-icon">🛕</span>
+            <div class="tour-card-name" id="t1-name">Văn Hoá & Chùa</div>
+            <div class="tour-card-duration" id="t1-dur">1 ngày</div>
+            <div class="tour-card-price">450.000đ/<span id="t1-unit">người</span></div>
+          </div>
+          <div class="tour-card" data-tour="Sông Nước Sinh Thái" data-price="550.000" data-days="1" onclick="selectTour(this)">
+            <span class="tour-card-icon">🚣</span>
+            <div class="tour-card-name" id="t2-name">Sông Nước Sinh Thái</div>
+            <div class="tour-card-duration" id="t2-dur">1 ngày</div>
+            <div class="tour-card-price">550.000đ/<span id="t2-unit">người</span></div>
+          </div>
+          <div class="tour-card" data-tour="Trọn Gói 3 Ngày" data-price="1.800.000" data-days="3" onclick="selectTour(this)">
+            <span class="tour-card-icon">✨</span>
+            <div class="tour-card-name" id="t3-name">Trọn Gói 3 Ngày</div>
+            <div class="tour-card-duration" id="t3-dur">3 ngày 2 đêm</div>
+            <div class="tour-card-price">1.800.000đ/<span id="t3-unit">người</span></div>
+          </div>
+          <div class="tour-card" data-tour="Lễ Hội Ok Om Bok" data-price="650.000" data-days="2" onclick="selectTour(this)">
+            <span class="tour-card-icon">🎊</span>
+            <div class="tour-card-name" id="t4-name">Lễ Hội Ok Om Bok</div>
+            <div class="tour-card-duration" id="t4-dur">2 ngày 1 đêm</div>
+            <div class="tour-card-price">650.000đ/<span id="t4-unit">người</span></div>
+          </div>
+          <div class="tour-card" data-tour="Ẩm Thực & Làng Nghề" data-price="380.000" data-days="1" onclick="selectTour(this)">
+            <span class="tour-card-icon">🍜</span>
+            <div class="tour-card-name" id="t5-name">Ẩm Thực & Làng Nghề</div>
+            <div class="tour-card-duration" id="t5-dur">1 ngày</div>
+            <div class="tour-card-price">380.000đ/<span id="t5-unit">người</span></div>
+          </div>
+          <div class="tour-card" data-tour="Biển Ba Động & Sinh Thái" data-price="490.000" data-days="1" onclick="selectTour(this)">
+            <span class="tour-card-icon">🌅</span>
+            <div class="tour-card-name" id="t6-name">Biển Ba Động</div>
+            <div class="tour-card-duration" id="t6-dur">1 ngày</div>
+            <div class="tour-card-price">490.000đ/<span id="t6-unit">người</span></div>
+          </div>
+        </div>
+
+        <!-- Personal info -->
+        <div class="form-section-title" id="sec2">02 · Thông Tin Liên Hệ</div>
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="form-label" id="lbl-name">Họ & Tên *</label>
+            <input class="form-input" type="text" placeholder="Nguyễn Văn A" id="f-name">
+            <span class="error-msg" id="err-name">Vui lòng nhập họ tên</span>
+          </div>
+          <div class="form-field">
+            <label class="form-label" id="lbl-phone">Số Điện Thoại *</label>
+            <input class="form-input" type="tel" placeholder="0901 234 567" id="f-phone">
+            <span class="error-msg" id="err-phone">Vui lòng nhập số điện thoại</span>
+          </div>
+          <div class="form-field">
+            <label class="form-label" id="lbl-email">Email</label>
+            <input class="form-input" type="email" placeholder="email@example.com" id="f-email">
+          </div>
+          <div class="form-field">
+            <label class="form-label" id="lbl-from">Xuất Phát Từ</label>
+            <select class="form-select" id="f-from">
+              <option id="from-hcm">TP. Hồ Chí Minh</option>
+              <option id="from-ct">Cần Thơ</option>
+              <option id="from-hn">Hà Nội</option>
+              <option id="from-dn">Đà Nẵng</option>
+              <option id="from-other">Khác</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Trip details -->
+        <div class="form-section-title" id="sec3">03 · Chi Tiết Chuyến Đi</div>
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="form-label" id="lbl-date">Ngày Khởi Hành *</label>
+            <input class="form-input" type="date" id="f-date">
+            <span class="error-msg" id="err-date">Vui lòng chọn ngày khởi hành</span>
+          </div>
+          <div class="form-field">
+            <label class="form-label" id="lbl-pax">Số Người</label>
+            <select class="form-select" id="f-pax">
+              <option id="pax1">1 người</option>
+              <option id="pax2">2 người</option>
+              <option id="pax3" selected>3–5 người</option>
+              <option id="pax4">6–10 người</option>
+              <option id="pax5">Trên 10 người</option>
+            </select>
+          </div>
+          <div class="form-field full">
+            <label class="form-label" id="lbl-note">Yêu Cầu Đặc Biệt</label>
+            <textarea class="form-textarea" id="f-note" id="f-note-area" placeholder="Ăn chay, có trẻ em, người cao tuổi, dị ứng thực phẩm, cần xe lăn..."></textarea>
+          </div>
+        </div>
+
+        <button class="form-submit" id="btn-submit" onclick="submitForm()">
+          Đăng Ký Ngay · Miễn Phí Tư Vấn
+        </button>
+        <p class="form-note" id="form-note-txt">🔒 Thông tin bảo mật tuyệt đối · Chúng tôi sẽ liên hệ trong vòng 2 giờ</p>
+
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-title" id="sb-contact-title">Liên Hệ Trực Tiếp</div>
+        <div class="sidebar-item">
+          <span class="sidebar-item-icon">📞</span>
+          <div>
+            <div class="sidebar-item-label" id="sb-hotline-lbl">Hotline</div>
+            <div class="sidebar-item-val">0337 675 709</div>
+          </div>
+        </div>
+        <div class="sidebar-item">
+          <span class="sidebar-item-icon">📧</span>
+          <div>
+            <div class="sidebar-item-label" id="sb-email-lbl">Email</div>
+            <div class="sidebar-item-val">tricao5117@gmail.com</div>
+          </div>
+        </div>
+        <div class="sidebar-item">
+          <span class="sidebar-item-icon">🕐</span>
+          <div>
+            <div class="sidebar-item-label" id="sb-hours-lbl">Giờ Làm Việc</div>
+            <div class="sidebar-item-val" id="sb-hours-val">T2 – T7 · 7:30 – 17:30</div>
+          </div>
+        </div>
+        <div class="sidebar-item">
+          <span class="sidebar-item-icon">📍</span>
+          <div>
+            <div class="sidebar-item-label" id="sb-office-lbl">Văn Phòng</div>
+            <div class="sidebar-item-val">Tân Phước Hưng,<br>TP. Cần Thơ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-tour-detail" id="sidebar-detail">
+        <div class="sidebar-card-title" id="detail-title">Văn Hoá & Chùa</div>
+        <ul class="tour-includes" id="detail-includes">
+          <li>Xe đưa đón từ trung tâm thành phố</li>
+          <li>Hướng dẫn viên địa phương song ngữ</li>
+          <li>Bữa trưa đặc sản Trà Vinh</li>
+          <li>Vé tham quan tất cả điểm đến</li>
+          <li>Bảo hiểm du lịch</li>
+        </ul>
+        <div class="tour-total">
+          <span class="tour-total-label" id="sidebar-price-label">Giá từ</span>
+          <span class="tour-total-price" id="detail-price">450.000đ</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SUCCESS STATE -->
+  <div class="success-screen" id="success-screen">
+    <span class="success-icon">🎉</span>
+    <h2 class="success-title">Đăng Ký Thành Công!</h2>
+    <p class="success-sub">Cảm ơn bạn đã tin tưởng chọn tour Trà Vinh.<br>Đội ngũ tư vấn sẽ liên hệ trong vòng <strong>2 giờ</strong> để xác nhận lịch trình.</p>
+    <div class="success-detail" id="success-detail"></div>
+    <a href="travinh-travel.html" class="btn-back">← Quay Lại Trang Chính</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="page-footer">
+  <span class="page-footer-copy">© 2026 Trà Vinh Tourism · Sở Du Lịch Tỉnh Trà Vinh</span>
+  <span class="page-footer-copy">Hotline: 0337 675 709</span>
+</footer>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursor-ring');
+  document.addEventListener('mousemove', e => {
+    cursor.style.transform = `translate(${e.clientX - 5}px, ${e.clientY - 5}px)`;
+    ring.style.transform   = `translate(${e.clientX - 18}px, ${e.clientY - 18}px)`;
+  });
+
+  // Tour includes data — đa ngôn ngữ
+  const tourData = {
+    vi: {
+      'Văn Hoá & Chùa':        { price:'450.000đ', includes:['Xe đưa đón từ trung tâm thành phố','Hướng dẫn viên địa phương song ngữ','Bữa trưa đặc sản Trà Vinh','Vé tham quan tất cả điểm đến','Bảo hiểm du lịch'] },
+      'Sông Nước Sinh Thái':   { price:'550.000đ', includes:['Xuồng chèo tay truyền thống','Hướng dẫn viên sinh thái','Bữa trưa tại nhà dân','Tham quan vườn chim Trà Cú','Trải nghiệm làng nghề dừa','Bảo hiểm du lịch'] },
+      'Trọn Gói 3 Ngày':       { price:'1.800.000đ', includes:['3 ngày 2 đêm trọn gói','Khách sạn 3 sao trung tâm','Tất cả bữa ăn đặc sản','Xe riêng đưa đón','Hướng dẫn viên cả hành trình','Vé tất cả điểm tham quan','Trải nghiệm lớp nấu ăn','Bảo hiểm du lịch'] },
+      'Lễ Hội Ok Om Bok':      { price:'650.000đ', includes:['2 ngày 1 đêm','Tham dự lễ hội Ok Om Bok','Xem đua ghe ngo','Thả đèn nước trên sông','Homestay tại làng Khmer','Bữa ăn truyền thống','Bảo hiểm du lịch'] },
+      'Ẩm Thực & Làng Nghề':   { price:'380.000đ', includes:['Lớp học nấu bún nước lèo','Tham quan làng dừa Tiểu Cần','Thử nghiệm làm bánh cốm dẹp','Chợ sáng địa phương','Hướng dẫn viên ẩm thực','Bảo hiểm du lịch'] },
+      'Biển Ba Động & Sinh Thái':{ price:'490.000đ', includes:['Đón bình minh tại biển Ba Động','Tham quan cánh đồng điện gió','Ẩm thực hải sản tươi sống','Hướng dẫn viên địa phương','Xe đưa đón','Bảo hiểm du lịch'] },
+    },
+    en: {
+      'Văn Hoá & Chùa':        { price:'450,000đ', includes:['Round-trip transfer from city center','Bilingual local guide','Tra Vinh specialty lunch','All entrance tickets','Travel insurance'] },
+      'Sông Nước Sinh Thái':   { price:'550,000đ', includes:['Traditional hand-rowed boat','Eco guide','Lunch at a local home','Tra Cu Bird Sanctuary visit','Coconut craft village experience','Travel insurance'] },
+      'Trọn Gói 3 Ngày':       { price:'1,800,000đ', includes:['Full 3-day 2-night package','3-star central hotel','All specialty meals','Private vehicle transfers','Full-trip guide','All entrance tickets','Cooking class experience','Travel insurance'] },
+      'Lễ Hội Ok Om Bok':      { price:'650,000đ', includes:['2 days 1 night','Attend Ok Om Bok festival','Watch Ngo boat race','Floating lantern release','Khmer village homestay','Traditional meals','Travel insurance'] },
+      'Ẩm Thực & Làng Nghề':   { price:'380,000đ', includes:['Bun Nuoc Leo cooking class','Tieu Can coconut village tour','Rice cake making experience','Local morning market','Culinary guide','Travel insurance'] },
+      'Biển Ba Động & Sinh Thái':{ price:'490,000đ', includes:['Sunrise at Ba Dong Beach','Wind farm tour','Fresh seafood dining','Local guide','Round-trip transfer','Travel insurance'] },
+    },
+    zh: {
+      'Văn Hoá & Chùa':        { price:'450,000đ', includes:['市区往返接送','双语本地导游','茶荣特色午餐','所有景点门票','旅游保险'] },
+      'Sông Nước Sinh Thái':   { price:'550,000đ', includes:['传统手划船','生态导游','在当地人家午餐','参观茶如鸟园','椰子工艺村体验','旅游保险'] },
+      'Trọn Gói 3 Ngày':       { price:'1,800,000đ', includes:['3天2夜全包','市中心三星酒店','所有特色餐食','专车接送','全程导游','所有景点门票','烹饪课体验','旅游保险'] },
+      'Lễ Hội Ok Om Bok':      { price:'650,000đ', includes:['2天1夜','参加Ok Om Bok节','观看龙舟赛','放水灯','高棉村民宿','传统餐食','旅游保险'] },
+      'Ẩm Thực & Làng Nghề':   { price:'380,000đ', includes:['越南米线烹饪课','椰子村游览','米糕制作体验','当地早市','美食导游','旅游保险'] },
+      'Biển Ba Động & Sinh Thái':{ price:'490,000đ', includes:['巴动海滩看日出','风电场游览','新鲜海鲜餐','本地导游','往返接送','旅游保险'] },
+    }
+  };
+
+  // Sidebar labels per language
+  const sidebarLabels = {
+    vi: { priceFrom: 'Giá từ', perPerson: '/người' },
+    en: { priceFrom: 'From',   perPerson: '/person' },
+    zh: { priceFrom: '价格从', perPerson: '/人' },
+  };
+
+  function selectTour(el) {
+    document.querySelectorAll('.tour-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    updateSidebar(el.dataset.tour);
+  }
+
+  function updateSidebar(tourKey) {
+    const lang = currentLang || 'vi';
+    const data = tourData[lang]?.[tourKey] || tourData['vi'][tourKey];
+    const lbl  = sidebarLabels[lang] || sidebarLabels.vi;
+    if (!data) return;
+    document.getElementById('detail-title').textContent = document.querySelector('.tour-card.selected')?.querySelector('[id^="t"]')?.textContent || tourKey;
+    document.getElementById('detail-price').textContent = data.price + lbl.perPerson;
+    document.getElementById('sidebar-price-label').textContent = lbl.priceFrom;
+    document.getElementById('detail-includes').innerHTML = data.includes.map(i => `<li>${i}</li>`).join('');
+  }
+
+  function validate() {
+    let ok = true;
+    const name  = document.getElementById('f-name');
+    const phone = document.getElementById('f-phone');
+    const date  = document.getElementById('f-date');
+    [name, phone, date].forEach(el => {
+      el.classList.remove('error');
+    });
+    document.querySelectorAll('.error-msg').forEach(e => e.style.display = 'none');
+
+    if (!name.value.trim()) {
+      name.classList.add('error');
+      document.getElementById('err-name').style.display = 'block';
+      ok = false;
+    }
+    if (!phone.value.trim()) {
+      phone.classList.add('error');
+      document.getElementById('err-phone').style.display = 'block';
+      ok = false;
+    }
+    if (!date.value) {
+      date.classList.add('error');
+      document.getElementById('err-date').style.display = 'block';
+      ok = false;
+    }
+    return ok;
+  }
+
+  function submitForm() {
+    if (!validate()) return;
+
+    const selected = document.querySelector('.tour-card.selected');
+    const tourName = selected?.dataset.tour || '—';
+    const name     = document.getElementById('f-name').value;
+    const phone    = document.getElementById('f-phone').value;
+    const email    = document.getElementById('f-email').value;
+    const date     = document.getElementById('f-date').value;
+    const pax      = document.getElementById('f-pax').value;
+    const from     = document.getElementById('f-from').value;
+
+    const fmt = d => {
+      const [y,m,dd] = d.split('-');
+      return `${dd}/${m}/${y}`;
+    };
+
+    document.getElementById('success-detail').innerHTML = `
+      <div class="success-row"><span>Gói Tour</span><span>${tourName}</span></div>
+      <div class="success-row"><span>Họ Tên</span><span>${name}</span></div>
+      <div class="success-row"><span>Điện Thoại</span><span>${phone}</span></div>
+      ${email ? `<div class="success-row"><span>Email</span><span>${email}</span></div>` : ''}
+      <div class="success-row"><span>Ngày Khởi Hành</span><span>${fmt(date)}</span></div>
+      <div class="success-row"><span>Số Người</span><span>${pax}</span></div>
+      <div class="success-row"><span>Xuất Phát</span><span>${from}</span></div>
+    `;
+
+    document.getElementById('main-layout').style.display = 'none';
+    document.getElementById('success-screen').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Set min date to today
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('f-date').min = today;
+
+  // ========== I18N ==========
+  const T = {
+    vi: {
+      'nav-sub': 'Giao Thoa Văn Hoá', 'nav-back': '← Quay lại trang chính',
+      'hero-eyebrow': 'Đồng Bằng Sông Cửu Long · Việt Nam',
+      'hero-title': 'Đăng Ký', 'hero-title-em': 'Tour Trà Vinh',
+      'sec1': '01 · Chọn Gói Tour', 'sec2': '02 · Thông Tin Liên Hệ', 'sec3': '03 · Chi Tiết Chuyến Đi',
+      't1-name':'Văn Hoá & Chùa','t1-dur':'1 ngày','t1-unit':'người',
+      't2-name':'Sông Nước Sinh Thái','t2-dur':'1 ngày','t2-unit':'người',
+      't3-name':'Trọn Gói 3 Ngày','t3-dur':'3 ngày 2 đêm','t3-unit':'người',
+      't4-name':'Lễ Hội Ok Om Bok','t4-dur':'2 ngày 1 đêm','t4-unit':'người',
+      't5-name':'Ẩm Thực & Làng Nghề','t5-dur':'1 ngày','t5-unit':'người',
+      't6-name':'Biển Ba Động','t6-dur':'1 ngày','t6-unit':'người',
+      'lbl-name':'Họ & Tên *','lbl-phone':'Số Điện Thoại *','lbl-email':'Email',
+      'lbl-from':'Xuất Phát Từ','lbl-date':'Ngày Khởi Hành *','lbl-pax':'Số Người','lbl-note':'Yêu Cầu Đặc Biệt',
+      'err-name':'Vui lòng nhập họ tên','err-phone':'Vui lòng nhập số điện thoại','err-date':'Vui lòng chọn ngày khởi hành',
+      'from-hcm':'TP. Hồ Chí Minh','from-ct':'Cần Thơ','from-hn':'Hà Nội','from-dn':'Đà Nẵng','from-other':'Khác',
+      'pax1':'1 người','pax2':'2 người','pax3':'3–5 người','pax4':'6–10 người','pax5':'Trên 10 người',
+      'f-note': 'Ăn chay, có trẻ em, người cao tuổi, dị ứng thực phẩm, cần xe lăn...',
+      'btn-submit':'Đăng Ký Ngay · Miễn Phí Tư Vấn',
+      'form-note-txt':'🔒 Thông tin bảo mật tuyệt đối · Chúng tôi sẽ liên hệ trong vòng 2 giờ',
+    },
+    en: {
+      'nav-sub': 'Cultural Convergence', 'nav-back': '← Back to main page',
+      'hero-eyebrow': 'Mekong Delta · Vietnam',
+      'hero-title': 'Book a', 'hero-title-em': 'Trà Vinh Tour',
+      'sec1': '01 · Choose Tour Package', 'sec2': '02 · Contact Information', 'sec3': '03 · Trip Details',
+      't1-name':'Culture & Temples','t1-dur':'1 day','t1-unit':'person',
+      't2-name':'Riverside Eco Tour','t2-dur':'1 day','t2-unit':'person',
+      't3-name':'Full 3-Day Package','t3-dur':'3 days 2 nights','t3-unit':'person',
+      't4-name':'Ok Om Bok Festival','t4-dur':'2 days 1 night','t4-unit':'person',
+      't5-name':'Cuisine & Craft Villages','t5-dur':'1 day','t5-unit':'person',
+      't6-name':'Ba Dong Beach','t6-dur':'1 day','t6-unit':'person',
+      'lbl-name':'Full Name *','lbl-phone':'Phone Number *','lbl-email':'Email',
+      'lbl-from':'Departing From','lbl-date':'Departure Date *','lbl-pax':'Number of People','lbl-note':'Special Requests',
+      'err-name':'Please enter your name','err-phone':'Please enter your phone number','err-date':'Please select a departure date',
+      'from-hcm':'Ho Chi Minh City','from-ct':'Can Tho','from-hn':'Hanoi','from-dn':'Da Nang','from-other':'Other',
+      'pax1':'1 person','pax2':'2 people','pax3':'3–5 people','pax4':'6–10 people','pax5':'10+ people',
+      'f-note': 'Vegetarian, children, elderly, food allergies, wheelchair...',
+      'btn-submit':'Register Now · Free Consultation',
+      'form-note-txt':'🔒 Your information is fully protected · We will contact you within 2 hours',
+    },
+    zh: {
+      'nav-sub': '文化交融之地', 'nav-back': '← 返回主页',
+      'hero-eyebrow': '湄公河三角洲 · 越南',
+      'hero-title': '报名参加', 'hero-title-em': '茶荣旅游团',
+      'sec1': '01 · 选择旅游套餐', 'sec2': '02 · 联系信息', 'sec3': '03 · 行程详情',
+      't1-name':'文化与寺庙','t1-dur':'1天','t1-unit':'人',
+      't2-name':'河道生态游','t2-dur':'1天','t2-unit':'人',
+      't3-name':'3天全包套餐','t3-dur':'3天2夜','t3-unit':'人',
+      't4-name':'Ok Om Bok节日','t4-dur':'2天1夜','t4-unit':'人',
+      't5-name':'美食与手工艺村','t5-dur':'1天','t5-unit':'人',
+      't6-name':'巴动海滩','t6-dur':'1天','t6-unit':'人',
+      'lbl-name':'姓名 *','lbl-phone':'电话号码 *','lbl-email':'电子邮件',
+      'lbl-from':'出发地','lbl-date':'出发日期 *','lbl-pax':'人数','lbl-note':'特殊要求',
+      'err-name':'请输入姓名','err-phone':'请输入电话号码','err-date':'请选择出发日期',
+      'from-hcm':'胡志明市','from-ct':'芹苴','from-hn':'河内','from-dn':'岘港','from-other':'其他',
+      'pax1':'1人','pax2':'2人','pax3':'3–5人','pax4':'6–10人','pax5':'10人以上',
+      'f-note': '素食、儿童、老人、食物过敏、轮椅...',
+      'btn-submit':'立即报名 · 免费咨询',
+      'form-note-txt':'🔒 您的信息完全保密 · 我们将在2小时内与您联系',
+    }
+  };
+
+  const sidebarContact = {
+    vi: { title:'Liên Hệ Trực Tiếp', hotline:'Hotline', email:'Email', hours:'Giờ Làm Việc', hoursVal:'T2 – T7 · 7:30 – 17:30', office:'Văn Phòng', priceFrom:'Giá từ' },
+    en: { title:'Contact Us Directly', hotline:'Hotline', email:'Email', hours:'Working Hours', hoursVal:'Mon – Sat · 7:30 – 17:30', office:'Office', priceFrom:'From' },
+    zh: { title:'直接联系我们', hotline:'热线', email:'电子邮件', hours:'工作时间', hoursVal:'周一 – 周六 · 7:30 – 17:30', office:'办公室', priceFrom:'价格从' },
+  };
+
+  let currentLang = 'vi';
+
+  function switchLang(lang) {
+    currentLang = lang;
+    const t = T[lang];
+    Object.keys(t).forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (el.tagName === 'TEXTAREA') { el.placeholder = t[id]; }
+      else if (el.tagName === 'INPUT') { el.placeholder = t[id]; }
+      else { el.textContent = t[id]; }
+    });
+    // Update lang buttons
+    ['vi','en','zh'].forEach(l => {
+      const btn = document.getElementById('lang-' + l);
+      if (btn) btn.style.color = l === lang ? 'var(--gold)' : 'rgba(212,184,150,0.5)';
+    });
+    // Update sidebar contact labels
+    const sc = sidebarContact[lang] || sidebarContact.vi;
+    const setTxt = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
+    setTxt('sb-contact-title', sc.title);
+    setTxt('sb-hotline-lbl', sc.hotline);
+    setTxt('sb-email-lbl', sc.email);
+    setTxt('sb-hours-lbl', sc.hours);
+    setTxt('sb-hours-val', sc.hoursVal);
+    setTxt('sb-office-lbl', sc.office);
+    // Refresh sidebar tour detail
+    const selectedCard = document.querySelector('.tour-card.selected');
+    if (selectedCard) updateSidebar(selectedCard.dataset.tour);
+    localStorage.setItem('tv_lang', lang);
+  }
+
+  // Auto-load saved language
+  const savedLang = localStorage.getItem('tv_lang');
+  if (savedLang && T[savedLang]) switchLang(savedLang);
+
+  // === EMAILJS CONFIG ===
+  // Hướng dẫn thiết lập (làm 1 lần):
+  // 1. Vào https://www.emailjs.com → Đăng ký miễn phí
+  // 2. Add New Service → chọn Gmail → kết nối tricao5117@gmail.com → lấy SERVICE_ID
+  // 3. Email Templates → Create New → đặt tên, dán nội dung bên dưới → lấy TEMPLATE_ID
+  // 4. Account → API Keys → lấy PUBLIC_KEY
+  // 5. Điền 3 giá trị vào chỗ "ĐIỀN_VÀO_ĐÂY" bên dưới
+
+  const EMAILJS_SERVICE_ID  = 'service_o29mndo';
+  const EMAILJS_TEMPLATE_ID = 'template_8w7bors';
+  const EMAILJS_PUBLIC_KEY  = 'JhOg_4uRh3HyBLu-1';
+
+  // Template gợi ý cho EmailJS (dán vào ô "Content" khi tạo template):
+  // Tiêu đề: 🏝️ Đăng ký tour mới - {{tour_name}} - {{from_name}}
+  // Nội dung:
+  // Gói tour: {{tour_name}}
+  // Họ tên: {{from_name}}
+  // Điện thoại: {{phone}}
+  // Email: {{reply_to}}
+  // Ngày khởi hành: {{depart_date}}
+  // Số người: {{pax}}
+  // Xuất phát: {{from_city}}
+  // Yêu cầu đặc biệt: {{notes}}
+
+  const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwIL2EGJzRFrIecmLcJEG_qeXmMCZS_cVQ1lJgXkfGPytGbuWh-TSXbXfWg84nKIwdCOA/exec';
+
+  async function submitForm() {
+    if (!validate()) return;
+
+    const selected  = document.querySelector('.tour-card.selected');
+    const tourName  = selected?.dataset.tour || '—';
+    const name      = document.getElementById('f-name').value.trim();
+    const phone     = document.getElementById('f-phone').value.trim();
+    const email     = document.getElementById('f-email').value.trim();
+    const date      = document.getElementById('f-date').value;
+    const pax       = document.getElementById('f-pax').value;
+    const from      = document.getElementById('f-from').value;
+    const note      = document.getElementById('f-note').value.trim();
+
+    const fmt = d => { const [y,m,dd] = d.split('-'); return `${dd}/${m}/${y}`; };
+
+    const btn = document.querySelector('.form-submit');
+    btn.textContent = 'Đang gửi...';
+    btn.disabled = true;
+
+    const payload = {
+      tour_name:   tourName,
+      from_name:   name,
+      phone:       phone,
+      reply_to:    email || '(không có)',
+      depart_date: fmt(date),
+      pax:         pax,
+      from_city:   from,
+      notes:       note || '(không có)',
+      to_email:    'tricao5117@gmail.com',
+    };
+
+    try {
+      // Gửi đồng thời cả Gmail lẫn Google Sheets
+      await Promise.all([
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, payload, EMAILJS_PUBLIC_KEY),
+        fetch(SHEETS_URL, {
+          method: 'POST',
+          body: JSON.stringify(payload),
+        }),
+      ]);
+
+      document.getElementById('success-detail').innerHTML = `
+        <div class="success-row"><span>Gói Tour</span><span>${tourName}</span></div>
+        <div class="success-row"><span>Họ Tên</span><span>${name}</span></div>
+        <div class="success-row"><span>Điện Thoại</span><span>${phone}</span></div>
+        ${email ? `<div class="success-row"><span>Email</span><span>${email}</span></div>` : ''}
+        <div class="success-row"><span>Ngày Khởi Hành</span><span>${fmt(date)}</span></div>
+        <div class="success-row"><span>Số Người</span><span>${pax}</span></div>
+        <div class="success-row"><span>Xuất Phát</span><span>${from}</span></div>
+      `;
+      document.getElementById('main-layout').style.display = 'none';
+      document.getElementById('success-screen').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    } catch (err) {
+      btn.textContent = 'Đăng Ký Ngay · Miễn Phí Tư Vấn';
+      btn.disabled = false;
+      alert('Gửi thất bại, vui lòng thử lại!\n\nLỗi: ' + JSON.stringify(err));
+    }
+  }
+</script>
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+</script>
+</body>
+</html>
