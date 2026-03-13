@@ -715,38 +715,6 @@
     return ok;
   }
 
-  function submitForm() {
-    if (!validate()) return;
-
-    const selected = document.querySelector('.tour-card.selected');
-    const tourName = selected?.dataset.tour || '—';
-    const name     = document.getElementById('f-name').value;
-    const phone    = document.getElementById('f-phone').value;
-    const email    = document.getElementById('f-email').value;
-    const date     = document.getElementById('f-date').value;
-    const pax      = document.getElementById('f-pax').value;
-    const from     = document.getElementById('f-from').value;
-
-    const fmt = d => {
-      const [y,m,dd] = d.split('-');
-      return `${dd}/${m}/${y}`;
-    };
-
-    document.getElementById('success-detail').innerHTML = `
-      <div class="success-row"><span>Gói Tour</span><span>${tourName}</span></div>
-      <div class="success-row"><span>Họ Tên</span><span>${name}</span></div>
-      <div class="success-row"><span>Điện Thoại</span><span>${phone}</span></div>
-      ${email ? `<div class="success-row"><span>Email</span><span>${email}</span></div>` : ''}
-      <div class="success-row"><span>Ngày Khởi Hành</span><span>${fmt(date)}</span></div>
-      <div class="success-row"><span>Số Người</span><span>${pax}</span></div>
-      <div class="success-row"><span>Xuất Phát</span><span>${from}</span></div>
-    `;
-
-    document.getElementById('main-layout').style.display = 'none';
-    document.getElementById('success-screen').style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
   // Set min date to today
   const today = new Date().toISOString().split('T')[0];
   document.getElementById('f-date').min = today;
@@ -939,4 +907,15 @@
 
     } catch (err) {
       btn.textContent = 'Đăng Ký Ngay · Miễn Phí Tư Vấn';
-      btn.disabled
+      btn.disabled = false;
+      alert('Gửi thất bại, vui lòng thử lại!\n\nLỗi: ' + err.message);
+    }
+  }
+
+  // Expose to global scope
+  window.selectTour = selectTour;
+  window.submitForm = submitForm;
+  window.switchLang = switchLang;
+</script>
+</body>
+</html>
