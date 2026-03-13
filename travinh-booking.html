@@ -623,7 +623,8 @@
   <span class="page-footer-copy">Hotline: 0337 675 709</span>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
   // Cursor
   const cursor = document.getElementById('cursor');
   const ring   = document.getElementById('cursor-ring');
@@ -938,15 +939,4 @@
 
     } catch (err) {
       btn.textContent = 'Đăng Ký Ngay · Miễn Phí Tư Vấn';
-      btn.disabled = false;
-      alert('Gửi thất bại, vui lòng thử lại!');
-    }
-  }
-
-  // Expose functions to global scope
-  window.selectTour = selectTour;
-  window.submitForm = submitForm;
-  window.switchLang = switchLang;
-</script>
-</body>
-</html>
+      btn.disabled
