@@ -1,0 +1,3706 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Trang web giáo dục giúp học sinh nhận biết và phòng ngừa bạo lực, lừa đảo, bắt cóc trẻ em trên không gian mạng." />
+  <title>SafeNet Kids – Bảo Vệ Em Trên Không Gian Mạng</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+
+  <style>
+/* ============================================================
+   SafeNet Kids – styles.css
+   Author: Senior Full-Stack Developer
+   Description: Main stylesheet for child online safety website
+   Version: 1.0.0
+   
+   TABLE OF CONTENTS:
+   1.  CSS Variables & Reset
+   2.  Base Typography & Utilities
+   3.  Scrollbar & Selection
+   4.  Navigation Bar
+   5.  Hero Section
+   6.  Shared Section Styles
+   7.  Risk Cards Section
+   8.  Safety Tips Section
+   9.  Emergency Section
+   10. Contact Section
+   11. Footer
+   12. Modals
+   13. Toast Notification
+   14. Back to Top
+   15. Scroll Animations
+   16. Responsive Breakpoints
+============================================================ */
+
+
+/* ============================================================
+   1. CSS VARIABLES & RESET
+============================================================ */
+:root {
+  /* Brand Colors */
+  --primary-900: #0c1a3d;
+  --primary-800: #102264;
+  --primary-700: #1a35a0;
+  --primary-600: #2046c8;
+  --primary-500: #2563eb;
+  --primary-400: #3b82f6;
+  --primary-300: #60a5fa;
+  --primary-200: #93c5fd;
+  --primary-100: #dbeafe;
+  --primary-50:  #eff6ff;
+
+  /* Accent - Cyan */
+  --accent-600: #0891b2;
+  --accent-500: #06b6d4;
+  --accent-400: #22d3ee;
+  --accent-200: #a5f3fc;
+  --accent-100: #cffafe;
+
+  /* Semantic Colors */
+  --success-500: #22c55e;
+  --success-100: #dcfce7;
+  --warning-500: #f59e0b;
+  --warning-100: #fef3c7;
+  --danger-600: #dc2626;
+  --danger-500: #ef4444;
+  --danger-100: #fee2e2;
+  --purple-600: #9333ea;
+  --purple-500: #a855f7;
+  --purple-100: #f3e8ff;
+  --orange-600: #ea580c;
+  --orange-500: #f97316;
+  --orange-100: #ffedd5;
+
+  /* Neutral */
+  --gray-900: #111827;
+  --gray-800: #1f2937;
+  --gray-700: #374151;
+  --gray-600: #4b5563;
+  --gray-500: #6b7280;
+  --gray-400: #9ca3af;
+  --gray-300: #d1d5db;
+  --gray-200: #e5e7eb;
+  --gray-100: #f3f4f6;
+  --gray-50:  #f9fafb;
+  --white:    #ffffff;
+
+  /* Typography */
+  --font-display: 'Baloo 2', cursive;
+  --font-body:    'Nunito', sans-serif;
+
+  /* Spacing */
+  --section-pad: 100px 0;
+  --container-max: 1200px;
+  --container-pad: 0 24px;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+  --shadow-md:  0 4px 12px rgba(0,0,0,.10), 0 2px 6px rgba(0,0,0,.06);
+  --shadow-lg:  0 10px 30px rgba(0,0,0,.12), 0 4px 12px rgba(0,0,0,.08);
+  --shadow-xl:  0 20px 60px rgba(0,0,0,.15);
+  --shadow-glow: 0 0 40px rgba(37,99,235,.25);
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(.4,0,.2,1);
+  --transition-mid:  0.35s cubic-bezier(.4,0,.2,1);
+  --transition-slow: 0.55s cubic-bezier(.4,0,.2,1);
+
+  /* Z-index layers */
+  --z-base:    1;
+  --z-navbar:  100;
+  --z-modal:   1000;
+  --z-toast:   2000;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--gray-800);
+  background-color: var(--white);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   2. BASE TYPOGRAPHY & UTILITIES
+============================================================ */
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+}
+
+input, textarea, select {
+  font-family: var(--font-body);
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--container-pad);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all var(--transition-mid);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0);
+  transition: background var(--transition-fast);
+}
+
+.btn:hover::before { background: rgba(255,255,255,.15); }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+  color: var(--white);
+  box-shadow: 0 8px 30px rgba(37,99,235,.40);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(37,99,235,.50);
+}
+
+.btn-primary:active { transform: translateY(-1px); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid rgba(255,255,255,.6);
+  backdrop-filter: blur(10px);
+}
+
+.btn-outline:hover {
+  background: rgba(255,255,255,.15);
+  border-color: var(--white);
+  transform: translateY(-2px);
+}
+
+.btn-full { width: 100%; justify-content: center; }
+
+/* Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  font-size: .875rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.badge-danger { background: var(--danger-100);  color: var(--danger-600);  }
+.badge-green  { background: var(--success-100); color: #16a34a; }
+.badge-blue   { background: var(--primary-100); color: var(--primary-700); }
+.badge-cyan   { background: var(--accent-100);  color: var(--accent-600);  }
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--gray-900);
+  margin-bottom: 16px;
+}
+
+.text-highlight {
+  background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-sub {
+  font-size: 1.125rem;
+  color: var(--gray-500);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Section base */
+.section {
+  padding: var(--section-pad);
+}
+
+
+/* ============================================================
+   3. SCROLLBAR & SELECTION
+============================================================ */
+::selection {
+  background: var(--primary-200);
+  color: var(--primary-900);
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--gray-100); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary-400), var(--accent-500));
+  border-radius: 4px;
+}
+
+
+/* ============================================================
+   4. NAVIGATION BAR
+============================================================ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-navbar);
+  padding: 16px 0;
+  transition: all var(--transition-mid);
+}
+
+/* Scrolled state (added by JS) */
+.navbar.scrolled {
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 2px 24px rgba(0,0,0,.08);
+  padding: 10px 0;
+}
+
+.nav-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+/* Logo */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 1.2rem;
+  transition: transform var(--transition-fast);
+}
+
+.nav-logo:hover .logo-icon { transform: rotate(-8deg) scale(1.1); }
+
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--white);
+  transition: color var(--transition-fast);
+}
+
+.navbar.scrolled .logo-text { color: var(--gray-900); }
+
+.logo-accent {
+  color: var(--accent-400);
+}
+
+.navbar.scrolled .logo-accent { color: var(--accent-600); }
+
+/* Nav Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: var(--radius-full);
+  font-size: .9rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.85);
+  transition: all var(--transition-fast);
+}
+
+.navbar.scrolled .nav-link { color: var(--gray-700); }
+
+.nav-link:hover,
+.nav-link.active {
+  background: rgba(255,255,255,.2);
+  color: var(--white);
+}
+
+.navbar.scrolled .nav-link:hover,
+.navbar.scrolled .nav-link.active {
+  background: var(--primary-100);
+  color: var(--primary-700);
+}
+
+.nav-link i { font-size: .8rem; }
+
+/* Hotline pill */
+.nav-hotline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  background: linear-gradient(135deg, var(--danger-500), #f97316);
+  color: var(--white);
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: .9rem;
+  transition: all var(--transition-mid);
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(239,68,68,.4);
+}
+
+.nav-hotline:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(239,68,68,.5);
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  margin-left: auto;
+  transition: background var(--transition-fast);
+}
+
+.hamburger:hover { background: rgba(255,255,255,.15); }
+.navbar.scrolled .hamburger:hover { background: var(--gray-100); }
+
+.ham-bar {
+  display: block;
+  height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: all var(--transition-mid);
+  transform-origin: center;
+}
+
+.navbar.scrolled .ham-bar { background: var(--gray-700); }
+
+/* Hamburger open state */
+.hamburger.open .ham-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open .ham-bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open .ham-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Nav overlay (mobile) */
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  z-index: calc(var(--z-navbar) - 1);
+  opacity: 0;
+  transition: opacity var(--transition-mid);
+}
+
+.nav-overlay.active { opacity: 1; }
+
+
+/* ============================================================
+   5. HERO SECTION
+============================================================ */
+.hero-section {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-900) 0%, var(--primary-700) 50%, #0e4f8f 100%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
+  padding: 120px 80px 80px;
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+/* Background effects */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: .25;
+}
+
+.blob-1 {
+  width: 500px;
+  height: 500px;
+  background: var(--accent-500);
+  top: -150px;
+  right: -100px;
+  animation: blobFloat 8s ease-in-out infinite;
+}
+
+.blob-2 {
+  width: 400px;
+  height: 400px;
+  background: var(--primary-400);
+  bottom: -100px;
+  left: -80px;
+  animation: blobFloat 10s ease-in-out infinite reverse;
+}
+
+.blob-3 {
+  width: 300px;
+  height: 300px;
+  background: #6366f1;
+  top: 40%;
+  left: 40%;
+  animation: blobFloat 12s ease-in-out infinite 2s;
+}
+
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(20px, -20px) scale(1.05); }
+  66%       { transform: translate(-15px, 15px) scale(.96); }
+}
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Hero Content */
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  backdrop-filter: blur(10px);
+  color: var(--accent-200);
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  font-size: .85rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  margin-bottom: 24px;
+}
+
+.hero-badge i { color: #fbbf24; }
+
+.hero-heading {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  color: var(--white);
+  margin-bottom: 20px;
+  line-height: 1.15;
+}
+
+.heading-highlight {
+  background: linear-gradient(90deg, var(--accent-400), #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: 1.125rem;
+  color: rgba(255,255,255,.8);
+  margin-bottom: 36px;
+  max-width: 520px;
+}
+
+.hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+/* Stats */
+.hero-stats {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-lg);
+  padding: 20px 0;
+  overflow: hidden;
+}
+
+.stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.stat-divider {
+  width: 1px;
+  background: rgba(255,255,255,.2);
+  flex-shrink: 0;
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent-400);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-size: .8rem;
+  color: rgba(255,255,255,.65);
+  line-height: 1.3;
+}
+
+/* Hero Visual */
+.hero-visual {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shield-graphic {
+  position: relative;
+  width: 340px;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shield-outer {
+  width: 280px;
+  height: 280px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: spinSlow 30s linear infinite;
+  box-shadow: 0 0 60px rgba(34,211,238,.15);
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.shield-inner {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, rgba(37,99,235,.4), rgba(6,182,212,.4));
+  border: 2px solid rgba(34,211,238,.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: spinSlow 30s linear infinite reverse;
+  position: relative;
+}
+
+.shield-icon {
+  font-size: 4.5rem;
+  color: var(--white);
+  filter: drop-shadow(0 0 20px rgba(34,211,238,.8));
+  animation: iconPulse 3s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes iconPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+/* Pulse rings */
+.pulse-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgba(34,211,238,.5);
+  animation: ringPulse 3s ease-out infinite;
+}
+
+.ring-1 { width: 100%; height: 100%; animation-delay: 0s; }
+.ring-2 { width: 110%; height: 110%; animation-delay: .6s; }
+.ring-3 { width: 125%; height: 125%; animation-delay: 1.2s; }
+
+@keyframes ringPulse {
+  0%   { transform: scale(.8); opacity: .8; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* Floating badges */
+.float-badge {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  background: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.badge-lock   { top: 10px;  left: 10px;   color: var(--primary-500); animation: floatBadge 4s ease-in-out infinite; }
+.badge-eye    { top: 10px;  right: 10px;  color: var(--danger-500);  animation: floatBadge 4s ease-in-out infinite .8s; }
+.badge-alert  { bottom: 20px; left: 20px; color: var(--warning-500); animation: floatBadge 4s ease-in-out infinite 1.6s; }
+.badge-check  { bottom: 20px; right: 20px;color: var(--success-500); animation: floatBadge 4s ease-in-out infinite 2.4s; }
+
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,.6);
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  animation: fadeInUp 1s 1.5s both;
+  z-index: 2;
+}
+
+.scroll-arrow {
+  width: 38px;
+  height: 38px;
+  border: 2px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: bounceDown 2s ease-in-out infinite;
+  transition: all var(--transition-fast);
+}
+
+.scroll-indicator:hover .scroll-arrow {
+  border-color: rgba(255,255,255,.8);
+  background: rgba(255,255,255,.1);
+}
+
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
+}
+
+
+/* ============================================================
+   6. SHARED SECTION STYLES
+============================================================ */
+.risks-section    { background: var(--gray-50); }
+.tips-section     { background: var(--white); }
+.emergency-section{ background: linear-gradient(180deg, var(--primary-50) 0%, var(--white) 100%); }
+.contact-section  { background: linear-gradient(135deg, var(--primary-900) 0%, var(--primary-800) 100%); }
+.contact-section .section-title { color: var(--white); }
+.contact-section .section-sub   { color: rgba(255,255,255,.7); }
+
+
+/* ============================================================
+   7. RISK CARDS SECTION
+============================================================ */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 48px;
+}
+
+.risk-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 36px 28px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+  transition: all var(--transition-mid);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.risk-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: transparent;
+}
+
+/* Glowing backgrounds */
+.card-glow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0;
+  transition: opacity var(--transition-mid);
+}
+
+.risk-card:hover .card-glow { opacity: .15; }
+.glow-red    { background: var(--danger-500); }
+.glow-orange { background: var(--orange-500); }
+.glow-purple { background: var(--purple-500); }
+
+/* Featured card */
+.risk-card--featured {
+  background: linear-gradient(135deg, var(--primary-900), var(--primary-700));
+  border-color: transparent;
+  color: var(--white);
+}
+
+.risk-card--featured .card-title { color: var(--white); }
+.risk-card--featured .card-desc  { color: rgba(255,255,255,.8); }
+.risk-card--featured .card-list li { color: rgba(255,255,255,.85); }
+.risk-card--featured .card-list i  { color: var(--accent-400); }
+
+.risk-card--featured:hover {
+  background: linear-gradient(135deg, var(--primary-800), var(--primary-600));
+}
+
+/* Card elements */
+.card-icon-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.icon-red    { background: var(--danger-100);  color: var(--danger-500);  }
+.icon-orange { background: var(--orange-100);  color: var(--orange-500);  }
+.icon-purple { background: var(--purple-100);  color: var(--purple-500);  }
+
+.risk-card--featured .icon-orange { background: rgba(249,115,22,.2); }
+
+.card-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.tag-red    { background: var(--danger-100);  color: var(--danger-600);  }
+.tag-orange { background: var(--orange-100);  color: var(--orange-600);  }
+.tag-purple { background: var(--purple-100);  color: var(--purple-600);  }
+
+.risk-card--featured .tag-orange {
+  background: rgba(249,115,22,.2);
+  color: #fdba74;
+}
+
+.card-title {
+  font-size: 1.3rem;
+  color: var(--gray-900);
+}
+
+.card-desc {
+  font-size: .95rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .9rem;
+  color: var(--gray-700);
+}
+
+.card-list i {
+  font-size: .5rem;
+  color: var(--primary-400);
+  flex-shrink: 0;
+}
+
+.card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--primary-100);
+  color: var(--primary-700);
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: .875rem;
+  transition: all var(--transition-fast);
+  width: fit-content;
+  margin-top: auto;
+}
+
+.card-btn:hover {
+  background: var(--primary-500);
+  color: var(--white);
+  gap: 12px;
+}
+
+.risk-card--featured .card-btn {
+  background: rgba(255,255,255,.15);
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,.25);
+}
+
+.risk-card--featured .card-btn:hover {
+  background: rgba(255,255,255,.25);
+}
+
+/* Warning Banner */
+.warning-banner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: linear-gradient(135deg, #fff7ed, #fef3c7);
+  border: 1px solid var(--orange-500);
+  border-left: 5px solid var(--orange-500);
+  border-radius: var(--radius-lg);
+  padding: 20px 28px;
+}
+
+.warning-icon {
+  font-size: 2rem;
+  color: var(--orange-500);
+  flex-shrink: 0;
+}
+
+.warning-text { font-size: .95rem; color: var(--gray-800); }
+.warning-text a { color: var(--danger-600); font-weight: 700; text-decoration: underline; }
+
+
+/* ============================================================
+   8. SAFETY TIPS SECTION
+============================================================ */
+
+/* Progress Tracker */
+.progress-tracker {
+  background: var(--primary-50);
+  border: 1px solid var(--primary-200);
+  border-radius: var(--radius-xl);
+  padding: 24px 32px;
+  margin-bottom: 48px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.progress-label {
+  font-weight: 700;
+  color: var(--primary-700);
+  font-size: .95rem;
+}
+
+.progress-count {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--primary-500);
+}
+
+.progress-bar-wrap {
+  height: 10px;
+  background: var(--primary-200);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-500), var(--accent-500));
+  border-radius: var(--radius-full);
+  transition: width .5s cubic-bezier(.4,0,.2,1);
+}
+
+.progress-praise {
+  font-size: .9rem;
+  color: var(--primary-600);
+  font-weight: 600;
+  text-align: center;
+  min-height: 24px;
+  transition: all var(--transition-mid);
+}
+
+/* Tips Grid */
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Tip Card */
+.tip-card {
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-mid);
+  background: var(--white);
+}
+
+.tip-card:hover {
+  border-color: var(--primary-300);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.tip-label {
+  display: block;
+  cursor: pointer;
+  padding: 20px;
+}
+
+.tip-check { display: none; }
+
+.tip-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.tip-checkbox-visual {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--gray-300);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 3px;
+  transition: all var(--transition-fast);
+  background: var(--white);
+}
+
+.tip-check-icon {
+  font-size: .7rem;
+  color: var(--white);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+/* Checked state */
+.tip-check:checked + .tip-checkbox-visual {
+  background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+  border-color: var(--primary-500);
+}
+
+.tip-check:checked + .tip-checkbox-visual .tip-check-icon { opacity: 1; }
+
+.tip-check:checked ~ .tip-body { opacity: 1; }
+
+/* Mark completed tip cards */
+.tip-card:has(.tip-check:checked) {
+  background: var(--primary-50);
+  border-color: var(--primary-300);
+}
+
+.tip-number {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--gray-200);
+  line-height: 1;
+  transition: color var(--transition-fast);
+  flex-shrink: 0;
+  width: 40px;
+}
+
+.tip-card:has(.tip-check:checked) .tip-number { color: var(--primary-200); }
+
+.tip-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--primary-100);
+  color: var(--primary-600);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.tip-card:has(.tip-check:checked) .tip-icon {
+  background: var(--primary-500);
+  color: var(--white);
+}
+
+.tip-content { flex: 1; }
+
+.tip-title {
+  font-size: 1rem;
+  color: var(--gray-800);
+  margin-bottom: 6px;
+  transition: color var(--transition-fast);
+}
+
+.tip-card:has(.tip-check:checked) .tip-title { color: var(--primary-700); }
+
+.tip-desc {
+  font-size: .875rem;
+  color: var(--gray-500);
+  line-height: 1.5;
+}
+
+
+/* ============================================================
+   9. EMERGENCY SECTION
+============================================================ */
+.steps-timeline {
+  max-width: 760px;
+  margin: 0 auto 60px;
+  position: relative;
+}
+
+/* Vertical line */
+.steps-timeline::before {
+  content: '';
+  position: absolute;
+  left: 44px;
+  top: 44px;
+  bottom: 44px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--primary-400), var(--accent-400));
+  opacity: .4;
+  z-index: 0;
+}
+
+.step-item {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 0;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+.step-item:last-child { margin-bottom: 0; }
+
+.step-number {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: .85rem;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  transition: transform var(--transition-mid);
+  box-shadow: 0 4px 14px rgba(37,99,235,.35);
+  margin: 8px 20px 0 0;
+}
+
+.step-number--final {
+  background: linear-gradient(135deg, var(--danger-500), var(--orange-500));
+  box-shadow: 0 4px 14px rgba(239,68,68,.35);
+}
+
+.step-connector {
+  width: 2px;
+  flex: 1;
+  min-height: 20px;
+}
+
+.step-card {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-xl);
+  padding: 24px 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  transition: all var(--transition-mid);
+  position: relative;
+  overflow: hidden;
+}
+
+.step-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--primary-500), var(--accent-500));
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.step-item:hover .step-card {
+  transform: translateX(6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-200);
+}
+
+.step-item:hover .step-card::before { opacity: 1; }
+.step-item:hover .step-number { transform: scale(1.15); }
+
+.step-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.step-icon-1 { background: #fff7ed; color: var(--orange-500); }
+.step-icon-2 { background: var(--primary-100); color: var(--primary-600); }
+.step-icon-3 { background: var(--danger-100); color: var(--danger-500); }
+.step-icon-4 { background: var(--success-100); color: #16a34a; }
+.step-icon-5 { background: var(--danger-100); color: var(--danger-600); }
+
+.step-info { flex: 1; }
+
+.step-title {
+  font-size: 1.1rem;
+  color: var(--gray-900);
+  margin-bottom: 6px;
+}
+
+.step-desc {
+  font-size: .9rem;
+  color: var(--gray-500);
+  margin-bottom: 8px;
+}
+
+.step-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--primary-500);
+  transition: gap var(--transition-fast);
+}
+
+.step-item:hover .step-more { gap: 10px; }
+
+/* Hotlines */
+.hotlines {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-xl);
+  padding: 36px;
+  max-width: 760px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-md);
+}
+
+.hotlines-title {
+  font-size: 1.25rem;
+  color: var(--gray-900);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hotlines-title i { color: var(--danger-500); }
+
+.hotlines-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.hotline-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--gray-200);
+  transition: all var(--transition-mid);
+  text-decoration: none;
+}
+
+.hotline-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.hotline-police { border-color: var(--primary-200); }
+.hotline-police:hover { background: var(--primary-50); border-color: var(--primary-400); }
+
+.hotline-child { border-color: var(--success-100); }
+.hotline-child:hover { background: var(--success-100); border-color: var(--success-500); }
+
+.hotline-cyber { border-color: var(--accent-200); }
+.hotline-cyber:hover { background: var(--accent-100); border-color: var(--accent-500); }
+
+.hotline-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.hotline-police .hotline-icon { background: var(--primary-100); color: var(--primary-600); }
+.hotline-child  .hotline-icon { background: var(--success-100); color: #16a34a; }
+.hotline-cyber  .hotline-icon { background: var(--accent-100);  color: var(--accent-600); }
+
+.hotline-num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--gray-900);
+}
+
+.hotline-name {
+  display: block;
+  font-size: .8rem;
+  color: var(--gray-500);
+}
+
+
+/* ============================================================
+   10. CONTACT SECTION
+============================================================ */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 72px;
+  align-items: start;
+}
+
+.contact-info .section-badge {
+  background: rgba(34,211,238,.15);
+  color: var(--accent-400);
+  border: 1px solid rgba(34,211,238,.3);
+}
+
+.contact-desc {
+  color: rgba(255,255,255,.75);
+  font-size: 1rem;
+  margin-bottom: 40px;
+  line-height: 1.7;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.contact-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.detail-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(37,99,235,.25);
+  border: 1px solid rgba(37,99,235,.4);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-300);
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+.contact-detail-item strong { color: rgba(255,255,255,.9); font-size: .9rem; }
+.contact-detail-item p { color: rgba(255,255,255,.6); font-size: .875rem; margin-top: 2px; }
+
+/* Contact Form */
+.contact-form-wrap {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.35);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--gray-700);
+}
+
+.form-label i { color: var(--primary-500); width: 16px; text-align: center; }
+
+.form-input {
+  padding: 13px 16px;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-size: .95rem;
+  color: var(--gray-900);
+  background: var(--white);
+  transition: all var(--transition-fast);
+  outline: none;
+  width: 100%;
+}
+
+.form-input:focus {
+  border-color: var(--primary-400);
+  box-shadow: 0 0 0 4px rgba(37,99,235,.1);
+}
+
+.form-input.is-error { border-color: var(--danger-500); box-shadow: 0 0 0 4px rgba(239,68,68,.1); }
+.form-input.is-valid { border-color: var(--success-500); box-shadow: 0 0 0 4px rgba(34,197,94,.1); }
+
+.form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 42px; }
+
+.form-textarea { resize: vertical; min-height: 120px; }
+
+.form-error {
+  display: block;
+  font-size: .8rem;
+  color: var(--danger-500);
+  font-weight: 600;
+  min-height: 18px;
+}
+
+/* Checkbox */
+.form-group-check { flex-direction: row; align-items: flex-start; gap: 12px; }
+
+.check-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  font-size: .875rem;
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+
+.check-input { display: none; }
+
+.check-custom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--gray-300);
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+}
+
+.check-input:checked + .check-custom {
+  background: var(--primary-500);
+  border-color: var(--primary-500);
+}
+
+.check-input:checked + .check-custom::after {
+  content: '✓';
+  color: var(--white);
+  font-size: .7rem;
+  font-weight: 900;
+}
+
+
+/* ============================================================
+   11. FOOTER
+============================================================ */
+.footer {
+  background: var(--gray-900);
+  color: var(--gray-400);
+  padding: 60px 0 0;
+}
+
+.footer-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--gray-800);
+}
+
+.footer-tagline {
+  margin: 16px 0 24px;
+  font-size: .9rem;
+  color: var(--gray-500);
+}
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+
+.social-btn {
+  width: 40px;
+  height: 40px;
+  background: var(--gray-800);
+  color: var(--gray-400);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .9rem;
+  transition: all var(--transition-fast);
+}
+
+.social-btn:hover {
+  background: var(--primary-600);
+  color: var(--white);
+  transform: translateY(-3px);
+}
+
+.footer-nav-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+.footer-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-nav a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gray-400);
+  font-size: .9rem;
+  transition: all var(--transition-fast);
+}
+
+.footer-nav a:hover { color: var(--primary-400); gap: 12px; }
+.footer-nav a i { font-size: .6rem; color: var(--gray-600); transition: color var(--transition-fast); }
+.footer-nav a:hover i { color: var(--primary-400); }
+
+.footer-hotlines {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-hotline-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .9rem;
+  color: var(--gray-400);
+  transition: color var(--transition-fast);
+}
+
+.footer-hotline-link:hover { color: var(--accent-400); }
+.footer-hotline-link i { color: var(--gray-600); width: 16px; text-align: center; }
+
+.footer-bottom {
+  padding: 24px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer-bottom p { font-size: .85rem; color: var(--gray-500); }
+.footer-note { display: flex; align-items: center; gap: 6px; }
+
+.footer .nav-logo .logo-text { color: var(--white); }
+.footer .nav-logo .logo-accent { color: var(--accent-400); }
+.footer .logo-icon { flex-shrink: 0; }
+
+
+/* ============================================================
+   12. MODALS
+============================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.65);
+  backdrop-filter: blur(6px);
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-mid);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-box {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  max-width: 600px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  transform: translateY(30px) scale(.96);
+  transition: transform var(--transition-mid);
+  box-shadow: var(--shadow-xl);
+}
+
+.modal-overlay.active .modal-box {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  background: rgba(0,0,0,.08);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-600);
+  font-size: .9rem;
+  z-index: 2;
+  transition: all var(--transition-fast);
+}
+
+.modal-close:hover {
+  background: var(--danger-100);
+  color: var(--danger-500);
+  transform: rotate(90deg);
+}
+
+.modal-header {
+  padding: 32px 32px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.modal-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  color: var(--white);
+}
+
+.modal-step-num {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.modal-header h3 {
+  font-size: 1.4rem;
+  color: var(--gray-900);
+}
+
+.modal-header-red    .modal-icon, .modal-header-red    .modal-step-num { background: var(--danger-500); }
+.modal-header-orange .modal-icon, .modal-header-orange .modal-step-num { background: var(--orange-500); }
+.modal-header-purple .modal-icon, .modal-header-purple .modal-step-num { background: var(--purple-500); }
+.modal-header-teal   .modal-icon, .modal-header-teal   .modal-step-num { background: #14b8a6; }
+.modal-header-blue   .modal-icon, .modal-header-blue   .modal-step-num { background: var(--primary-500); }
+.modal-header-green  .modal-icon, .modal-header-green  .modal-step-num { background: var(--success-500); }
+.modal-header-indigo .modal-icon, .modal-header-indigo .modal-step-num { background: #6366f1; }
+
+.modal-body {
+  padding: 28px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-body p { color: var(--gray-700); line-height: 1.7; }
+
+.modal-body h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  color: var(--gray-900);
+  margin-top: 4px;
+}
+
+.modal-body h4 i { color: var(--primary-500); }
+
+.modal-body ul {
+  padding-left: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-body li {
+  font-size: .9rem;
+  color: var(--gray-700);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding-left: 8px;
+  border-left: 3px solid var(--primary-200);
+  line-height: 1.5;
+}
+
+.modal-body code {
+  background: var(--gray-100);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: .85rem;
+  color: var(--danger-600);
+}
+
+.modal-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--primary-50);
+  border: 1px solid var(--primary-200);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  font-size: .9rem;
+  color: var(--primary-700);
+  font-weight: 600;
+}
+
+.modal-alert i { color: var(--primary-500); flex-shrink: 0; margin-top: 2px; }
+
+.modal-alert-red {
+  background: var(--danger-100);
+  border-color: var(--danger-200);
+  color: var(--danger-700, #b91c1c);
+}
+
+.modal-alert-red i { color: var(--danger-500); }
+
+
+/* ============================================================
+   13. TOAST NOTIFICATION
+============================================================ */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: var(--white);
+  border-left: 4px solid var(--success-500);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-xl);
+  z-index: var(--z-toast);
+  transform: translateX(120%) translateY(0);
+  opacity: 0;
+  transition: all .4s cubic-bezier(.34,1.56,.64,1);
+  max-width: 360px;
+}
+
+.toast.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.toast-icon { font-size: 1.4rem; color: var(--success-500); flex-shrink: 0; }
+.toast-msg strong { display: block; color: var(--gray-900); margin-bottom: 2px; }
+.toast-msg p { font-size: .85rem; color: var(--gray-500); }
+
+
+/* ============================================================
+   14. BACK TO TOP
+============================================================ */
+.back-to-top {
+  position: fixed;
+  bottom: 100px;
+  right: 32px;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .9rem;
+  box-shadow: var(--shadow-lg);
+  z-index: 90;
+  opacity: 0;
+  transform: translateY(20px) scale(.8);
+  pointer-events: none;
+  transition: all var(--transition-mid);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+.back-to-top:hover {
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: var(--shadow-xl);
+}
+
+
+/* ============================================================
+   15. SCROLL ANIMATIONS (fade-in classes managed by JS)
+============================================================ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-1 { transition-delay: .1s; }
+.delay-2 { transition-delay: .22s; }
+.delay-3 { transition-delay: .36s; }
+
+/* Keyframe helpers */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ============================================================
+   16. RESPONSIVE BREAKPOINTS
+============================================================ */
+
+/* Tablet & Desktop adjustments */
+@media (max-width: 1100px) {
+  .cards-grid { grid-template-columns: repeat(2, 1fr); }
+  .risk-card--featured { grid-column: span 2; }
+  .hero-section { padding: 100px 48px 64px; gap: 40px; }
+  .contact-layout { gap: 48px; }
+}
+
+@media (max-width: 960px) {
+  /* Nav */
+  .hamburger { display: flex; }
+  .nav-hotline { display: none; }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: min(320px, 85vw);
+    height: 100vh;
+    background: var(--white);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 80px 24px 40px;
+    gap: 4px;
+    box-shadow: -8px 0 40px rgba(0,0,0,.15);
+    transition: right var(--transition-mid);
+    z-index: var(--z-navbar);
+    overflow-y: auto;
+  }
+
+  .nav-links.open { right: 0; }
+  .nav-overlay { display: block; }
+
+  .nav-link {
+    width: 100%;
+    padding: 14px 18px;
+    color: var(--gray-700);
+    font-size: 1rem;
+    border-radius: var(--radius-md);
+  }
+
+  .nav-link:hover, .nav-link.active {
+    background: var(--primary-50);
+    color: var(--primary-700);
+  }
+
+  /* Hero */
+  .hero-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 100px 32px 80px;
+    min-height: auto;
+  }
+
+  .hero-visual { order: -1; }
+  .shield-graphic { width: 260px; height: 260px; }
+  .shield-outer { width: 220px; height: 220px; }
+  .shield-inner { width: 160px; height: 160px; }
+  .shield-icon { font-size: 3.5rem; }
+
+  .hero-badge, .hero-cta-group, .hero-stats {
+    justify-content: center;
+  }
+
+  .hero-sub { margin-left: auto; margin-right: auto; }
+  .scroll-indicator { display: none; }
+
+  /* Contact */
+  .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+
+  /* Footer */
+  .footer-layout { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 720px) {
+  :root { --section-pad: 72px 0; }
+
+  .cards-grid { grid-template-columns: 1fr; }
+  .risk-card--featured { grid-column: span 1; }
+  .tips-grid { grid-template-columns: 1fr; }
+
+  .hotlines-grid { grid-template-columns: 1fr; }
+
+  .footer-layout { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .stat-divider { width: 60%; height: 1px; margin: 0 auto; }
+
+  .steps-timeline::before { display: none; }
+  .step-item { grid-template-columns: 68px 1fr; }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .hero-section { padding: 90px 20px 60px; }
+  .hero-cta-group { flex-direction: column; align-items: center; }
+  .btn { width: 100%; justify-content: center; }
+  .contact-form-wrap { padding: 28px 20px; }
+  .modal-body, .modal-header { padding-left: 20px; padding-right: 20px; }
+  .toast { right: 16px; bottom: 16px; left: 16px; max-width: none; }
+  .back-to-top { right: 16px; bottom: 80px; }
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAVIGATION BAR
+  ============================================================ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Điều hướng chính">
+    <div class="nav-container">
+
+      <!-- Logo -->
+      <a href="#home" class="nav-logo" aria-label="SafeNet Kids - Trang chủ">
+        <div class="logo-icon">
+          <i class="fas fa-shield-halved"></i>
+        </div>
+        <span class="logo-text">SafeNet<span class="logo-accent">Kids</span></span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="#home"     class="nav-link active"><i class="fas fa-house"></i> Trang chủ</a></li>
+        <li><a href="#risks"    class="nav-link"><i class="fas fa-triangle-exclamation"></i> Tác hại</a></li>
+        <li><a href="#tips"     class="nav-link"><i class="fas fa-lock"></i> Kỹ năng</a></li>
+        <li><a href="#emergency"class="nav-link"><i class="fas fa-circle-info"></i> Xử lý</a></li>
+        <li><a href="#contact"  class="nav-link"><i class="fas fa-envelope"></i> Liên hệ</a></li>
+      </ul>
+
+      <!-- Hotline Pill -->
+      <a href="tel:113" class="nav-hotline" aria-label="Gọi đường dây khẩn cấp 113">
+        <i class="fas fa-phone-volume"></i>
+        <span>113</span>
+      </a>
+
+      <!-- Hamburger Button (Mobile) -->
+      <button class="hamburger" id="hamburger" aria-label="Mở menu" aria-expanded="false" aria-controls="navLinks">
+        <span class="ham-bar"></span>
+        <span class="ham-bar"></span>
+        <span class="ham-bar"></span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+
+
+  <!-- ============================================================
+       SECTION 1 – HOME / HERO
+  ============================================================ -->
+  <section id="home" class="hero-section" aria-labelledby="hero-heading">
+
+    <!-- Animated background blobs -->
+    <div class="hero-bg" aria-hidden="true">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+      <div class="grid-overlay"></div>
+    </div>
+
+    <div class="hero-content fade-in">
+
+      <!-- Badge -->
+      <div class="hero-badge">
+        <i class="fas fa-star"></i>
+        <span>Chương trình an toàn mạng cho trẻ em</span>
+      </div>
+
+      <!-- Main Heading -->
+      <h1 id="hero-heading" class="hero-heading">
+        Mạng an toàn –<br />
+        <span class="heading-highlight">Em vững bước!</span>
+      </h1>
+
+      <!-- Sub-heading -->
+      <p class="hero-sub">
+        Trang bị cho em những kỹ năng quan trọng để nhận biết và phòng tránh
+        <strong>bạo lực, lừa đảo, dụ dỗ bắt cóc</strong> trên không gian mạng.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="hero-cta-group">
+        <a href="#risks" class="btn btn-primary">
+          <i class="fas fa-compass"></i>
+          Tìm hiểu ngay
+        </a>
+        <a href="#tips" class="btn btn-outline">
+          <i class="fas fa-play-circle"></i>
+          Học kỹ năng bảo vệ
+        </a>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="hero-stats" role="list" aria-label="Thống kê quan trọng">
+        <div class="stat-item" role="listitem">
+          <span class="stat-number">72%</span>
+          <span class="stat-label">Trẻ em tiếp xúc mạng trước 10 tuổi</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item" role="listitem">
+          <span class="stat-number">1/3</span>
+          <span class="stat-label">Từng gặp người lạ tiếp cận online</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item" role="listitem">
+          <span class="stat-number">90%</span>
+          <span class="stat-label">Sự cố ngăn chặn được khi biết cách</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Hero Illustration -->
+    <div class="hero-visual fade-in delay-2" aria-hidden="true">
+      <div class="shield-graphic">
+        <div class="shield-outer">
+          <div class="shield-inner">
+            <i class="fas fa-shield-halved shield-icon"></i>
+            <div class="pulse-ring ring-1"></div>
+            <div class="pulse-ring ring-2"></div>
+            <div class="pulse-ring ring-3"></div>
+          </div>
+        </div>
+        <!-- Floating icon badges -->
+        <div class="float-badge badge-lock">  <i class="fas fa-lock"></i></div>
+        <div class="float-badge badge-eye">   <i class="fas fa-eye-slash"></i></div>
+        <div class="float-badge badge-alert"> <i class="fas fa-bell"></i></div>
+        <div class="float-badge badge-check"> <i class="fas fa-check"></i></div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <a href="#risks" class="scroll-indicator" aria-label="Cuộn xuống để xem thêm">
+      <span>Khám phá</span>
+      <div class="scroll-arrow">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </a>
+
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 2 – RISKS (TÁC HẠI)
+  ============================================================ -->
+  <section id="risks" class="section risks-section" aria-labelledby="risks-heading">
+    <div class="container">
+
+      <!-- Section Header -->
+      <div class="section-header fade-in">
+        <div class="section-badge badge-danger">
+          <i class="fas fa-triangle-exclamation"></i> Nguy hiểm rình rập
+        </div>
+        <h2 id="risks-heading" class="section-title">
+          Những nguy cơ<br /><span class="text-highlight">trẻ em có thể gặp</span>
+        </h2>
+        <p class="section-sub">
+          Hiểu rõ các mối nguy hiểm là bước đầu tiên để tự bảo vệ bản thân trên không gian mạng.
+        </p>
+      </div>
+
+      <!-- Risk Cards Grid -->
+      <div class="cards-grid" role="list">
+
+        <!-- Card 1: Bạo lực mạng -->
+        <article class="risk-card fade-in delay-1" role="listitem" data-modal="modal-violence">
+          <div class="card-glow glow-red"></div>
+          <div class="card-icon-wrap icon-red">
+            <i class="fas fa-user-slash"></i>
+          </div>
+          <div class="card-tag tag-red">Nguy hiểm cao</div>
+          <h3 class="card-title">Bạo lực mạng</h3>
+          <p class="card-desc">
+            Bị bắt nạt, đe dọa, lăng mạ qua mạng xã hội, tin nhắn hoặc diễn đàn.
+            Có thể gây tổn thương tâm lý nghiêm trọng cho trẻ.
+          </p>
+          <ul class="card-list">
+            <li><i class="fas fa-circle-dot"></i> Nhận tin nhắn đe dọa</li>
+            <li><i class="fas fa-circle-dot"></i> Lan truyền tin đồn xấu</li>
+            <li><i class="fas fa-circle-dot"></i> Ảnh/video riêng tư bị phát tán</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('modal-violence')" aria-label="Xem chi tiết về bạo lực mạng">
+            Xem chi tiết <i class="fas fa-arrow-right"></i>
+          </button>
+        </article>
+
+        <!-- Card 2: Lừa đảo -->
+        <article class="risk-card risk-card--featured fade-in delay-2" role="listitem" data-modal="modal-fraud">
+          <div class="card-glow glow-orange"></div>
+          <div class="card-icon-wrap icon-orange">
+            <i class="fas fa-fish"></i>
+          </div>
+          <div class="card-tag tag-orange">Phổ biến nhất</div>
+          <h3 class="card-title">Lừa đảo trực tuyến</h3>
+          <p class="card-desc">
+            Kẻ xấu giả mạo danh tính, tạo website giả, gửi link độc hại để chiếm đoạt
+            thông tin cá nhân và tài sản.
+          </p>
+          <ul class="card-list">
+            <li><i class="fas fa-circle-dot"></i> Link giả mạo (phishing)</li>
+            <li><i class="fas fa-circle-dot"></i> Quà tặng / trúng thưởng ảo</li>
+            <li><i class="fas fa-circle-dot"></i> Ứng dụng chứa virus</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('modal-fraud')" aria-label="Xem chi tiết về lừa đảo trực tuyến">
+            Xem chi tiết <i class="fas fa-arrow-right"></i>
+          </button>
+        </article>
+
+        <!-- Card 3: Dụ dỗ / Bắt cóc -->
+        <article class="risk-card fade-in delay-3" role="listitem" data-modal="modal-grooming">
+          <div class="card-glow glow-purple"></div>
+          <div class="card-icon-wrap icon-purple">
+            <i class="fas fa-user-secret"></i>
+          </div>
+          <div class="card-tag tag-purple">Cực kỳ nguy hiểm</div>
+          <h3 class="card-title">Dụ dỗ & Bắt cóc</h3>
+          <p class="card-desc">
+            Kẻ xấu tiếp cận dần dần, xây dựng lòng tin rồi dụ dỗ gặp mặt ngoài đời
+            thực để thực hiện hành vi xâm hại hoặc bắt cóc.
+          </p>
+          <ul class="card-list">
+            <li><i class="fas fa-circle-dot"></i> Giả danh bạn bè đồng trang lứa</li>
+            <li><i class="fas fa-circle-dot"></i> Hứa hẹn quà tặng, cơ hội</li>
+            <li><i class="fas fa-circle-dot"></i> Yêu cầu gặp mặt bí mật</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('modal-grooming')" aria-label="Xem chi tiết về dụ dỗ và bắt cóc">
+            Xem chi tiết <i class="fas fa-arrow-right"></i>
+          </button>
+        </article>
+
+      </div>
+
+      <!-- Warning Banner -->
+      <div class="warning-banner fade-in" role="alert">
+        <div class="warning-icon"><i class="fas fa-exclamation-circle"></i></div>
+        <div class="warning-text">
+          <strong>Lưu ý quan trọng:</strong> Nếu em đang trong tình huống nguy hiểm,
+          hãy gọi ngay <a href="tel:113"><strong>113</strong></a> (Cảnh sát) hoặc
+          <a href="tel:18001567"><strong>1800 1567</strong></a> (Đường dây bảo vệ trẻ em - miễn phí).
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 3 – SAFETY TIPS (KỸ NĂNG BẢO VỆ)
+  ============================================================ -->
+  <section id="tips" class="section tips-section" aria-labelledby="tips-heading">
+    <div class="container">
+
+      <!-- Section Header -->
+      <div class="section-header fade-in">
+        <div class="section-badge badge-green">
+          <i class="fas fa-shield-heart"></i> Kỹ năng tự bảo vệ
+        </div>
+        <h2 id="tips-heading" class="section-title">
+          10 nguyên tắc<br /><span class="text-highlight">an toàn trên mạng</span>
+        </h2>
+        <p class="section-sub">
+          Kiểm tra và đánh dấu vào các kỹ năng em đã biết. Hãy thực hành mỗi ngày!
+        </p>
+      </div>
+
+      <!-- Progress Tracker -->
+      <div class="progress-tracker fade-in" role="group" aria-label="Tiến độ học kỹ năng">
+        <div class="progress-info">
+          <span class="progress-label">Kỹ năng đã biết:</span>
+          <span class="progress-count" id="tipCount" aria-live="polite">0 / 10</span>
+        </div>
+        <div class="progress-bar-wrap" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10" aria-label="Tiến độ" id="progressBar">
+          <div class="progress-bar-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+        <p class="progress-praise" id="progressPraise" aria-live="polite"></p>
+      </div>
+
+      <!-- Tips Interactive List -->
+      <div class="tips-grid" role="list">
+
+        <!-- Tip 1 -->
+        <div class="tip-card fade-in delay-1" role="listitem">
+          <label class="tip-label" for="tip1">
+            <input type="checkbox" id="tip1" class="tip-check" onchange="updateProgress()" />
+            <span class="tip-checkbox-visual" aria-hidden="true">
+              <i class="fas fa-check tip-check-icon"></i>
+            </span>
+            <div class="tip-body">
+              <div class="tip-number">01</div>
+              <div class="tip-icon"><i class="fas fa-id-card"></i></div>
+              <div class="tip-content">
+                <h3 class="tip-title">Giữ bí mật thông tin cá nhân</h3>
+                <p class="tip-desc">Không chia sẻ họ tên đầy đủ, địa chỉ nhà, số điện thoại, trường học với người lạ trên mạng.</p>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <!-- Tip 2 -->
+        <div class="tip-card fade-in delay-1" role="listitem">
+          <label class="tip-label" for="tip2">
+            <input type="checkbox" id="tip2" class="tip-check" onchange="updateProgress()" />
+            <span class="tip-checkbox-visual" aria-hidden="true">
+              <i class="fas fa-check tip-check-icon"></i>
+            </span>
+            <div class="tip-body">
+              <div class="tip-number">02</div>
+              <div class="tip-icon"><i class="fas fa-link-slash"></i></div>
+              <div class="tip-content">
+                <h3 class="tip-title">Nhận diện link giả mạo</h3>
+                <p class="tip-desc">Kiểm tra kỹ URL trước khi bấm vào. Link giả thường có chính tả sai hoặc tên lạ (ví dụ: faceb00k.com).</p>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <!-- Tip 3 -->
+        <div class="tip-card fade-in delay-2" role="listitem">
+          <label class="tip-label" for="tip3">
+            <input type="checkbox" id="tip3" class="tip-check" onchange="updateProgress()" />
+            <span class="tip-checkbox-visual" aria-hidden="true">
+              <i class="fas fa-check tip-check-icon"></i>
+            </span>
+            <div class="tip-body">
+              <div class="tip-number">03</div>
+              <div class="tip-icon"><i class="fas fa-person-walking-arrow-right"></i></div>
+              <div class="tip-content">
+                <h3 class="tip-title">Không gặp người lạ một mình</h3>
+                <p class="tip-desc">Tuyệt đối không hẹn gặp người chỉ quen qua mạng. Nếu cần gặp, phải có người lớn đi cùng ở nơi đông người.</p>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <!-- Tip 4 -->
+        <div class="tip-card fade-in delay-2" role="listitem">
+          <label class="tip-label" for="tip4">
+            <input type="checkbox" id="tip4" class="tip-check" onchange="updateProgress()" />
+            <span class="tip-checkbox-visual" aria-hidden="true">
+              <i class="fas fa-check tip-check-icon"></i>
+            </span>
+            <div class="tip-body">
+              <div class="tip-number">04</div>
+              <div class="tip-icon"><i class="fas fa-lock"></i></div>
+              <div class="tip-content">
+                <h3 class="tip-title">Đặt mật khẩu mạnh & riêng tư</h3>
+                <p class="tip-desc">Dùng mật khẩu dài, kết hợp chữ-số-ký tự. Không dùng chung mật khẩu cho nhiều tài khoản. Không chia sẻ với ai.</p>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <!-- Tip 5 -->
+        <div class="tip-card fade-in delay-3" role="listitem">
+          <label class="tip-label" for="tip5">
+            <input type="checkbox" id="tip5" class="tip-check" onchange="updateProgress()" />
+            <span class="tip-checkbox-visual" aria-hidden="true">
+              <i class="fas fa-check tip-check-icon"></i>
+            </span>
+            <div class="tip-body">
+              <div class="tip-number">05</div>
+              <div class="tip-icon"><i class="fas fa-eye"></i></div>
+              <div class="tip-content">
+                <h3 class="tip-title">Cài đặt quyền riêng tư</h3>
+                <p class="tip-desc">Đặt tài khoản mạng xã hội ở chế độ riêng tư. Chỉ cho phép bạn bè thực sự xem thông tin của em.</p>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <!-- Tip 6 -->
+        <div class="tip-card fade-in delay-3" role="listitem">
+          <label class="tip-label" for="tip6">
+            <input type="checkbox" id="tip6" class="tip-check" onchange="updateProgress()" />
+            <span class="tip-checkbox-visual" aria-hidden="true">
+              <i class="fas fa-check tip-check-icon"></i>
+            </span>
+            <div class="tip-body">
+              <div class="tip-number">06</div>
+              <div class="tip-icon"><i class="fas fa-heart-pulse"></i></div>
+              <div class="tip-content">
+                <h3 class="tip-title">Tin vào cảm giác không an toàn</h3>
+                <p class="tip-desc">Nếu cuộc trò chuyện khiến em bất an, hãy dừng lại ngay. Cảm giác khó chịu là dấu hiệu cần chú ý.</p>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <!-- Tip 7 -->
+        <div class="tip-card fade-in delay-1" role="listitem">
+          <label class="tip-label" for="tip7">
+            <input type="checkbox" id="tip7" class="tip-check" onchange="updateProgress()" />
+            <span class="tip-checkbox-visual" aria-hidden="true">
+              <i class="fas fa-check tip-check-icon"></i>
+            </span>
+            <div class="tip-body">
+              <div class="tip-number">07</div>
+              <div class="tip-icon"><i class="fas fa-camera-slash"></i></div>
+              <div class="tip-content">
+                <h3 class="tip-title">Không gửi ảnh cá nhân</h3>
+                <p class="tip-desc">Không gửi ảnh của bản thân hoặc gia đình cho người lạ trên mạng. Ảnh có thể bị lạm dụng để tống tiền hoặc xâm hại.</p>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <!-- Tip 8 -->
+        <div class="tip-card fade-in delay-2" role="listitem">
+          <label class="tip-label" for="tip8">
+            <input type="checkbox" id="tip8" class="tip-check" onchange="updateProgress()" />
+            <span class="tip-checkbox-visual" aria-hidden="true">
+              <i class="fas fa-check tip-check-icon"></i>
+            </span>
+            <div class="tip-body">
+              <div class="tip-number">08</div>
+              <div class="tip-icon"><i class="fas fa-comments"></i></div>
+              <div class="tip-content">
+                <h3 class="tip-title">Chia sẻ với bố mẹ / thầy cô</h3>
+                <p class="tip-desc">Luôn kể cho người lớn tin cậy biết khi có điều gì đó bất thường xảy ra trên mạng. Đừng xấu hổ hay sợ hãi.</p>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <!-- Tip 9 -->
+        <div class="tip-card fade-in delay-3" role="listitem">
+          <label class="tip-label" for="tip9">
+            <input type="checkbox" id="tip9" class="tip-check" onchange="updateProgress()" />
+            <span class="tip-checkbox-visual" aria-hidden="true">
+              <i class="fas fa-check tip-check-icon"></i>
+            </span>
+            <div class="tip-body">
+              <div class="tip-number">09</div>
+              <div class="tip-icon"><i class="fas fa-file-circle-xmark"></i></div>
+              <div class="tip-content">
+                <h3 class="tip-title">Không tải ứng dụng lạ</h3>
+                <p class="tip-desc">Chỉ tải ứng dụng từ cửa hàng chính thức (App Store / Google Play). Không cài phần mềm từ link gửi qua tin nhắn.</p>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <!-- Tip 10 -->
+        <div class="tip-card fade-in delay-3" role="listitem">
+          <label class="tip-label" for="tip10">
+            <input type="checkbox" id="tip10" class="tip-check" onchange="updateProgress()" />
+            <span class="tip-checkbox-visual" aria-hidden="true">
+              <i class="fas fa-check tip-check-icon"></i>
+            </span>
+            <div class="tip-body">
+              <div class="tip-number">10</div>
+              <div class="tip-icon"><i class="fas fa-flag"></i></div>
+              <div class="tip-content">
+                <h3 class="tip-title">Báo cáo nội dung xấu</h3>
+                <p class="tip-desc">Dùng chức năng "Báo cáo / Report" khi thấy nội dung bạo lực, phản cảm hoặc người dùng có hành vi đáng ngờ.</p>
+              </div>
+            </div>
+          </label>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 4 – EMERGENCY GUIDE (XỬ LÝ TÌNH HUỐNG)
+  ============================================================ -->
+  <section id="emergency" class="section emergency-section" aria-labelledby="emergency-heading">
+    <div class="container">
+
+      <!-- Section Header -->
+      <div class="section-header fade-in">
+        <div class="section-badge badge-blue">
+          <i class="fas fa-circle-info"></i> Hướng dẫn xử lý
+        </div>
+        <h2 id="emergency-heading" class="section-title">
+          Khi gặp nguy hiểm,<br /><span class="text-highlight">hãy làm ngay!</span>
+        </h2>
+        <p class="section-sub">
+          Bình tĩnh và làm theo các bước dưới đây. Em không đơn độc – luôn có người giúp đỡ!
+        </p>
+      </div>
+
+      <!-- Steps Timeline -->
+      <div class="steps-timeline fade-in">
+
+        <!-- Step 1 -->
+        <div class="step-item" onclick="openModal('modal-step1')" role="button" tabindex="0" aria-label="Bước 1: Dừng lại và bình tĩnh - Click để xem chi tiết" onkeydown="handleKeydown(event, 'modal-step1')">
+          <div class="step-number" aria-hidden="true">01</div>
+          <div class="step-connector" aria-hidden="true"></div>
+          <div class="step-card">
+            <div class="step-icon step-icon-1"><i class="fas fa-hand"></i></div>
+            <div class="step-info">
+              <h3 class="step-title">Dừng lại & Bình tĩnh</h3>
+              <p class="step-desc">Đừng hoảng loạn. Thoát khỏi cuộc trò chuyện ngay lập tức.</p>
+              <span class="step-more">Xem hướng dẫn chi tiết <i class="fas fa-chevron-right"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-item" onclick="openModal('modal-step2')" role="button" tabindex="0" aria-label="Bước 2: Chụp màn hình bằng chứng - Click để xem chi tiết" onkeydown="handleKeydown(event, 'modal-step2')">
+          <div class="step-number" aria-hidden="true">02</div>
+          <div class="step-connector" aria-hidden="true"></div>
+          <div class="step-card">
+            <div class="step-icon step-icon-2"><i class="fas fa-camera"></i></div>
+            <div class="step-info">
+              <h3 class="step-title">Chụp màn hình bằng chứng</h3>
+              <p class="step-desc">Lưu lại tin nhắn, ảnh, thông tin kẻ xấu làm bằng chứng.</p>
+              <span class="step-more">Xem hướng dẫn chi tiết <i class="fas fa-chevron-right"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-item" onclick="openModal('modal-step3')" role="button" tabindex="0" aria-label="Bước 3: Chặn tài khoản - Click để xem chi tiết" onkeydown="handleKeydown(event, 'modal-step3')">
+          <div class="step-number" aria-hidden="true">03</div>
+          <div class="step-connector" aria-hidden="true"></div>
+          <div class="step-card">
+            <div class="step-icon step-icon-3"><i class="fas fa-ban"></i></div>
+            <div class="step-info">
+              <h3 class="step-title">Chặn & Báo cáo tài khoản</h3>
+              <p class="step-desc">Dùng chức năng Block và Report trên nền tảng đang dùng.</p>
+              <span class="step-more">Xem hướng dẫn chi tiết <i class="fas fa-chevron-right"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step-item" onclick="openModal('modal-step4')" role="button" tabindex="0" aria-label="Bước 4: Nhờ người lớn giúp - Click để xem chi tiết" onkeydown="handleKeydown(event, 'modal-step4')">
+          <div class="step-number" aria-hidden="true">04</div>
+          <div class="step-connector" aria-hidden="true"></div>
+          <div class="step-card">
+            <div class="step-icon step-icon-4"><i class="fas fa-people-group"></i></div>
+            <div class="step-info">
+              <h3 class="step-title">Nhờ người lớn giúp đỡ</h3>
+              <p class="step-desc">Kể ngay với bố mẹ, thầy cô hoặc người lớn đáng tin cậy.</p>
+              <span class="step-more">Xem hướng dẫn chi tiết <i class="fas fa-chevron-right"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="step-item step-item--last" onclick="openModal('modal-step5')" role="button" tabindex="0" aria-label="Bước 5: Liên hệ cơ quan chức năng - Click để xem chi tiết" onkeydown="handleKeydown(event, 'modal-step5')">
+          <div class="step-number step-number--final" aria-hidden="true">05</div>
+          <div class="step-card">
+            <div class="step-icon step-icon-5"><i class="fas fa-phone-volume"></i></div>
+            <div class="step-info">
+              <h3 class="step-title">Liên hệ cơ quan chức năng</h3>
+              <p class="step-desc">Gọi đường dây hỗ trợ hoặc trình báo cơ quan công an.</p>
+              <span class="step-more">Xem hướng dẫn chi tiết <i class="fas fa-chevron-right"></i></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Hotlines -->
+      <div class="hotlines fade-in" role="complementary" aria-label="Đường dây hỗ trợ khẩn cấp">
+        <h3 class="hotlines-title"><i class="fas fa-phone-volume"></i> Đường dây hỗ trợ khẩn cấp</h3>
+        <div class="hotlines-grid">
+          <a href="tel:113" class="hotline-item hotline-police" aria-label="Gọi cảnh sát 113">
+            <div class="hotline-icon"><i class="fas fa-shield-halved"></i></div>
+            <div class="hotline-info">
+              <span class="hotline-num">113</span>
+              <span class="hotline-name">Cảnh sát 110 / 113</span>
+            </div>
+          </a>
+          <a href="tel:18001567" class="hotline-item hotline-child" aria-label="Gọi tổng đài bảo vệ trẻ em 1800 1567">
+            <div class="hotline-icon"><i class="fas fa-child"></i></div>
+            <div class="hotline-info">
+              <span class="hotline-num">1800 1567</span>
+              <span class="hotline-name">Bảo vệ trẻ em (miễn phí)</span>
+            </div>
+          </a>
+          <a href="tel:111" class="hotline-item hotline-cyber" aria-label="Gọi tổng đài an toàn mạng 111">
+            <div class="hotline-icon"><i class="fas fa-wifi"></i></div>
+            <div class="hotline-info">
+              <span class="hotline-num">111</span>
+              <span class="hotline-name">Tổng đài quốc gia</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 5 – CONTACT (LIÊN HỆ & HỖ TRỢ)
+  ============================================================ -->
+  <section id="contact" class="section contact-section" aria-labelledby="contact-heading">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- Left: Info -->
+        <div class="contact-info fade-in">
+          <div class="section-badge badge-cyan">
+            <i class="fas fa-envelope-open-text"></i> Liên hệ với chúng tôi
+          </div>
+          <h2 id="contact-heading" class="section-title">
+            Em cần giúp đỡ?<br /><span class="text-highlight">Hãy nhắn cho chúng tôi</span>
+          </h2>
+          <p class="contact-desc">
+            Đội ngũ chuyên gia an toàn mạng luôn sẵn sàng lắng nghe và hỗ trợ.
+            Mọi thông tin của em được bảo mật tuyệt đối.
+          </p>
+
+          <!-- Info Items -->
+          <div class="contact-details">
+            <div class="contact-detail-item">
+              <div class="detail-icon"><i class="fas fa-clock"></i></div>
+              <div>
+                <strong>Thời gian hỗ trợ</strong>
+                <p>Thứ 2 – Chủ nhật: 7:00 – 22:00</p>
+              </div>
+            </div>
+            <div class="contact-detail-item">
+              <div class="detail-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <strong>Email</strong>
+                <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6c0403181e032c1f0d0a090209180705081f421a02">[email&#160;protected]</a></p>
+              </div>
+            </div>
+            <div class="contact-detail-item">
+              <div class="detail-icon"><i class="fas fa-shield-halved"></i></div>
+              <div>
+                <strong>Cam kết bảo mật</strong>
+                <p>100% thông tin được mã hóa và bảo mật</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="contact-form-wrap fade-in delay-2">
+          <form id="contactForm" class="contact-form" novalidate aria-label="Form liên hệ">
+
+            <!-- Form Group: Name -->
+            <div class="form-group">
+              <label for="name" class="form-label">
+                <i class="fas fa-user"></i> Họ và tên
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-input"
+                placeholder="Nhập họ và tên của em"
+                autocomplete="name"
+                aria-required="true"
+                aria-describedby="nameError"
+              />
+              <span class="form-error" id="nameError" role="alert" aria-live="polite"></span>
+            </div>
+
+            <!-- Form Group: Email -->
+            <div class="form-group">
+              <label for="email" class="form-label">
+                <i class="fas fa-envelope"></i> Địa chỉ Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                placeholder="tên@email.com"
+                autocomplete="email"
+                aria-required="true"
+                aria-describedby="emailError"
+              />
+              <span class="form-error" id="emailError" role="alert" aria-live="polite"></span>
+            </div>
+
+            <!-- Form Group: Subject -->
+            <div class="form-group">
+              <label for="subject" class="form-label">
+                <i class="fas fa-tag"></i> Loại vấn đề
+              </label>
+              <select id="subject" name="subject" class="form-input form-select" aria-required="true" aria-describedby="subjectError">
+                <option value="">-- Chọn loại vấn đề --</option>
+                <option value="bullying">Bạo lực mạng / Cyberbullying</option>
+                <option value="fraud">Bị lừa đảo trực tuyến</option>
+                <option value="grooming">Bị dụ dỗ / tiếp cận đáng ngờ</option>
+                <option value="hacking">Tài khoản bị hack</option>
+                <option value="other">Vấn đề khác</option>
+              </select>
+              <span class="form-error" id="subjectError" role="alert" aria-live="polite"></span>
+            </div>
+
+            <!-- Form Group: Message -->
+            <div class="form-group">
+              <label for="message" class="form-label">
+                <i class="fas fa-comment-dots"></i> Mô tả vấn đề
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                class="form-input form-textarea"
+                placeholder="Hãy mô tả chi tiết vấn đề em đang gặp phải..."
+                rows="5"
+                aria-required="true"
+                aria-describedby="messageError"
+              ></textarea>
+              <span class="form-error" id="messageError" role="alert" aria-live="polite"></span>
+            </div>
+
+            <!-- Privacy Checkbox -->
+            <div class="form-group form-group-check">
+              <label class="check-label" for="privacy">
+                <input type="checkbox" id="privacy" name="privacy" class="check-input" aria-required="true" aria-describedby="privacyError" />
+                <span class="check-custom" aria-hidden="true"></span>
+                <span>Em đồng ý thông tin được bảo mật và chỉ dùng để hỗ trợ</span>
+              </label>
+              <span class="form-error" id="privacyError" role="alert" aria-live="polite"></span>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+              <i class="fas fa-paper-plane"></i>
+              Gửi yêu cầu hỗ trợ
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-layout">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <a href="#home" class="nav-logo footer-logo" aria-label="SafeNet Kids - Trang chủ">
+            <div class="logo-icon"><i class="fas fa-shield-halved"></i></div>
+            <span class="logo-text">SafeNet<span class="logo-accent">Kids</span></span>
+          </a>
+          <p class="footer-tagline">Bảo vệ trẻ em – An toàn mạng mỗi ngày</p>
+          <div class="footer-social">
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-btn" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-btn" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <nav class="footer-nav" aria-label="Liên kết nhanh">
+          <h4 class="footer-nav-title">Điều hướng</h4>
+          <ul>
+            <li><a href="#home"><i class="fas fa-chevron-right"></i> Trang chủ</a></li>
+            <li><a href="#risks"><i class="fas fa-chevron-right"></i> Tác hại</a></li>
+            <li><a href="#tips"><i class="fas fa-chevron-right"></i> Kỹ năng bảo vệ</a></li>
+            <li><a href="#emergency"><i class="fas fa-chevron-right"></i> Xử lý tình huống</a></li>
+            <li><a href="#contact"><i class="fas fa-chevron-right"></i> Liên hệ</a></li>
+          </ul>
+        </nav>
+
+        <!-- Hotlines -->
+        <div class="footer-hotlines">
+          <h4 class="footer-nav-title">Khẩn cấp</h4>
+          <a href="tel:113" class="footer-hotline-link"><i class="fas fa-phone"></i> 113 – Cảnh sát</a>
+          <a href="tel:18001567" class="footer-hotline-link"><i class="fas fa-child-reaching"></i> 1800 1567 – Bảo vệ trẻ em</a>
+          <a href="tel:111" class="footer-hotline-link"><i class="fas fa-wifi"></i> 111 – An toàn mạng</a>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 SafeNet Kids – Dự án giáo dục an toàn mạng cho trẻ em Việt Nam</p>
+        <p class="footer-note">Được xây dựng với <i class="fas fa-heart" style="color:#f56565"></i> vì sự an toàn của các em</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       MODALS – RISK DETAILS
+  ============================================================ -->
+
+  <!-- Modal: Bạo lực mạng -->
+  <div id="modal-violence" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-violence-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('modal-violence')" aria-label="Đóng"><i class="fas fa-times"></i></button>
+      <div class="modal-header modal-header-red">
+        <div class="modal-icon"><i class="fas fa-user-slash"></i></div>
+        <h3 id="modal-violence-title">Bạo lực mạng (Cyberbullying)</h3>
+      </div>
+      <div class="modal-body">
+        <p>Bạo lực mạng là hành vi bắt nạt, đe dọa, quấy rối hoặc xúc phạm người khác thông qua các phương tiện kỹ thuật số.</p>
+        <h4><i class="fas fa-exclamation-triangle"></i> Dấu hiệu nhận biết:</h4>
+        <ul>
+          <li>Nhận được tin nhắn đe dọa hoặc lăng mạ liên tục</li>
+          <li>Ảnh hoặc video riêng tư bị đăng mà không xin phép</li>
+          <li>Bị loại trừ có chủ ý khỏi nhóm chat hoặc hoạt động online</li>
+          <li>Có người tạo tài khoản giả mạo để bôi nhọ</li>
+        </ul>
+        <h4><i class="fas fa-shield-halved"></i> Cách xử lý:</h4>
+        <ul>
+          <li>Không trả lời kẻ bắt nạt – chúng muốn bạn phản ứng</li>
+          <li>Chụp màn hình tất cả bằng chứng</li>
+          <li>Chặn và báo cáo tài khoản đó</li>
+          <li>Kể ngay cho bố mẹ hoặc thầy cô</li>
+        </ul>
+        <div class="modal-alert">
+          <i class="fas fa-heart"></i> Đây không phải lỗi của em. Em có quyền được an toàn!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Lừa đảo -->
+  <div id="modal-fraud" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-fraud-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('modal-fraud')" aria-label="Đóng"><i class="fas fa-times"></i></button>
+      <div class="modal-header modal-header-orange">
+        <div class="modal-icon"><i class="fas fa-fish"></i></div>
+        <h3 id="modal-fraud-title">Lừa đảo trực tuyến (Online Fraud)</h3>
+      </div>
+      <div class="modal-body">
+        <p>Lừa đảo trực tuyến là hành vi giả mạo danh tính hoặc thông tin để đánh lừa nạn nhân nhằm chiếm đoạt tài sản hoặc thông tin cá nhân.</p>
+        <h4><i class="fas fa-exclamation-triangle"></i> Các hình thức phổ biến:</h4>
+        <ul>
+          <li><strong>Phishing:</strong> Email/tin nhắn giả mạo ngân hàng, mạng xã hội yêu cầu đăng nhập</li>
+          <li><strong>Trúng thưởng ảo:</strong> Thông báo trúng thưởng yêu cầu nộp phí để nhận quà</li>
+          <li><strong>Giả danh người quen:</strong> Nhắn tin giả làm bạn bè để vay tiền</li>
+          <li><strong>Game giả mạo:</strong> Ứng dụng chứa mã độc hoặc thu thập dữ liệu</li>
+        </ul>
+        <h4><i class="fas fa-magnifying-glass"></i> Cách nhận biết link giả:</h4>
+        <ul>
+          <li>Kiểm tra kỹ tên miền: <code>faceb00k.com</code> ≠ <code>facebook.com</code></li>
+          <li>Link có tiền tố <code>https://</code> và ổ khóa xanh</li>
+          <li>Không bấm link trong tin nhắn từ người lạ</li>
+        </ul>
+        <div class="modal-alert">
+          <i class="fas fa-lightbulb"></i> Nguyên tắc vàng: Quà thật không bao giờ yêu cầu trả tiền trước!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Dụ dỗ -->
+  <div id="modal-grooming" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-grooming-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('modal-grooming')" aria-label="Đóng"><i class="fas fa-times"></i></button>
+      <div class="modal-header modal-header-purple">
+        <div class="modal-icon"><i class="fas fa-user-secret"></i></div>
+        <h3 id="modal-grooming-title">Dụ dỗ & Bắt cóc trẻ em</h3>
+      </div>
+      <div class="modal-body">
+        <p>Grooming là quá trình kẻ xấu xây dựng lòng tin từ từ với trẻ em (và đôi khi cả gia đình) để lợi dụng, xâm hại hoặc bắt cóc.</p>
+        <h4><i class="fas fa-exclamation-triangle"></i> Các dấu hiệu cảnh báo:</h4>
+        <ul>
+          <li>Người lạ quan tâm quá mức, tặng quà liên tục</li>
+          <li>Yêu cầu giữ bí mật cuộc trò chuyện với bố mẹ</li>
+          <li>Dần dần chuyển sang các chủ đề không phù hợp</li>
+          <li>Đề nghị gặp mặt trực tiếp ở nơi vắng vẻ</li>
+          <li>Nói "chỉ hai đứa mình biết thôi nhé"</li>
+        </ul>
+        <h4><i class="fas fa-shield-halved"></i> Quy tắc cần nhớ:</h4>
+        <ul>
+          <li>Bí mật nào của người lớn cũng KHÔNG phải bí mật tốt</li>
+          <li>Không bao giờ gặp người lạ quen qua mạng một mình</li>
+          <li>Nếu cảm thấy bị ép buộc, hãy nói KHÔNG và bỏ đi</li>
+        </ul>
+        <div class="modal-alert modal-alert-red">
+          <i class="fas fa-phone-volume"></i> Nếu có người dụ dỗ gặp mặt, gọi ngay <strong>113</strong> hoặc kể với bố mẹ!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MODALS – EMERGENCY STEPS
+  ============================================================ -->
+
+  <!-- Modal Step 1 -->
+  <div id="modal-step1" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-step1-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('modal-step1')" aria-label="Đóng"><i class="fas fa-times"></i></button>
+      <div class="modal-header modal-header-teal">
+        <div class="modal-step-num">01</div>
+        <h3 id="modal-step1-title">Dừng lại & Bình tĩnh</h3>
+      </div>
+      <div class="modal-body">
+        <p>Bước đầu tiên và quan trọng nhất: <strong>đừng hoảng loạn</strong>. Khi hoảng sợ, em có thể đưa ra quyết định sai.</p>
+        <h4>Hãy làm ngay:</h4>
+        <ul>
+          <li>✅ Đóng ứng dụng hoặc thoát khỏi cuộc trò chuyện</li>
+          <li>✅ Đặt điện thoại/máy tính xuống trong vài phút</li>
+          <li>✅ Hít thở sâu và thở ra chậm 3 lần</li>
+          <li>✅ Nhắc nhở bản thân: "Mình không đơn độc"</li>
+        </ul>
+        <div class="modal-alert">
+          <i class="fas fa-brain"></i> Bình tĩnh giúp em suy nghĩ rõ ràng hơn và xử lý tốt hơn!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Step 2 -->
+  <div id="modal-step2" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-step2-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('modal-step2')" aria-label="Đóng"><i class="fas fa-times"></i></button>
+      <div class="modal-header modal-header-blue">
+        <div class="modal-step-num">02</div>
+        <h3 id="modal-step2-title">Chụp màn hình bằng chứng</h3>
+      </div>
+      <div class="modal-body">
+        <p>Bằng chứng rất quan trọng để giúp cơ quan chức năng xử lý kẻ xấu.</p>
+        <h4>Cách chụp màn hình:</h4>
+        <ul>
+          <li>📱 <strong>Android:</strong> Nhấn nút Nguồn + Giảm âm lượng</li>
+          <li>🍎 <strong>iPhone:</strong> Nhấn nút Nguồn + Tăng âm lượng</li>
+          <li>💻 <strong>Windows:</strong> Phím Print Screen hoặc Win + Shift + S</li>
+          <li>🍎 <strong>Mac:</strong> Command + Shift + 3</li>
+        </ul>
+        <h4>Cần lưu lại gì?</h4>
+        <ul>
+          <li>Tên/username của kẻ xấu</li>
+          <li>Nội dung tin nhắn đe dọa hoặc dụ dỗ</li>
+          <li>Ngày giờ của cuộc trò chuyện</li>
+          <li>Hình ảnh/video không phù hợp được gửi</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Step 3 -->
+  <div id="modal-step3" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-step3-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('modal-step3')" aria-label="Đóng"><i class="fas fa-times"></i></button>
+      <div class="modal-header modal-header-orange">
+        <div class="modal-step-num">03</div>
+        <h3 id="modal-step3-title">Chặn & Báo cáo tài khoản</h3>
+      </div>
+      <div class="modal-body">
+        <p>Sau khi có bằng chứng, hãy chặn và báo cáo tài khoản đó để ngăn chúng tiếp cận em thêm.</p>
+        <h4>Trên Facebook/Instagram:</h4>
+        <ul>
+          <li>Vào trang cá nhân → dấu "..." → Block / Chặn</li>
+          <li>Vào trang cá nhân → dấu "..." → Report / Báo cáo</li>
+        </ul>
+        <h4>Trên TikTok:</h4>
+        <ul>
+          <li>Trang cá nhân người dùng → Share → Report</li>
+          <li>Nhấn giữ comment → Report</li>
+        </ul>
+        <h4>Trên Zalo:</h4>
+        <ul>
+          <li>Vào cuộc trò chuyện → Cài đặt → Chặn liên lạc</li>
+        </ul>
+        <div class="modal-alert">
+          <i class="fas fa-info-circle"></i> Block trước, chụp ảnh bằng chứng sau có thể làm mất dữ liệu. Hãy chụp ảnh TRƯỚC khi block!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Step 4 -->
+  <div id="modal-step4" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-step4-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('modal-step4')" aria-label="Đóng"><i class="fas fa-times"></i></button>
+      <div class="modal-header modal-header-green">
+        <div class="modal-step-num">04</div>
+        <h3 id="modal-step4-title">Nhờ người lớn giúp đỡ</h3>
+      </div>
+      <div class="modal-body">
+        <p>Người lớn đáng tin có thể giúp em xử lý tình huống tốt hơn. <strong>Đây không phải sự yếu đuối – đây là quyết định thông minh!</strong></p>
+        <h4>Ai có thể giúp em?</h4>
+        <ul>
+          <li>👨‍👩‍👧 Bố mẹ hoặc người giám hộ</li>
+          <li>👩‍🏫 Thầy cô giáo hoặc cán bộ tư vấn tâm lý trường</li>
+          <li>👮 Cảnh sát khu vực</li>
+          <li>🧑‍⚕️ Nhân viên xã hội hoặc tư vấn viên</li>
+        </ul>
+        <h4>Nên nói gì?</h4>
+        <ul>
+          <li>"Con gặp phải tình huống này trên mạng..."</li>
+          <li>"Con có bằng chứng là những tin nhắn/ảnh này..."</li>
+          <li>"Con cần bố/mẹ/thầy/cô giúp con báo cáo..."</li>
+        </ul>
+        <div class="modal-alert">
+          <i class="fas fa-heart"></i> Người lớn đáng tin sẽ không trách em. Họ sẽ bảo vệ em!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Step 5 -->
+  <div id="modal-step5" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-step5-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('modal-step5')" aria-label="Đóng"><i class="fas fa-times"></i></button>
+      <div class="modal-header modal-header-indigo">
+        <div class="modal-step-num">05</div>
+        <h3 id="modal-step5-title">Liên hệ cơ quan chức năng</h3>
+      </div>
+      <div class="modal-body">
+        <p>Nếu sự việc nghiêm trọng hoặc bố mẹ không ở gần, em có thể liên hệ trực tiếp cơ quan chức năng.</p>
+        <h4>Các kênh hỗ trợ chính thức:</h4>
+        <ul>
+          <li>📞 <strong>113</strong> – Cảnh sát khẩn cấp (24/7)</li>
+          <li>📞 <strong>1800 1567</strong> – Tổng đài quốc gia bảo vệ trẻ em (miễn phí, 24/7)</li>
+          <li>📞 <strong>111</strong> – Đường dây hỗ trợ trẻ em</li>
+          <li>🌐 Cổng thông tin <strong>canhbao.ncsc.gov.vn</strong> – Báo cáo an ninh mạng</li>
+        </ul>
+        <h4>Khi gọi điện, hãy cho biết:</h4>
+        <ul>
+          <li>Tên và tuổi của em</li>
+          <li>Vấn đề đang xảy ra</li>
+          <li>Thông tin kẻ xấu (nếu có)</li>
+          <li>Địa điểm em đang ở (nếu có nguy hiểm vật lý)</li>
+        </ul>
+        <div class="modal-alert modal-alert-red">
+          <i class="fas fa-phone-volume"></i> Nếu đang trong nguy hiểm, hãy gọi <strong>113</strong> ngay!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SUCCESS TOAST NOTIFICATION
+  ============================================================ -->
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">
+    <div class="toast-icon"><i class="fas fa-check-circle"></i></div>
+    <div class="toast-msg">
+      <strong>Gửi thành công!</strong>
+      <p>Chúng tôi sẽ liên hệ với em trong vòng 24 giờ.</p>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Về đầu trang">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Main Script -->
+  <script>
+/**
+ * SafeNet Kids – script.js
+ * Author: Senior Full-Stack Developer
+ * Description: Main JavaScript for child online safety educational website
+ * Version: 1.0.0
+ *
+ * TABLE OF CONTENTS:
+ * 1.  DOMContentLoaded Init
+ * 2.  Navigation – Scrolled State
+ * 3.  Navigation – Hamburger / Mobile Menu
+ * 4.  Navigation – Active Link on Scroll (IntersectionObserver)
+ * 5.  Navigation – Smooth Close on Link Click
+ * 6.  Scroll Animations – Fade In Sections
+ * 7.  Modal – Open / Close / Accessibility
+ * 8.  Safety Tips – Progress Tracker
+ * 9.  Contact Form – Validation & Submit
+ * 10. Back to Top Button
+ * 11. Toast Notification
+ * 12. Keyboard Accessibility Helper
+ */
+
+'use strict';
+
+/* ============================================================
+   1. DOMContentLoaded – Entry Point
+============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  initNavbarScroll();
+  initHamburgerMenu();
+  initActiveNavLinks();
+  initScrollAnimations();
+  initContactForm();
+  initBackToTop();
+});
+
+
+/* ============================================================
+   2. NAVIGATION – Scrolled State
+   Adds/removes the `.scrolled` class to style the navbar
+   differently once the user scrolls past 50px.
+============================================================ */
+function initNavbarScroll() {
+  const navbar = document.getElementById('navbar');
+  if (!navbar) return;
+
+  const SCROLL_THRESHOLD = 50;
+
+  const updateNavbar = () => {
+    const scrolled = window.scrollY > SCROLL_THRESHOLD;
+    navbar.classList.toggle('scrolled', scrolled);
+  };
+
+  // Run once on load (in case page reloaded mid-scroll)
+  updateNavbar();
+
+  // Use passive listener for performance
+  window.addEventListener('scroll', updateNavbar, { passive: true });
+}
+
+
+/* ============================================================
+   3. NAVIGATION – Hamburger / Mobile Menu
+   Toggles the mobile drawer open/closed.
+   Also manages the overlay behind the drawer.
+============================================================ */
+function initHamburgerMenu() {
+  const hamburger  = document.getElementById('hamburger');
+  const navLinks   = document.getElementById('navLinks');
+  const overlay    = document.getElementById('navOverlay');
+
+  if (!hamburger || !navLinks || !overlay) return;
+
+  /**
+   * Open the mobile navigation drawer.
+   */
+  const openMenu = () => {
+    hamburger.classList.add('open');
+    navLinks.classList.add('open');
+    overlay.classList.add('active');
+    overlay.removeAttribute('aria-hidden');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
+  };
+
+  /**
+   * Close the mobile navigation drawer.
+   */
+  const closeMenu = () => {
+    hamburger.classList.remove('open');
+    navLinks.classList.remove('open');
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  };
+
+  // Toggle on hamburger click
+  hamburger.addEventListener('click', () => {
+    const isOpen = navLinks.classList.contains('open');
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  // Close when overlay is clicked
+  overlay.addEventListener('click', closeMenu);
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+      closeMenu();
+      hamburger.focus();
+    }
+  });
+
+  // Close when a nav link is clicked (smooth scroll takes over)
+  navLinks.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+}
+
+
+/* ============================================================
+   4. NAVIGATION – Active Link on Scroll
+   Uses IntersectionObserver to highlight the correct nav
+   link based on which section is visible in the viewport.
+============================================================ */
+function initActiveNavLinks() {
+  const sections  = document.querySelectorAll('section[id]');
+  const navLinks  = document.querySelectorAll('.nav-link');
+
+  if (!sections.length || !navLinks.length) return;
+
+  /**
+   * Map section IDs to their corresponding nav links for
+   * O(1) lookups instead of querying the DOM every frame.
+   */
+  const linkMap = {};
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      linkMap[href.slice(1)] = link;
+    }
+  });
+
+  const observerOptions = {
+    rootMargin: '-30% 0px -60% 0px', // Trigger when section is in the "middle" of viewport
+    threshold: 0,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Remove active from all links
+        navLinks.forEach(l => l.classList.remove('active'));
+        // Add to matching link
+        const activeLink = linkMap[entry.target.id];
+        if (activeLink) activeLink.classList.add('active');
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(section => observer.observe(section));
+}
+
+
+/* ============================================================
+   5. SCROLL ANIMATIONS – Fade In Sections
+   Observes elements with `.fade-in` and adds `.visible`
+   once they enter the viewport.
+============================================================ */
+function initScrollAnimations() {
+  const elements = document.querySelectorAll('.fade-in');
+  if (!elements.length) return;
+
+  // Fallback for browsers that don't support IntersectionObserver
+  if (!('IntersectionObserver' in window)) {
+    elements.forEach(el => el.classList.add('visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Unobserve after animation to free memory
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px',
+  });
+
+  elements.forEach(el => observer.observe(el));
+}
+
+
+/* ============================================================
+   6. MODAL – Open / Close / Accessibility
+   Opens and closes modals. Traps focus inside the open
+   modal for accessibility (keyboard navigation).
+============================================================ */
+
+/** Tracks the element that triggered the modal (for focus restore). */
+let modalTriggerElement = null;
+
+/**
+ * Opens a modal by ID.
+ * @param {string} modalId – The id of the .modal-overlay element
+ */
+function openModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (!modal) return;
+
+  // Remember what triggered the modal
+  modalTriggerElement = document.activeElement;
+
+  // Show modal
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  // Focus the first focusable element inside the modal
+  const focusable = modal.querySelectorAll(
+    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  );
+  if (focusable.length) {
+    focusable[0].focus();
+  }
+
+  // Add event listener (namespaced so we can remove it cleanly)
+  modal._closeOnOverlay = (e) => {
+    if (e.target === modal) closeModal(modalId);
+  };
+  modal.addEventListener('click', modal._closeOnOverlay);
+
+  modal._trapFocus = (e) => trapFocus(e, modal);
+  document.addEventListener('keydown', modal._trapFocus);
+
+  modal._escClose = (e) => {
+    if (e.key === 'Escape') closeModal(modalId);
+  };
+  document.addEventListener('keydown', modal._escClose);
+}
+
+/**
+ * Closes a modal by ID.
+ * @param {string} modalId – The id of the .modal-overlay element
+ */
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (!modal) return;
+
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+
+  // Clean up event listeners
+  if (modal._closeOnOverlay) {
+    modal.removeEventListener('click', modal._closeOnOverlay);
+    delete modal._closeOnOverlay;
+  }
+  if (modal._trapFocus) {
+    document.removeEventListener('keydown', modal._trapFocus);
+    delete modal._trapFocus;
+  }
+  if (modal._escClose) {
+    document.removeEventListener('keydown', modal._escClose);
+    delete modal._escClose;
+  }
+
+  // Restore focus to the triggering element
+  if (modalTriggerElement) {
+    modalTriggerElement.focus();
+    modalTriggerElement = null;
+  }
+}
+
+/**
+ * Traps keyboard focus within the modal for accessibility.
+ * @param {KeyboardEvent} e
+ * @param {HTMLElement} modal
+ */
+function trapFocus(e, modal) {
+  if (e.key !== 'Tab') return;
+
+  const focusableSelectors = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+  const focusable = Array.from(modal.querySelectorAll(focusableSelectors)).filter(
+    el => !el.disabled && el.offsetParent !== null
+  );
+
+  if (!focusable.length) return;
+
+  const first = focusable[0];
+  const last  = focusable[focusable.length - 1];
+
+  if (e.shiftKey) {
+    // Shift+Tab: if on first, wrap to last
+    if (document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    }
+  } else {
+    // Tab: if on last, wrap to first
+    if (document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+}
+
+
+/* ============================================================
+   7. SAFETY TIPS – Progress Tracker
+   Updates the progress bar and count as checkboxes are
+   checked. Shows encouraging messages at milestones.
+============================================================ */
+
+/** Praise messages shown at different progress levels */
+const PRAISE_MESSAGES = {
+  0:  '',
+  1:  '🌱 Tốt lắm! Em đã bắt đầu hành trình an toàn mạng!',
+  3:  '🌟 Xuất sắc! Em đang học rất nhanh!',
+  5:  '🔥 Tuyệt vời! Em đã biết hơn nửa rồi!',
+  7:  '💪 Giỏi lắm! Em gần như là chuyên gia rồi đó!',
+  9:  '🏆 Gần hoàn hảo! Còn một bước nữa thôi!',
+  10: '🎉 Hoàn hảo! Em là người bảo vệ an toàn mạng thực thụ! Hãy chia sẻ với bạn bè nhé!',
+};
+
+/**
+ * Updates the progress bar and display count.
+ * Called by onchange handler on each checkbox.
+ */
+function updateProgress() {
+  const checkboxes  = document.querySelectorAll('.tip-check');
+  const countEl     = document.getElementById('tipCount');
+  const fillEl      = document.getElementById('progressFill');
+  const praiseEl    = document.getElementById('progressPraise');
+  const progressBar = document.getElementById('progressBar');
+
+  const total   = checkboxes.length;
+  const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+  const percent = Math.round((checked / total) * 100);
+
+  // Update text
+  if (countEl) countEl.textContent = `${checked} / ${total}`;
+
+  // Update progress bar fill
+  if (fillEl) fillEl.style.width = `${percent}%`;
+
+  // Update ARIA value
+  if (progressBar) progressBar.setAttribute('aria-valuenow', checked);
+
+  // Find the highest matching praise milestone
+  if (praiseEl) {
+    const milestone = Object.keys(PRAISE_MESSAGES)
+      .map(Number)
+      .filter(k => k <= checked)
+      .pop();
+
+    praiseEl.textContent = PRAISE_MESSAGES[milestone] || '';
+  }
+}
+
+
+/* ============================================================
+   8. CONTACT FORM – Validation & Submission
+   Client-side validation with user-friendly error messages.
+   Simulates an async form submission.
+============================================================ */
+
+/**
+ * Validation rules for each field.
+ * @type {Object.<string, {validate: Function, message: string}>}
+ */
+const VALIDATION_RULES = {
+  name: {
+    validate: (v) => v.trim().length >= 2 && v.trim().length <= 100,
+    message: 'Vui lòng nhập họ tên (từ 2 đến 100 ký tự).',
+  },
+  email: {
+    validate: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
+    message: 'Vui lòng nhập địa chỉ email hợp lệ.',
+  },
+  subject: {
+    validate: (v) => v !== '',
+    message: 'Vui lòng chọn loại vấn đề.',
+  },
+  message: {
+    validate: (v) => v.trim().length >= 20,
+    message: 'Vui lòng mô tả chi tiết hơn (ít nhất 20 ký tự).',
+  },
+};
+
+/**
+ * Sets an error state on a form field.
+ * @param {HTMLElement} input
+ * @param {string} msg – Error message to display
+ */
+function setFieldError(input, msg) {
+  input.classList.add('is-error');
+  input.classList.remove('is-valid');
+  const errorEl = document.getElementById(`${input.id}Error`);
+  if (errorEl) errorEl.textContent = msg;
+}
+
+/**
+ * Sets a valid state on a form field.
+ * @param {HTMLElement} input
+ */
+function setFieldValid(input) {
+  input.classList.remove('is-error');
+  input.classList.add('is-valid');
+  const errorEl = document.getElementById(`${input.id}Error`);
+  if (errorEl) errorEl.textContent = '';
+}
+
+/**
+ * Clears both valid/error states on a form field.
+ * @param {HTMLElement} input
+ */
+function clearFieldState(input) {
+  input.classList.remove('is-error', 'is-valid');
+  const errorEl = document.getElementById(`${input.id}Error`);
+  if (errorEl) errorEl.textContent = '';
+}
+
+function initContactForm() {
+  const form       = document.getElementById('contactForm');
+  const submitBtn  = document.getElementById('submitBtn');
+
+  if (!form) return;
+
+  // Live validation – validate on blur (when user leaves a field)
+  Object.keys(VALIDATION_RULES).forEach(fieldId => {
+    const input = document.getElementById(fieldId);
+    if (!input) return;
+
+    input.addEventListener('blur', () => {
+      if (input.value !== '') validateField(fieldId, input.value);
+    });
+
+    input.addEventListener('input', () => {
+      // Clear error once user starts typing again
+      if (input.classList.contains('is-error')) {
+        clearFieldState(input);
+      }
+    });
+  });
+
+  // Form submit
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    let isFormValid = true;
+
+    // Validate all standard fields
+    Object.keys(VALIDATION_RULES).forEach(fieldId => {
+      const input = document.getElementById(fieldId);
+      if (!input) return;
+
+      const valid = validateField(fieldId, input.value);
+      if (!valid) isFormValid = false;
+    });
+
+    // Validate privacy checkbox separately
+    const privacyCheckbox = document.getElementById('privacy');
+    const privacyError    = document.getElementById('privacyError');
+
+    if (privacyCheckbox && !privacyCheckbox.checked) {
+      if (privacyError) privacyError.textContent = 'Em cần đồng ý với điều khoản bảo mật.';
+      isFormValid = false;
+    } else if (privacyCheckbox && privacyCheckbox.checked) {
+      if (privacyError) privacyError.textContent = '';
+    }
+
+    if (!isFormValid) return;
+
+    // Simulate async form submission
+    await submitForm(form, submitBtn);
+  });
+}
+
+/**
+ * Validates a single field.
+ * @param {string} fieldId
+ * @param {string} value
+ * @returns {boolean} Whether the field is valid
+ */
+function validateField(fieldId, value) {
+  const rule  = VALIDATION_RULES[fieldId];
+  const input = document.getElementById(fieldId);
+  if (!rule || !input) return true;
+
+  const isValid = rule.validate(value);
+
+  if (isValid) {
+    setFieldValid(input);
+  } else {
+    setFieldError(input, rule.message);
+  }
+
+  return isValid;
+}
+
+/**
+ * Simulates an async form submission with loading state.
+ * In production, replace with a real fetch() API call.
+ * @param {HTMLFormElement} form
+ * @param {HTMLButtonElement} btn
+ */
+async function submitForm(form, btn) {
+  const originalText = btn.innerHTML;
+
+  // Loading state
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Đang gửi...';
+
+  // Simulate network delay (1.5s)
+  await new Promise(resolve => setTimeout(resolve, 1500));
+
+  // Restore button
+  btn.disabled  = false;
+  btn.innerHTML = originalText;
+
+  // Reset form
+  form.reset();
+  document.querySelectorAll('#contactForm .form-input').forEach(input => {
+    clearFieldState(input);
+  });
+  const privacyError = document.getElementById('privacyError');
+  if (privacyError) privacyError.textContent = '';
+
+  // Show success toast
+  showToast();
+}
+
+
+/* ============================================================
+   9. BACK TO TOP BUTTON
+   Shows/hides based on scroll position. Smooth scrolls to top.
+============================================================ */
+function initBackToTop() {
+  const btn = document.getElementById('backToTop');
+  if (!btn) return;
+
+  const SHOW_THRESHOLD = 400;
+
+  // Show/hide on scroll
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > SHOW_THRESHOLD);
+  }, { passive: true });
+
+  // Scroll to top on click
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+
+/* ============================================================
+   10. TOAST NOTIFICATION
+   Shows a temporary success notification.
+============================================================ */
+let toastTimeout = null;
+
+/**
+ * Displays the toast notification for 4 seconds.
+ */
+function showToast() {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+
+  // Clear any existing timeout
+  if (toastTimeout) {
+    clearTimeout(toastTimeout);
+    toast.classList.remove('show');
+    // Small delay to allow CSS transition to reset
+    setTimeout(() => _triggerToast(toast), 50);
+  } else {
+    _triggerToast(toast);
+  }
+}
+
+function _triggerToast(toast) {
+  toast.classList.add('show');
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove('show');
+    toastTimeout = null;
+  }, 4000);
+}
+
+
+/* ============================================================
+   11. KEYBOARD ACCESSIBILITY HELPER
+   Called from HTML via onkeydown to allow keyboard users
+   to activate step cards (Enter / Space).
+   @param {KeyboardEvent} event
+   @param {string} modalId
+============================================================ */
+function handleKeydown(event, modalId) {
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    openModal(modalId);
+  }
+}
+  </script>
+
+</body>
+</html>
