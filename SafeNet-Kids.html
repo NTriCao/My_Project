@@ -459,6 +459,38 @@ input, textarea, select {
 .hamburger:hover { background: rgba(255,255,255,.15); }
 .navbar.scrolled .hamburger:hover { background: var(--gray-100); }
 
+/* Khi mở menu, nút luôn có nền sáng để X hiển thị rõ */
+.hamburger.open {
+  background: rgba(255,255,255,0.95);
+  border-radius: var(--radius-sm);
+}
+
+/* Nút X đóng drawer - góc trên bên phải */
+.nav-drawer-close {
+  display: none;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gray-100);
+  color: var(--gray-700);
+  font-size: 1.2rem;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: all var(--transition-fast);
+  z-index: 10;
+  border: none;
+}
+
+.nav-drawer-close:hover {
+  background: var(--danger-100);
+  color: var(--danger-500);
+}
+
 .ham-bar {
   display: block;
   height: 2px;
@@ -475,6 +507,11 @@ input, textarea, select {
 .hamburger.open .ham-bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .hamburger.open .ham-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+/* Khi menu mở, nút X luôn hiển thị màu tối rõ ràng */
+.hamburger.open .ham-bar {
+  background: var(--gray-800);
+}
+
 /* Nav overlay (mobile) */
 .nav-overlay {
   display: none;
@@ -483,10 +520,11 @@ input, textarea, select {
   background: rgba(0,0,0,.5);
   z-index: calc(var(--z-navbar) - 1);
   opacity: 0;
+  pointer-events: none;
   transition: opacity var(--transition-mid);
 }
 
-.nav-overlay.active { opacity: 1; }
+.nav-overlay.active { opacity: 1; pointer-events: all; }
 
 
 /* ============================================================
@@ -1938,16 +1976,25 @@ input, textarea, select {
   opacity: 0;
   transform: translateY(40px);
   transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1);
+  pointer-events: none;
 }
 
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+  pointer-events: auto;
 }
 
 .delay-1 { transition-delay: .1s; }
 .delay-2 { transition-delay: .22s; }
 .delay-3 { transition-delay: .36s; }
+
+/* Hero fade-in luôn hiển thị ngay, không cần scroll */
+.hero-section .fade-in {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
 
 /* Keyframe helpers */
 @keyframes fadeInUp {
@@ -1992,6 +2039,9 @@ input, textarea, select {
 
   .nav-links.open { right: 0; }
   .nav-overlay { display: block; }
+
+  /* Hiện nút X góc trên bên phải drawer */
+  .nav-drawer-close { display: flex; }
 
   .nav-link {
     width: 100%;
@@ -2088,6 +2138,9 @@ input, textarea, select {
 
       <!-- Desktop Navigation Links -->
       <ul class="nav-links" id="navLinks" role="list">
+        <button class="nav-drawer-close" id="navCloseBtn" aria-label="Đóng menu">
+          <i class="fas fa-xmark"></i>
+        </button>
         <li><a href="#home"     class="nav-link active"><i class="fas fa-house"></i> Trang chủ</a></li>
         <li><a href="#risks"    class="nav-link"><i class="fas fa-triangle-exclamation"></i> Tác hại</a></li>
         <li><a href="#tips"     class="nav-link"><i class="fas fa-lock"></i> Kỹ năng</a></li>
@@ -3242,6 +3295,10 @@ function initHamburgerMenu() {
   // Close when overlay is clicked
   overlay.addEventListener('click', closeMenu);
 
+  // Close when the X button inside drawer is clicked
+  const closeBtn = document.getElementById('navCloseBtn');
+  if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+
   // Close on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && navLinks.classList.contains('open')) {
@@ -3325,8 +3382,8 @@ function initScrollAnimations() {
       }
     });
   }, {
-    threshold: 0.12,
-    rootMargin: '0px 0px -40px 0px',
+    threshold: 0,
+    rootMargin: '0px 0px 0px 0px',
   });
 
   elements.forEach(el => observer.observe(el));
