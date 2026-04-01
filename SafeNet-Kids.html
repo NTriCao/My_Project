@@ -132,15 +132,11 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* Remove 300ms tap delay on all elements */
-  -webkit-tap-highlight-color: transparent;
 }
 
 html {
   scroll-behavior: smooth;
   font-size: 16px;
-  /* Prevent tap delay on iOS */
-  touch-action: manipulation;
 }
 
 body {
@@ -164,7 +160,6 @@ a {
   color: inherit;
   text-decoration: none;
   transition: color var(--transition-fast);
-  touch-action: manipulation;
 }
 
 ul {
@@ -181,7 +176,6 @@ button {
   border: none;
   background: none;
   font-family: var(--font-body);
-  touch-action: manipulation;
 }
 
 input, textarea, select {
@@ -208,6 +202,12 @@ input, textarea, select {
   position: relative;
   overflow: hidden;
   white-space: nowrap;
+  min-height: 48px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .btn::before {
@@ -517,7 +517,6 @@ input, textarea, select {
   border-radius: 50%;
   filter: blur(80px);
   opacity: .25;
-  will-change: transform;
 }
 
 .blob-1 {
@@ -686,7 +685,6 @@ input, textarea, select {
   justify-content: center;
   animation: spinSlow 30s linear infinite;
   box-shadow: 0 0 60px rgba(34,211,238,.15);
-  will-change: transform;
 }
 
 @keyframes spinSlow {
@@ -705,7 +703,6 @@ input, textarea, select {
   justify-content: center;
   animation: spinSlow 30s linear infinite reverse;
   position: relative;
-  will-change: transform;
 }
 
 .shield-icon {
@@ -751,7 +748,6 @@ input, textarea, select {
   justify-content: center;
   font-size: 1.2rem;
   box-shadow: var(--shadow-lg);
-  will-change: transform;
 }
 
 .badge-lock   { top: 10px;  left: 10px;   color: var(--primary-500); animation: floatBadge 4s ease-in-out infinite; }
@@ -839,6 +835,8 @@ input, textarea, select {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(0,0,0,0.04);
 }
 
 .risk-card:hover {
@@ -858,6 +856,7 @@ input, textarea, select {
   filter: blur(50px);
   opacity: 0;
   transition: opacity var(--transition-mid);
+  pointer-events: none;
 }
 
 .risk-card:hover .card-glow { opacity: .15; }
@@ -964,6 +963,12 @@ input, textarea, select {
   transition: all var(--transition-fast);
   width: fit-content;
   margin-top: auto;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(37,99,235,0.15);
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
 }
 
 .card-btn:hover {
@@ -1217,6 +1222,8 @@ input, textarea, select {
   gap: 0;
   margin-bottom: 24px;
   cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(37,99,235,0.08);
 }
 
 .step-item:last-child { margin-bottom: 0; }
@@ -2059,79 +2066,6 @@ input, textarea, select {
   .modal-body, .modal-header { padding-left: 20px; padding-right: 20px; }
   .toast { right: 16px; bottom: 16px; left: 16px; max-width: none; }
   .back-to-top { right: 16px; bottom: 80px; }
-}
-
-/* ============================================================
-   MOBILE PERFORMANCE – Giảm tải animation & blur trên điện thoại
-============================================================ */
-@media (max-width: 960px) {
-  /* Tắt các animation nặng trên mobile */
-  .blob-1, .blob-2, .blob-3 {
-    animation: none !important;
-    filter: blur(40px); /* Giảm blur từ 80px xuống 40px */
-  }
-
-  .shield-outer, .shield-inner {
-    animation: none !important;
-  }
-
-  .float-badge {
-    animation: none !important;
-  }
-
-  .pulse-ring {
-    animation-duration: 4s; /* Chậm hơn để nhẹ hơn */
-  }
-
-  /* Tắt backdrop-filter tốn GPU */
-  .hero-badge {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-
-  .hero-stats {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-
-  .btn-outline {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    background: rgba(255,255,255,.12);
-  }
-
-  /* Navbar blur nhẹ hơn */
-  .navbar.scrolled {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-
-  /* Giảm transition delay để UI phản hồi nhanh hơn */
-  .risk-card {
-    transition: box-shadow var(--transition-fast);
-  }
-
-  .risk-card:hover {
-    transform: none; /* Tắt translateY trên mobile */
-  }
-
-  /* Đảm bảo cards, buttons bắt được touch */
-  .risk-card,
-  .tip-item,
-  .step-item,
-  .hotline-card {
-    touch-action: manipulation;
-    cursor: pointer;
-  }
-}
-
-/* Tắt toàn bộ animation cho người dùng có setting giảm chuyển động */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
 }
   </style>
 </head>
@@ -3211,9 +3145,32 @@ document.addEventListener('DOMContentLoaded', () => {
   initHamburgerMenu();
   initActiveNavLinks();
   initScrollAnimations();
+  initRiskCards();
   initContactForm();
   initBackToTop();
 });
+
+
+/* ============================================================
+   1b. RISK CARDS – Click / Touch delegation
+   Allows tapping anywhere on the card (not just the button)
+   to open the modal on mobile devices.
+============================================================ */
+function initRiskCards() {
+  document.querySelectorAll('.risk-card[data-modal]').forEach(card => {
+    const modalId = card.dataset.modal;
+    if (!modalId) return;
+
+    // Use both click and touchend for maximum mobile compatibility
+    const handler = (e) => {
+      // Only open if not clicking/touching the button itself (button has its own onclick)
+      if (e.target.closest('.card-btn')) return;
+      openModal(modalId);
+    };
+
+    card.addEventListener('click', handler);
+  });
+}
 
 
 /* ============================================================
@@ -3227,23 +3184,16 @@ function initNavbarScroll() {
 
   const SCROLL_THRESHOLD = 50;
 
-  let ticking = false;
   const updateNavbar = () => {
     const scrolled = window.scrollY > SCROLL_THRESHOLD;
     navbar.classList.toggle('scrolled', scrolled);
-    ticking = false;
   };
 
   // Run once on load (in case page reloaded mid-scroll)
   updateNavbar();
 
-  // Use passive listener + requestAnimationFrame throttle for performance
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(updateNavbar);
-      ticking = true;
-    }
-  }, { passive: true });
+  // Use passive listener for performance
+  window.addEventListener('scroll', updateNavbar, { passive: true });
 }
 
 
@@ -3412,7 +3362,7 @@ function openModal(modalId) {
     'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
   );
   if (focusable.length) {
-    focusable[0].focus();
+    setTimeout(() => focusable[0].focus(), 50);
   }
 
   // Add event listener (namespaced so we can remove it cleanly)
@@ -3420,6 +3370,7 @@ function openModal(modalId) {
     if (e.target === modal) closeModal(modalId);
   };
   modal.addEventListener('click', modal._closeOnOverlay);
+  modal.addEventListener('touchend', modal._closeOnOverlay, { passive: true });
 
   modal._trapFocus = (e) => trapFocus(e, modal);
   document.addEventListener('keydown', modal._trapFocus);
@@ -3444,6 +3395,7 @@ function closeModal(modalId) {
   // Clean up event listeners
   if (modal._closeOnOverlay) {
     modal.removeEventListener('click', modal._closeOnOverlay);
+    modal.removeEventListener('touchend', modal._closeOnOverlay);
     delete modal._closeOnOverlay;
   }
   if (modal._trapFocus) {
@@ -3732,16 +3684,9 @@ function initBackToTop() {
 
   const SHOW_THRESHOLD = 400;
 
-  let ticking = false;
-  // Show/hide on scroll with rAF throttle
+  // Show/hide on scroll
   window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        btn.classList.toggle('visible', window.scrollY > SHOW_THRESHOLD);
-        ticking = false;
-      });
-      ticking = true;
-    }
+    btn.classList.toggle('visible', window.scrollY > SHOW_THRESHOLD);
   }, { passive: true });
 
   // Scroll to top on click
