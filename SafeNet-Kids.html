@@ -132,11 +132,15 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  /* Remove 300ms tap delay on all elements */
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  /* Prevent tap delay on iOS */
+  touch-action: manipulation;
 }
 
 body {
@@ -160,6 +164,7 @@ a {
   color: inherit;
   text-decoration: none;
   transition: color var(--transition-fast);
+  touch-action: manipulation;
 }
 
 ul {
@@ -176,6 +181,7 @@ button {
   border: none;
   background: none;
   font-family: var(--font-body);
+  touch-action: manipulation;
 }
 
 input, textarea, select {
@@ -511,6 +517,7 @@ input, textarea, select {
   border-radius: 50%;
   filter: blur(80px);
   opacity: .25;
+  will-change: transform;
 }
 
 .blob-1 {
@@ -580,7 +587,7 @@ input, textarea, select {
 .hero-badge i { color: #fbbf24; }
 
 .hero-heading {
-  font-size: clamp(1.85rem, 5vw, 3.8rem);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
   color: var(--white);
   margin-bottom: 20px;
   line-height: 1.15;
@@ -679,6 +686,7 @@ input, textarea, select {
   justify-content: center;
   animation: spinSlow 30s linear infinite;
   box-shadow: 0 0 60px rgba(34,211,238,.15);
+  will-change: transform;
 }
 
 @keyframes spinSlow {
@@ -697,6 +705,7 @@ input, textarea, select {
   justify-content: center;
   animation: spinSlow 30s linear infinite reverse;
   position: relative;
+  will-change: transform;
 }
 
 .shield-icon {
@@ -742,6 +751,7 @@ input, textarea, select {
   justify-content: center;
   font-size: 1.2rem;
   box-shadow: var(--shadow-lg);
+  will-change: transform;
 }
 
 .badge-lock   { top: 10px;  left: 10px;   color: var(--primary-500); animation: floatBadge 4s ease-in-out infinite; }
@@ -1079,9 +1089,7 @@ input, textarea, select {
 }
 
 .tip-label {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
+  display: block;
   cursor: pointer;
   padding: 20px;
 }
@@ -2026,7 +2034,7 @@ input, textarea, select {
   .risk-card--featured { grid-column: span 1; }
   .tips-grid { grid-template-columns: 1fr; }
 
-  .hotlines-grid { grid-template-columns: repeat(2, 1fr); }
+  .hotlines-grid { grid-template-columns: 1fr; }
 
   .footer-layout { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; text-align: center; }
@@ -2051,41 +2059,79 @@ input, textarea, select {
   .modal-body, .modal-header { padding-left: 20px; padding-right: 20px; }
   .toast { right: 16px; bottom: 16px; left: 16px; max-width: none; }
   .back-to-top { right: 16px; bottom: 80px; }
-
-  /* Shield: shrink further on very small screens */
-  .shield-graphic { width: 210px; height: 210px; }
-  .shield-outer   { width: 175px; height: 175px; }
-  .shield-inner   { width: 125px; height: 125px; }
-  .shield-icon    { font-size: 3rem; }
-
-  /* Warning banner: stack vertically */
-  .warning-banner { flex-direction: column; align-items: flex-start; gap: 12px; }
-
-  /* Hotlines: 1 column on small phones */
-  .hotlines-grid  { grid-template-columns: 1fr; }
-
-  /* Step cards: reduce padding on tiny screens */
-  .step-card  { padding: 16px 14px; gap: 12px; }
-  .step-icon  { width: 38px; height: 38px; font-size: .9rem; }
-  .step-item  { grid-template-columns: 56px 1fr; }
-
-  /* Hero stats: tighter */
-  .stat-number { font-size: 1.6rem; }
 }
 
-/* Disable stuck hover effects on touch devices */
-@media (hover: none) {
-  .risk-card:hover          { transform: none; box-shadow: var(--shadow-sm); border-color: var(--gray-200); }
-  .risk-card:hover .card-glow { opacity: 0; }
-  .step-item:hover .step-card { transform: none; box-shadow: none; border-color: var(--gray-200); }
-  .step-item:hover .step-card::before { opacity: 0; }
-  .step-item:hover .step-number { transform: none; }
-  .tip-card:hover           { transform: none; box-shadow: none; border-color: var(--gray-200); }
-  .hotline-item:hover       { transform: none; box-shadow: none; }
-  .social-btn:hover         { transform: none; }
-  .btn-primary:hover        { transform: none; }
-  .btn-outline:hover        { transform: none; }
-  .nav-hotline:hover        { transform: none; }
+/* ============================================================
+   MOBILE PERFORMANCE – Giảm tải animation & blur trên điện thoại
+============================================================ */
+@media (max-width: 960px) {
+  /* Tắt các animation nặng trên mobile */
+  .blob-1, .blob-2, .blob-3 {
+    animation: none !important;
+    filter: blur(40px); /* Giảm blur từ 80px xuống 40px */
+  }
+
+  .shield-outer, .shield-inner {
+    animation: none !important;
+  }
+
+  .float-badge {
+    animation: none !important;
+  }
+
+  .pulse-ring {
+    animation-duration: 4s; /* Chậm hơn để nhẹ hơn */
+  }
+
+  /* Tắt backdrop-filter tốn GPU */
+  .hero-badge {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .hero-stats {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .btn-outline {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(255,255,255,.12);
+  }
+
+  /* Navbar blur nhẹ hơn */
+  .navbar.scrolled {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Giảm transition delay để UI phản hồi nhanh hơn */
+  .risk-card {
+    transition: box-shadow var(--transition-fast);
+  }
+
+  .risk-card:hover {
+    transform: none; /* Tắt translateY trên mobile */
+  }
+
+  /* Đảm bảo cards, buttons bắt được touch */
+  .risk-card,
+  .tip-item,
+  .step-item,
+  .hotline-card {
+    touch-action: manipulation;
+    cursor: pointer;
+  }
+}
+
+/* Tắt toàn bộ animation cho người dùng có setting giảm chuyển động */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
   </style>
 </head>
@@ -3181,16 +3227,23 @@ function initNavbarScroll() {
 
   const SCROLL_THRESHOLD = 50;
 
+  let ticking = false;
   const updateNavbar = () => {
     const scrolled = window.scrollY > SCROLL_THRESHOLD;
     navbar.classList.toggle('scrolled', scrolled);
+    ticking = false;
   };
 
   // Run once on load (in case page reloaded mid-scroll)
   updateNavbar();
 
-  // Use passive listener for performance
-  window.addEventListener('scroll', updateNavbar, { passive: true });
+  // Use passive listener + requestAnimationFrame throttle for performance
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateNavbar);
+      ticking = true;
+    }
+  }, { passive: true });
 }
 
 
@@ -3679,9 +3732,16 @@ function initBackToTop() {
 
   const SHOW_THRESHOLD = 400;
 
-  // Show/hide on scroll
+  let ticking = false;
+  // Show/hide on scroll with rAF throttle
   window.addEventListener('scroll', () => {
-    btn.classList.toggle('visible', window.scrollY > SHOW_THRESHOLD);
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        btn.classList.toggle('visible', window.scrollY > SHOW_THRESHOLD);
+        ticking = false;
+      });
+      ticking = true;
+    }
   }, { passive: true });
 
   // Scroll to top on click
