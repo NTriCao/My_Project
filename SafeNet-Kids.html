@@ -2117,6 +2117,396 @@ input, textarea, select {
   .toast { right: 16px; bottom: 16px; left: 16px; max-width: none; }
   .back-to-top { right: 16px; bottom: 80px; }
 }
+
+
+/* ============================================================
+   17. LAWS SECTION
+============================================================ */
+.laws-section {
+  background: linear-gradient(180deg, var(--white) 0%, var(--primary-50) 100%);
+}
+
+.laws-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.law-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 36px 28px;
+  border: 1px solid var(--gray-200);
+  transition: all var(--transition-mid);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.law-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: transparent;
+}
+
+.law-card-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.law-icon-blue { background: var(--primary-100); color: var(--primary-600); }
+.law-icon-teal { background: var(--accent-100); color: var(--accent-600); }
+.law-icon-purple { background: var(--purple-100); color: var(--purple-600); }
+
+.law-card h3 {
+  font-size: 1.2rem;
+  color: var(--gray-900);
+}
+
+.law-card .law-meta {
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--primary-500);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.law-card p {
+  font-size: .95rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+}
+
+.law-card ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.law-card li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: .9rem;
+  color: var(--gray-700);
+}
+
+.law-card li i {
+  font-size: .5rem;
+  color: var(--primary-400);
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+.law-highlight {
+  background: linear-gradient(135deg, var(--primary-50), var(--accent-100));
+  border: 1px solid var(--primary-200);
+  border-radius: var(--radius-lg);
+  padding: 20px 28px;
+  margin-top: 40px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.law-highlight i {
+  font-size: 1.5rem;
+  color: var(--primary-500);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.law-highlight p {
+  font-size: .95rem;
+  color: var(--gray-700);
+  line-height: 1.6;
+}
+
+.law-highlight strong {
+  color: var(--primary-700);
+}
+
+@media (max-width: 1100px) {
+  .laws-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 720px) {
+  .laws-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ============================================================
+   18. AI CHATBOT
+============================================================ */
+.chatbot-toggle {
+  position: fixed;
+  bottom: 32px;
+  left: 32px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 8px 30px rgba(37,99,235,.4);
+  z-index: 95;
+  transition: all var(--transition-mid);
+  cursor: pointer;
+  border: none;
+}
+
+.chatbot-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 40px rgba(37,99,235,.5);
+}
+
+.chatbot-toggle .badge-dot {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 14px;
+  height: 14px;
+  background: var(--danger-500);
+  border-radius: 50%;
+  border: 2px solid var(--white);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.chatbot-window {
+  position: fixed;
+  bottom: 100px;
+  left: 32px;
+  width: 380px;
+  max-height: 520px;
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 20px 60px rgba(0,0,0,.2);
+  z-index: 96;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateY(20px) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--transition-mid);
+}
+
+.chatbot-window.open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.chatbot-header {
+  background: linear-gradient(135deg, var(--primary-700), var(--primary-500));
+  color: var(--white);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.chatbot-avatar {
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.chatbot-header-info h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+  color: var(--white);
+}
+
+.chatbot-header-info p {
+  font-size: .75rem;
+  color: rgba(255,255,255,.7);
+}
+
+.chatbot-close {
+  margin-left: auto;
+  width: 32px;
+  height: 32px;
+  background: rgba(255,255,255,.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: .85rem;
+  cursor: pointer;
+  border: none;
+  transition: background var(--transition-fast);
+}
+
+.chatbot-close:hover {
+  background: rgba(255,255,255,.3);
+}
+
+.chatbot-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 280px;
+  max-height: 340px;
+}
+
+.chat-msg {
+  max-width: 85%;
+  padding: 12px 16px;
+  border-radius: var(--radius-lg);
+  font-size: .9rem;
+  line-height: 1.5;
+  animation: fadeInUp .3s ease-out;
+}
+
+.chat-msg.bot {
+  background: var(--gray-100);
+  color: var(--gray-800);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+.chat-msg.user {
+  background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+  color: var(--white);
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.chat-msg.bot .typing-dots {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.chat-msg.bot .typing-dots span {
+  width: 6px;
+  height: 6px;
+  background: var(--gray-400);
+  border-radius: 50%;
+  animation: typingBounce 1.4s ease-in-out infinite;
+}
+
+.chat-msg.bot .typing-dots span:nth-child(2) { animation-delay: .2s; }
+.chat-msg.bot .typing-dots span:nth-child(3) { animation-delay: .4s; }
+
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-6px); }
+}
+
+.chatbot-quick-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 16px 8px;
+}
+
+.quick-btn {
+  padding: 6px 14px;
+  background: var(--primary-50);
+  color: var(--primary-700);
+  border: 1px solid var(--primary-200);
+  border-radius: var(--radius-full);
+  font-size: .8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.quick-btn:hover {
+  background: var(--primary-500);
+  color: var(--white);
+  border-color: var(--primary-500);
+}
+
+.chatbot-input-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--gray-200);
+  flex-shrink: 0;
+}
+
+.chatbot-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-full);
+  font-size: .9rem;
+  outline: none;
+  transition: border-color var(--transition-fast);
+  font-family: var(--font-body);
+}
+
+.chatbot-input:focus {
+  border-color: var(--primary-400);
+}
+
+.chatbot-send {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .9rem;
+  cursor: pointer;
+  border: none;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.chatbot-send:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 480px) {
+  .chatbot-window {
+    left: 12px;
+    right: 12px;
+    bottom: 90px;
+    width: auto;
+  }
+  .chatbot-toggle {
+    left: 16px;
+    bottom: 20px;
+    width: 52px;
+    height: 52px;
+    font-size: 1.3rem;
+  }
+}
+
   </style>
 </head>
 
@@ -2145,6 +2535,7 @@ input, textarea, select {
         <li><a href="#risks"    class="nav-link"><i class="fas fa-triangle-exclamation"></i> Tác hại</a></li>
         <li><a href="#tips"     class="nav-link"><i class="fas fa-lock"></i> Kỹ năng</a></li>
         <li><a href="#emergency"class="nav-link"><i class="fas fa-circle-info"></i> Xử lý</a></li>
+        <li><a href="#laws"    class="nav-link"><i class="fas fa-gavel"></i> Pháp luật</a></li>
         <li><a href="#contact"  class="nav-link"><i class="fas fa-envelope"></i> Liên hệ</a></li>
       </ul>
 
@@ -2711,6 +3102,81 @@ input, textarea, select {
   </section>
 
 
+
+  <!-- ============================================================
+       SECTION – PHÁP LUẬT BẢO VỆ TRẺ EM
+  ============================================================ -->
+  <section id="laws" class="section laws-section" aria-labelledby="laws-heading">
+    <div class="container">
+
+      <!-- Section Header -->
+      <div class="section-header fade-in">
+        <div class="section-badge badge-blue">
+          <i class="fas fa-gavel"></i> Hành lang pháp lý
+        </div>
+        <h2 id="laws-heading" class="section-title">
+          Pháp luật<br /><span class="text-highlight">bảo vệ trẻ em trên mạng</span>
+        </h2>
+        <p class="section-sub">
+          Việt Nam đã ban hành nhiều bộ luật quan trọng để bảo vệ trẻ em và đảm bảo an toàn trên không gian mạng.
+        </p>
+      </div>
+
+      <!-- Laws Grid -->
+      <div class="laws-grid" role="list">
+
+        <!-- Law 1: Luật Trẻ em -->
+        <article class="law-card fade-in delay-1" role="listitem" onclick="openModal('modal-law1')" style="cursor:pointer">
+          <div class="law-card-icon law-icon-blue">
+            <i class="fas fa-child-reaching"></i>
+          </div>
+          <span class="law-meta">Luật số 102/2016/QH13</span>
+          <h3>Luật Trẻ em 2016</h3>
+          <p>Quy định toàn diện về quyền trẻ em, bảo vệ trẻ em trên môi trường mạng và trách nhiệm của gia đình, nhà trường, xã hội.</p>
+          <button class="card-btn" onclick="event.stopPropagation(); openModal('modal-law1')">
+            Xem chi tiết <i class="fas fa-arrow-right"></i>
+          </button>
+        </article>
+
+        <!-- Law 2: Luật An ninh mạng -->
+        <article class="law-card fade-in delay-2" role="listitem" onclick="openModal('modal-law2')" style="cursor:pointer">
+          <div class="law-card-icon law-icon-teal">
+            <i class="fas fa-shield-halved"></i>
+          </div>
+          <span class="law-meta">Luật số 24/2018/QH14</span>
+          <h3>Luật An ninh mạng 2018</h3>
+          <p>Đảm bảo an ninh quốc gia, trật tự an toàn xã hội trên không gian mạng, bảo vệ quyền và lợi ích hợp pháp của công dân, đặc biệt là trẻ em.</p>
+          <button class="card-btn" onclick="event.stopPropagation(); openModal('modal-law2')">
+            Xem chi tiết <i class="fas fa-arrow-right"></i>
+          </button>
+        </article>
+
+        <!-- Law 3: Quy định về AI -->
+        <article class="law-card fade-in delay-3" role="listitem" onclick="openModal('modal-law3')" style="cursor:pointer">
+          <div class="law-card-icon law-icon-purple">
+            <i class="fas fa-robot"></i>
+          </div>
+          <span class="law-meta">Nghị định 2025 & Chiến lược Quốc gia</span>
+          <h3>Quy định về Trí tuệ nhân tạo (AI)</h3>
+          <p>Việt Nam đang xây dựng hành lang pháp lý cho AI nhằm đảm bảo phát triển AI có trách nhiệm, an toàn, đặc biệt bảo vệ trẻ em khỏi các rủi ro từ AI.</p>
+          <button class="card-btn" onclick="event.stopPropagation(); openModal('modal-law3')">
+            Xem chi tiết <i class="fas fa-arrow-right"></i>
+          </button>
+        </article>
+
+      </div>
+
+      <!-- Highlight Banner -->
+      <div class="law-highlight fade-in">
+        <i class="fas fa-balance-scale"></i>
+        <div>
+          <p><strong>Em cần biết:</strong> Mọi hành vi xâm hại, bắt nạt, lừa đảo trẻ em trên mạng đều là <strong>vi phạm pháp luật</strong>. Kẻ vi phạm có thể bị phạt tiền từ 10 – 100 triệu đồng, hoặc bị truy cứu trách nhiệm hình sự với mức án lên đến <strong>12 năm tù</strong> theo Bộ luật Hình sự 2015 (sửa đổi 2017). Nếu em hoặc bạn bè bị xâm hại, hãy báo ngay cho người lớn hoặc gọi <strong>1800 1567</strong>.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ============================================================
        SECTION 5 – CONTACT (LIÊN HỆ & HỖ TRỢ)
   ============================================================ -->
@@ -2883,6 +3349,7 @@ input, textarea, select {
             <li><a href="#risks"><i class="fas fa-chevron-right"></i> Tác hại</a></li>
             <li><a href="#tips"><i class="fas fa-chevron-right"></i> Kỹ năng bảo vệ</a></li>
             <li><a href="#emergency"><i class="fas fa-chevron-right"></i> Xử lý tình huống</a></li>
+            <li><a href="#laws"><i class="fas fa-chevron-right"></i> Pháp luật</a></li>
             <li><a href="#contact"><i class="fas fa-chevron-right"></i> Liên hệ</a></li>
           </ul>
         </nav>
@@ -3149,6 +3616,154 @@ input, textarea, select {
     </div>
   </div>
 
+
+  <!-- ============================================================
+       MODALS – LAW DETAILS
+  ============================================================ -->
+
+  <!-- Modal: Luật Trẻ em 2016 -->
+  <div id="modal-law1" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-law1-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('modal-law1')" aria-label="Đóng"><i class="fas fa-times"></i></button>
+      <div class="modal-header modal-header-blue">
+        <div class="modal-icon"><i class="fas fa-child-reaching"></i></div>
+        <h3 id="modal-law1-title">Luật Trẻ em 2016</h3>
+      </div>
+      <div class="modal-body">
+        <p><strong>Luật số 102/2016/QH13</strong> – Có hiệu lực từ ngày 01/06/2017. Đây là bộ luật quan trọng nhất về bảo vệ quyền trẻ em tại Việt Nam.</p>
+        
+        <h4><i class="fas fa-bookmark"></i> Điều 54 – Bảo vệ trẻ em trên môi trường mạng</h4>
+        <ul>
+          <li>Trẻ em được bảo vệ để không bị xâm hại tình dục, bạo lực, bóc lột trên môi trường mạng</li>
+          <li>Cơ quan, tổ chức, cá nhân có trách nhiệm bảo đảm an toàn thông tin cho trẻ em khi tham gia môi trường mạng</li>
+          <li>Chủ quản hệ thống thông tin phải áp dụng biện pháp bảo vệ trẻ em theo quy định</li>
+        </ul>
+
+        <h4><i class="fas fa-bookmark"></i> Điều 33 – Quyền bảo vệ đời sống riêng tư</h4>
+        <ul>
+          <li>Trẻ em có quyền bất khả xâm phạm về đời sống riêng tư, bí mật cá nhân và bí mật gia đình</li>
+          <li>Nghiêm cấm thu thập, lưu trữ, sử dụng, công bố thông tin cá nhân của trẻ em mà không được sự đồng ý</li>
+          <li>Thư tín, điện thoại, điện tín và các hình thức trao đổi thông tin riêng tư khác của trẻ em được bảo đảm an toàn</li>
+        </ul>
+
+        <h4><i class="fas fa-bookmark"></i> Điều 56 – Trách nhiệm bảo vệ trẻ em trên không gian mạng</h4>
+        <ul>
+          <li>Gia đình, cơ sở giáo dục có trách nhiệm giáo dục kiến thức, kỹ năng an toàn cho trẻ em khi tham gia mạng</li>
+          <li>Doanh nghiệp cung cấp dịch vụ mạng phải cảnh báo, ngăn chặn nội dung độc hại đối với trẻ em</li>
+          <li>Nhà nước quản lý và giám sát các nội dung trên mạng liên quan đến trẻ em</li>
+        </ul>
+
+        <h4><i class="fas fa-bookmark"></i> Nghị định 56/2017/NĐ-CP</h4>
+        <ul>
+          <li>Hướng dẫn chi tiết các biện pháp bảo vệ trẻ em trên Internet</li>
+          <li>Quy định trách nhiệm của nhà cung cấp dịch vụ Internet trong việc lọc nội dung</li>
+          <li>Yêu cầu ứng dụng/game dành cho trẻ phải có cơ chế kiểm soát phù hợp</li>
+        </ul>
+
+        <div class="modal-alert">
+          <i class="fas fa-gavel"></i> Vi phạm quyền trẻ em trên mạng có thể bị phạt hành chính từ 20 – 50 triệu đồng hoặc truy cứu hình sự.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Luật An ninh mạng 2018 -->
+  <div id="modal-law2" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-law2-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('modal-law2')" aria-label="Đóng"><i class="fas fa-times"></i></button>
+      <div class="modal-header modal-header-teal">
+        <div class="modal-icon"><i class="fas fa-shield-halved"></i></div>
+        <h3 id="modal-law2-title">Luật An ninh mạng 2018</h3>
+      </div>
+      <div class="modal-body">
+        <p><strong>Luật số 24/2018/QH14</strong> – Có hiệu lực từ ngày 01/01/2019. Bảo vệ an ninh quốc gia và quyền lợi công dân trên không gian mạng.</p>
+
+        <h4><i class="fas fa-bookmark"></i> Điều 29 – Bảo vệ trẻ em trên không gian mạng</h4>
+        <ul>
+          <li>Trẻ em được bảo vệ, hỗ trợ khi tham gia hoạt động trên không gian mạng</li>
+          <li>Chủ quản hệ thống thông tin, doanh nghiệp cung cấp dịch vụ mạng phải kiểm soát nội dung nhằm bảo đảm an toàn cho trẻ em</li>
+          <li>Ngăn chặn chia sẻ thông tin gây tổn hại cho trẻ em: nội dung bạo lực, đồi trụy, kinh dị</li>
+          <li>Cơ quan nhà nước có biện pháp phòng ngừa, phát hiện, xử lý hành vi xâm phạm trẻ em trên mạng</li>
+        </ul>
+
+        <h4><i class="fas fa-bookmark"></i> Điều 16 – Các hành vi bị cấm trên không gian mạng</h4>
+        <ul>
+          <li>Cấm sử dụng mạng để kích động, lôi kéo, xúi giục trẻ em thực hiện hành vi vi phạm pháp luật</li>
+          <li>Cấm đăng tải thông tin xuyên tạc, vu khống, xâm phạm danh dự, nhân phẩm trẻ em</li>
+          <li>Cấm đăng tải nội dung đồi trụy, bạo lực liên quan đến trẻ em</li>
+          <li>Cấm mua bán, trao đổi thông tin cá nhân của trẻ em trên mạng</li>
+        </ul>
+
+        <h4><i class="fas fa-bookmark"></i> Điều 17 – Phòng ngừa, xử lý xâm hại trẻ em trên mạng</h4>
+        <ul>
+          <li>Tổ chức, cá nhân phải thông báo cho cơ quan chức năng khi phát hiện hành vi xâm hại trẻ em trên mạng</li>
+          <li>Nền tảng mạng xã hội phải gỡ bỏ nội dung xâm hại trẻ em trong thời hạn quy định</li>
+          <li>Hợp tác quốc tế trong phòng chống tội phạm mạng liên quan đến trẻ em</li>
+        </ul>
+
+        <h4><i class="fas fa-bookmark"></i> Nghị định 13/2023/NĐ-CP – Bảo vệ dữ liệu cá nhân</h4>
+        <ul>
+          <li>Nghiêm cấm thu thập dữ liệu cá nhân của trẻ em dưới 16 tuổi mà không có sự đồng ý bằng văn bản của phụ huynh</li>
+          <li>Dữ liệu cá nhân của trẻ em được xếp vào nhóm "dữ liệu nhạy cảm" – cần bảo vệ ở mức cao nhất</li>
+          <li>Vi phạm bảo vệ dữ liệu trẻ em có thể bị phạt đến 100 triệu đồng</li>
+        </ul>
+
+        <div class="modal-alert modal-alert-red">
+          <i class="fas fa-exclamation-triangle"></i> Hành vi xâm hại trẻ em trên không gian mạng có thể bị truy cứu trách nhiệm hình sự theo Bộ luật Hình sự 2015.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Quy định về AI -->
+  <div id="modal-law3" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-law3-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('modal-law3')" aria-label="Đóng"><i class="fas fa-times"></i></button>
+      <div class="modal-header modal-header-purple">
+        <div class="modal-icon"><i class="fas fa-robot"></i></div>
+        <h3 id="modal-law3-title">Quy định về Trí tuệ nhân tạo (AI)</h3>
+      </div>
+      <div class="modal-body">
+        <p>Việt Nam đang tích cực xây dựng hành lang pháp lý cho AI để đảm bảo phát triển công nghệ có trách nhiệm, bảo vệ quyền con người, đặc biệt là trẻ em.</p>
+
+        <h4><i class="fas fa-bookmark"></i> Nghị định về AI (2025)</h4>
+        <ul>
+          <li>Quy định về phát triển và ứng dụng AI có trách nhiệm tại Việt Nam</li>
+          <li>Yêu cầu minh bạch: nội dung do AI tạo ra phải được gắn nhãn rõ ràng</li>
+          <li>Kiểm soát nội dung AI: cấm tạo nội dung giả mạo, sai sự thật ảnh hưởng đến xã hội</li>
+          <li>Tổ chức, cá nhân triển khai AI phải đánh giá tác động và đảm bảo an toàn</li>
+        </ul>
+
+        <h4><i class="fas fa-bookmark"></i> Bảo vệ trẻ em khỏi rủi ro AI</h4>
+        <ul>
+          <li><strong>Cấm deepfake trẻ em:</strong> Nghiêm cấm sử dụng AI để tạo hình ảnh, video giả mạo (deepfake) liên quan đến trẻ em</li>
+          <li><strong>Nội dung không phù hợp:</strong> Cấm dùng AI tạo nội dung bạo lực, đồi trụy, kinh dị hướng đến trẻ em</li>
+          <li><strong>Giả mạo danh tính:</strong> Cấm dùng AI giả giọng nói, hình ảnh bố mẹ, thầy cô để lừa đảo trẻ em</li>
+          <li><strong>Chatbot xâm hại:</strong> Cấm triển khai chatbot AI có nội dung không phù hợp hoặc dụ dỗ trẻ em</li>
+        </ul>
+
+        <h4><i class="fas fa-bookmark"></i> QĐ 127/QĐ-TTg – Chiến lược quốc gia về AI đến 2030</h4>
+        <ul>
+          <li>Phát triển AI phải tuân thủ đạo đức, nhân quyền và bảo vệ nhóm yếu thế (trẻ em, người cao tuổi)</li>
+          <li>Xây dựng bộ tiêu chuẩn đạo đức AI quốc gia</li>
+          <li>Đào tạo, nâng cao nhận thức cộng đồng về AI và các rủi ro liên quan</li>
+          <li>Hợp tác quốc tế trong quản lý và phát triển AI an toàn</li>
+        </ul>
+
+        <h4><i class="fas fa-bookmark"></i> An toàn dữ liệu & AI</h4>
+        <ul>
+          <li>Nghiêm cấm huấn luyện mô hình AI bằng dữ liệu cá nhân của trẻ em mà chưa được phụ huynh đồng ý</li>
+          <li>Doanh nghiệp AI phải xóa dữ liệu trẻ em khi được yêu cầu</li>
+          <li>Ứng dụng AI dành cho trẻ em phải có cơ chế kiểm duyệt nội dung đầu ra</li>
+        </ul>
+
+        <div class="modal-alert">
+          <i class="fas fa-lightbulb"></i> <strong>Em cần nhớ:</strong> Nếu thấy hình ảnh/video giả mạo (deepfake) của mình hoặc bạn bè trên mạng, hãy báo ngay cho bố mẹ và gọi <strong>1800 1567</strong>!
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ============================================================
        SUCCESS TOAST NOTIFICATION
   ============================================================ -->
@@ -3164,6 +3779,45 @@ input, textarea, select {
   <button class="back-to-top" id="backToTop" aria-label="Về đầu trang">
     <i class="fas fa-chevron-up"></i>
   </button>
+
+
+  <!-- ============================================================
+       AI CHATBOT
+  ============================================================ -->
+  <button class="chatbot-toggle" id="chatbotToggle" aria-label="Mở trợ lý AI">
+    <i class="fas fa-robot"></i>
+    <span class="badge-dot"></span>
+  </button>
+
+  <div class="chatbot-window" id="chatbotWindow" role="dialog" aria-label="Trợ lý AI SafeNet Kids">
+    <div class="chatbot-header">
+      <div class="chatbot-avatar"><i class="fas fa-robot"></i></div>
+      <div class="chatbot-header-info">
+        <h4>SafeBot AI</h4>
+        <p>Trợ lý an toàn mạng</p>
+      </div>
+      <button class="chatbot-close" id="chatbotClose" aria-label="Đóng chat"><i class="fas fa-xmark"></i></button>
+    </div>
+
+    <div class="chatbot-messages" id="chatMessages">
+      <div class="chat-msg bot">
+        Xin chào! 👋 Mình là <strong>SafeBot</strong>, trợ lý AI về an toàn mạng cho trẻ em. Em có thể hỏi mình bất cứ điều gì về an toàn trên Internet nhé!
+      </div>
+    </div>
+
+    <div class="chatbot-quick-btns" id="quickBtns">
+      <button class="quick-btn" data-q="Làm sao để nhận biết lừa đảo?">🎣 Nhận biết lừa đảo</button>
+      <button class="quick-btn" data-q="Bị bắt nạt trên mạng phải làm sao?">😰 Bị bắt nạt</button>
+      <button class="quick-btn" data-q="Người lạ nhắn tin dụ dỗ thì xử lý thế nào?">🚨 Người lạ dụ dỗ</button>
+      <button class="quick-btn" data-q="Luật bảo vệ trẻ em trên mạng quy định gì?">⚖️ Pháp luật</button>
+      <button class="quick-btn" data-q="AI deepfake là gì và nguy hiểm ra sao?">🤖 Deepfake AI</button>
+    </div>
+
+    <div class="chatbot-input-area">
+      <input type="text" class="chatbot-input" id="chatInput" placeholder="Nhập câu hỏi của em..." autocomplete="off" />
+      <button class="chatbot-send" id="chatSend" aria-label="Gửi"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
 
   <!-- Main Script -->
   <script>
@@ -3201,6 +3855,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initRiskCards();
   initContactForm();
   initBackToTop();
+  initChatbot();
 });
 
 
@@ -3793,6 +4448,132 @@ function _triggerToast(toast) {
    @param {KeyboardEvent} event
    @param {string} modalId
 ============================================================ */
+
+
+/* ============================================================
+   12. AI CHATBOT
+   Rule-based chatbot for child online safety Q&A.
+============================================================ */
+
+const CHATBOT_RESPONSES = {
+  'lừa đảo': {
+    answer: '🎣 <strong>Cách nhận biết lừa đảo trực tuyến:</strong><br><br>1️⃣ <strong>Link giả mạo:</strong> Kiểm tra kỹ tên miền (ví dụ: faceb00k.com ≠ facebook.com)<br>2️⃣ <strong>Quà tặng miễn phí:</strong> Nếu quá tốt để là thật → chắc chắn là giả!<br>3️⃣ <strong>Yêu cầu thông tin cá nhân:</strong> Không bao giờ gửi mật khẩu, số CMND cho ai<br>4️⃣ <strong>Áp lực thời gian:</strong> "Chỉ còn 5 phút" là chiêu trò gây hoảng loạn<br><br>📌 <strong>Nguyên tắc vàng:</strong> Quà thật không bao giờ yêu cầu trả tiền trước!'
+  },
+  'bắt nạt': {
+    answer: '😰 <strong>Khi bị bắt nạt trên mạng (Cyberbullying):</strong><br><br>1️⃣ <strong>Không trả lời</strong> kẻ bắt nạt – đừng cho chúng sự chú ý<br>2️⃣ <strong>Chụp màn hình</strong> tất cả bằng chứng<br>3️⃣ <strong>Chặn & Báo cáo</strong> tài khoản đó trên nền tảng<br>4️⃣ <strong>Kể cho người lớn</strong> đáng tin (bố mẹ, thầy cô)<br>5️⃣ Gọi <strong>1800 1567</strong> (miễn phí, 24/7) nếu cần hỗ trợ<br><br>💙 <strong>Nhớ:</strong> Đây không phải lỗi của em. Em có quyền được an toàn!'
+  },
+  'dụ dỗ|người lạ|bắt cóc': {
+    answer: '🚨 <strong>Khi người lạ tiếp cận & dụ dỗ:</strong><br><br>1️⃣ <strong>KHÔNG bao giờ gặp mặt</strong> người quen qua mạng một mình<br>2️⃣ <strong>Cảnh giác</strong> khi ai đó quan tâm quá mức, tặng quà liên tục<br>3️⃣ <strong>Dấu hiệu nguy hiểm:</strong> Yêu cầu giữ bí mật với bố mẹ, nói chuyện đề tài nhạy cảm<br>4️⃣ <strong>Nói KHÔNG</strong> dứt khoát nếu bị ép buộc<br>5️⃣ <strong>Báo ngay</strong> cho bố mẹ hoặc gọi <strong>113</strong><br><br>⚠️ Bí mật nào của người lớn cũng KHÔNG phải bí mật tốt!'
+  },
+  'pháp luật|luật|bảo vệ trẻ em|quy định': {
+    answer: '⚖️ <strong>Pháp luật bảo vệ trẻ em trên mạng:</strong><br><br>📘 <strong>Luật Trẻ em 2016:</strong> Điều 54 quy định bảo vệ trẻ em khỏi xâm hại trên môi trường mạng<br><br>🛡️ <strong>Luật An ninh mạng 2018:</strong> Điều 29 nghiêm cấm lợi dụng mạng để xâm hại trẻ em, bắt nạt, dụ dỗ<br><br>🤖 <strong>Nghị định về AI (2025):</strong> Cấm dùng AI tạo deepfake, nội dung giả mạo liên quan đến trẻ em<br><br>⚠️ <strong>Hình phạt:</strong> Vi phạm có thể bị phạt 10-100 triệu đồng hoặc tù đến 12 năm!'
+  },
+  'deepfake|ai nguy|trí tuệ nhân tạo': {
+    answer: '🤖 <strong>AI Deepfake và mối nguy cho trẻ em:</strong><br><br>❓ <strong>Deepfake là gì?</strong> Công nghệ AI tạo ra video/ảnh giả mạo rất giống thật<br><br>⚠️ <strong>Nguy hiểm:</strong><br>• Kẻ xấu có thể ghép mặt em vào video không phù hợp<br>• Tạo tin nhắn giọng nói giả của bố mẹ, thầy cô<br>• Lừa đảo bằng hình ảnh người nổi tiếng giả<br><br>🛡️ <strong>Cách tự bảo vệ:</strong><br>• Không đăng quá nhiều ảnh/video cá nhân lên mạng<br>• Kiểm tra kỹ nội dung bất thường<br>• Pháp luật VN cấm và xử phạt hành vi tạo deepfake trẻ em'
+  },
+  'mật khẩu|password|bảo mật tài khoản': {
+    answer: '🔐 <strong>Cách tạo mật khẩu an toàn:</strong><br><br>✅ Dùng <strong>ít nhất 12 ký tự</strong> gồm chữ hoa, thường, số, ký tự đặc biệt<br>✅ <strong>Không dùng</strong> tên, ngày sinh, số điện thoại làm mật khẩu<br>✅ Mỗi tài khoản dùng <strong>mật khẩu riêng</strong><br>✅ Bật <strong>xác thực 2 bước (2FA)</strong> nếu có<br>✅ <strong>Không chia sẻ</strong> mật khẩu với bất kỳ ai ngoài bố mẹ<br><br>💡 Mẹo: Dùng một câu dễ nhớ rồi biến đổi, ví dụ: "TôiYêuBóngĐá" → "T0i_Y3u_B0ng_Da!"'
+  },
+  'số điện thoại|hotline|gọi ai|cần giúp': {
+    answer: '📞 <strong>Các đường dây hỗ trợ khẩn cấp:</strong><br><br>🚔 <strong>113</strong> – Cảnh sát khẩn cấp (24/7)<br>👶 <strong>1800 1567</strong> – Tổng đài bảo vệ trẻ em (miễn phí, 24/7)<br>🌐 <strong>111</strong> – Đường dây hỗ trợ trẻ em<br>🖥️ <strong>canhbao.ncsc.gov.vn</strong> – Báo cáo an ninh mạng<br><br>💙 Em không đơn độc – luôn có người sẵn sàng giúp đỡ!'
+  },
+  'xin chào|hello|hi|chào': {
+    answer: 'Chào em! 😊 Mình là SafeBot, trợ lý AI về an toàn mạng. Em có thể hỏi mình về:<br><br>🎣 Cách nhận biết lừa đảo<br>😰 Xử lý khi bị bắt nạt<br>🚨 Người lạ dụ dỗ trên mạng<br>⚖️ Pháp luật bảo vệ trẻ em<br>🤖 Nguy hiểm từ AI/Deepfake<br>🔐 Bảo mật tài khoản<br><br>Hãy hỏi bất cứ điều gì em muốn biết nhé!'
+  },
+  'cảm ơn|thanks|thank': {
+    answer: 'Không có gì đâu! 😊 Mình luôn sẵn sàng giúp em. Nếu có thêm câu hỏi, cứ hỏi nhé! Hãy nhớ: <strong>An toàn trên mạng bắt đầu từ chính mình!</strong> 💪'
+  }
+};
+
+const FALLBACK_RESPONSE = '🤔 Mình chưa hiểu rõ câu hỏi của em. Em có thể thử hỏi về:<br><br>• Cách nhận biết <strong>lừa đảo</strong><br>• Xử lý khi bị <strong>bắt nạt</strong> trên mạng<br>• <strong>Người lạ dụ dỗ</strong> và cách phòng tránh<br>• <strong>Pháp luật</strong> bảo vệ trẻ em<br>• <strong>Deepfake AI</strong> và mối nguy<br>• Bảo mật <strong>mật khẩu</strong><br><br>Hoặc gọi <strong>1800 1567</strong> để được hỗ trợ trực tiếp nhé!';
+
+function initChatbot() {
+  const toggle = document.getElementById('chatbotToggle');
+  const window_ = document.getElementById('chatbotWindow');
+  const closeBtn = document.getElementById('chatbotClose');
+  const input = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('chatSend');
+  const quickBtns = document.getElementById('quickBtns');
+
+  if (!toggle || !window_) return;
+
+  toggle.addEventListener('click', () => {
+    window_.classList.toggle('open');
+    if (window_.classList.contains('open')) {
+      toggle.querySelector('.badge-dot').style.display = 'none';
+      setTimeout(() => input.focus(), 300);
+    }
+  });
+
+  closeBtn.addEventListener('click', () => window_.classList.remove('open'));
+
+  const sendMessage = () => {
+    const text = input.value.trim();
+    if (!text) return;
+    addMessage(text, 'user');
+    input.value = '';
+    showTyping();
+    setTimeout(() => {
+      removeTyping();
+      const response = findResponse(text);
+      addMessage(response, 'bot');
+    }, 800 + Math.random() * 700);
+  };
+
+  sendBtn.addEventListener('click', sendMessage);
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') sendMessage();
+  });
+
+  quickBtns.addEventListener('click', (e) => {
+    const btn = e.target.closest('.quick-btn');
+    if (!btn) return;
+    const q = btn.dataset.q;
+    addMessage(q, 'user');
+    showTyping();
+    setTimeout(() => {
+      removeTyping();
+      addMessage(findResponse(q), 'bot');
+    }, 800 + Math.random() * 700);
+  });
+}
+
+function addMessage(text, type) {
+  const container = document.getElementById('chatMessages');
+  const msg = document.createElement('div');
+  msg.className = 'chat-msg ' + type;
+  msg.innerHTML = text;
+  container.appendChild(msg);
+  container.scrollTop = container.scrollHeight;
+}
+
+function showTyping() {
+  const container = document.getElementById('chatMessages');
+  const msg = document.createElement('div');
+  msg.className = 'chat-msg bot typing';
+  msg.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+  container.appendChild(msg);
+  container.scrollTop = container.scrollHeight;
+}
+
+function removeTyping() {
+  const typing = document.querySelector('.chat-msg.typing');
+  if (typing) typing.remove();
+}
+
+function findResponse(input) {
+  const lower = input.toLowerCase();
+  for (const [keywords, data] of Object.entries(CHATBOT_RESPONSES)) {
+    const parts = keywords.split('|');
+    for (const part of parts) {
+      if (lower.includes(part)) return data.answer;
+    }
+  }
+  return FALLBACK_RESPONSE;
+}
+
+// Add to DOMContentLoaded
+
 function handleKeydown(event, modalId) {
   if (event.key === 'Enter' || event.key === ' ') {
     event.preventDefault();
