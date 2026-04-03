@@ -3104,6 +3104,249 @@
         font-size: 1.3rem;
       }
     }
+
+    /* ============================================================
+   DARK MODE
+============================================================ */
+    [data-theme="dark"] {
+      --gray-900: #f3f4f6;
+      --gray-800: #e5e7eb;
+      --gray-700: #d1d5db;
+      --gray-600: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-400: #4b5563;
+      --gray-300: #374151;
+      --gray-200: #1f2937;
+      --gray-100: #111827;
+      --gray-50: #0d1117;
+      --white: #0f172a;
+      --primary-50: #0f172a;
+      --primary-100: #1e3a5f;
+      --primary-200: #1e40af;
+      --accent-100: #0c2d3a;
+    }
+
+    [data-theme="dark"] body {
+      background: #0d1117;
+      color: #e5e7eb;
+    }
+
+    [data-theme="dark"] .risk-card,
+    [data-theme="dark"] .tip-card,
+    [data-theme="dark"] .step-card,
+    [data-theme="dark"] .hotlines,
+    [data-theme="dark"] .law-card,
+    [data-theme="dark"] .contact-form-wrap,
+    [data-theme="dark"] .progress-tracker,
+    [data-theme="dark"] .modal-box {
+      background: #161b22;
+      border-color: #30363d;
+      color: #e5e7eb;
+    }
+
+    [data-theme="dark"] .card-desc,
+    [data-theme="dark"] .tip-desc,
+    [data-theme="dark"] .step-desc,
+    [data-theme="dark"] .card-title,
+    [data-theme="dark"] .tip-title,
+    [data-theme="dark"] .step-title,
+    [data-theme="dark"] .section-title,
+    [data-theme="dark"] .hotlines-title,
+    [data-theme="dark"] .modal-header h3,
+    [data-theme="dark"] .modal-body p,
+    [data-theme="dark"] .modal-body li,
+    [data-theme="dark"] .form-label,
+    [data-theme="dark"] .card-list li,
+    [data-theme="dark"] .law-card h3,
+    [data-theme="dark"] .law-card p,
+    [data-theme="dark"] .law-card li {
+      color: #c9d1d9;
+    }
+
+    [data-theme="dark"] .section-sub,
+    [data-theme="dark"] .stat-label,
+    [data-theme="dark"] .hotline-name,
+    [data-theme="dark"] .tip-number {
+      color: #8b949e;
+    }
+
+    [data-theme="dark"] .risks-section {
+      background: #0d1117;
+    }
+
+    [data-theme="dark"] .tips-section {
+      background: #0d1117;
+    }
+
+    [data-theme="dark"] .emergency-section {
+      background: #0d1117;
+    }
+
+    [data-theme="dark"] .laws-section {
+      background: #0d1117;
+    }
+
+    [data-theme="dark"] .footer {
+      background: #010409;
+    }
+
+    [data-theme="dark"] .navbar.scrolled {
+      background: rgba(13, 17, 23, .96);
+    }
+
+    [data-theme="dark"] .navbar.scrolled .logo-text {
+      color: #e5e7eb;
+    }
+
+    [data-theme="dark"] .navbar.scrolled .nav-link {
+      color: #c9d1d9;
+    }
+
+    [data-theme="dark"] .navbar.scrolled .nav-link:hover,
+    [data-theme="dark"] .navbar.scrolled .nav-link.active {
+      background: #1f2937;
+      color: #60a5fa;
+    }
+
+    [data-theme="dark"] .navbar.scrolled .ham-bar {
+      background: #e5e7eb;
+    }
+
+    [data-theme="dark"] .form-input {
+      background: #0d1117;
+      border-color: #30363d;
+      color: #e5e7eb;
+    }
+
+    [data-theme="dark"] .form-input:focus {
+      border-color: var(--primary-400);
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, .15);
+    }
+
+    [data-theme="dark"] .tip-card:has(.tip-check:checked) {
+      background: #0f1f30;
+      border-color: #1d4ed8;
+    }
+
+    [data-theme="dark"] .tip-checkbox-visual {
+      background: #161b22;
+      border-color: #4b5563;
+    }
+
+    [data-theme="dark"] .chatbot-messages {
+      background: #161b22;
+    }
+
+    [data-theme="dark"] .chat-msg.bot {
+      background: #21262d;
+      color: #c9d1d9;
+    }
+
+    [data-theme="dark"] .chatbot-input {
+      background: #0d1117;
+      border-color: #30363d;
+      color: #e5e7eb;
+    }
+
+    [data-theme="dark"] .hotline-item {
+      background: #161b22;
+      border-color: #30363d;
+    }
+
+    [data-theme="dark"] .hotline-num {
+      color: #e5e7eb;
+    }
+
+    [data-theme="dark"] .warning-banner {
+      background: #1a1200;
+      border-color: #d97706;
+    }
+
+    [data-theme="dark"] .warning-text {
+      color: #fcd34d;
+    }
+
+    [data-theme="dark"] .modal-body h4 {
+      color: #e5e7eb;
+    }
+
+    [data-theme="dark"] .modal-body code {
+      background: #21262d;
+      color: #f87171;
+    }
+
+    [data-theme="dark"] .modal-alert {
+      background: #0f1f30;
+      border-color: #1d4ed8;
+      color: #93c5fd;
+    }
+
+    [data-theme="dark"] .modal-alert-red {
+      background: #1f0808;
+      border-color: #991b1b;
+      color: #fca5a5;
+    }
+
+    [data-theme="dark"] .law-highlight {
+      background: #0f1f30;
+      border-color: #1d4ed8;
+    }
+
+    [data-theme="dark"] .law-highlight p {
+      color: #c9d1d9;
+    }
+
+    [data-theme="dark"] .footer-bottom p,
+    [data-theme="dark"] .footer-tagline {
+      color: #6b7280;
+    }
+
+    [data-theme="dark"] .footer-nav a {
+      color: #8b949e;
+    }
+
+    [data-theme="dark"] .footer-hotline-link {
+      color: #8b949e;
+    }
+
+    [data-theme="dark"] .nav-links {
+      background: #161b22;
+    }
+
+    [data-theme="dark"] .nav-link {
+      color: #c9d1d9;
+    }
+
+    /* Dark mode toggle button */
+    .dark-toggle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .95rem;
+      cursor: pointer;
+      border: 1.5px solid rgba(255, 255, 255, .3);
+      background: transparent;
+      color: var(--white);
+      flex-shrink: 0;
+      transition: all var(--transition-fast);
+      margin-left: 8px;
+    }
+
+    .navbar.scrolled .dark-toggle {
+      border-color: var(--gray-300);
+      color: var(--gray-700);
+    }
+
+    .dark-toggle:hover {
+      transform: rotate(20deg) scale(1.1);
+    }
+
+    [data-theme="dark"] .dark-toggle {
+      border-color: rgba(255, 255, 255, .2);
+    }
   </style>
 </head>
 
@@ -3141,7 +3384,10 @@
         <i class="fas fa-phone-volume"></i>
         <span>113</span>
       </a>
-
+      <!-- Dark Mode Toggle -->
+      <button class="dark-toggle" id="darkToggle" aria-label="Chuyển chế độ tối/sáng">
+        <i class="fas fa-moon" id="darkIcon"></i>
+      </button>
       <!-- Hamburger Button (Mobile) -->
       <button class="hamburger" id="hamburger" aria-label="Mở menu" aria-expanded="false" aria-controls="navLinks">
         <span class="ham-bar"></span>
@@ -3836,7 +4082,9 @@
               <div class="detail-icon"><i class="fas fa-envelope"></i></div>
               <div>
                 <strong>Email</strong>
-                <p><a href="mailto:tricao5117@gmail.com" class="__cf_email__" data-cfemail="6c0403181e032c1f0d0a090209180705081f421a02"><span class="__cf_email__" data-cfemail="4612342f2527297377777106212b272f2a6825292b">tricao5117@gmail.com</span></a></p>
+                <p><a href="mailto:tricao5117@gmail.com" class="__cf_email__"
+                    data-cfemail="6c0403181e032c1f0d0a090209180705081f421a02"><span class="__cf_email__"
+                      data-cfemail="4612342f2527297377777106212b272f2a6825292b">tricao5117@gmail.com</span></a></p>
               </div>
             </div>
             <div class="contact-detail-item">
@@ -4040,9 +4288,12 @@
           </a>
           <p class="footer-tagline">Bảo vệ trẻ em – An toàn mạng mỗi ngày</p>
           <div class="footer-social">
-            <a href="https://www.facebook.com/profile.php?id=61550236714718" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.youtube.com/@SafeNestKids" class="social-btn" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.tiktok.com/@safestepkid26?is_from_webapp=1&sender_device=pc" class="social-btn" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61550236714718" class="social-btn" aria-label="Facebook"><i
+                class="fab fa-facebook-f"></i></a>
+            <a href="https://www.youtube.com/@SafeNestKids" class="social-btn" aria-label="Youtube"><i
+                class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@safestepkid26?is_from_webapp=1&sender_device=pc" class="social-btn"
+              aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
           </div>
         </div>
 
@@ -4561,7 +4812,8 @@
   </div>
 
   <!-- Main Script -->
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script>
     /**
      * SafeNet Kids – script.js
      * Author: Senior Full-Stack Developer
@@ -5137,19 +5389,19 @@
 
       const templateParams = {
         // BƯỚC 4: Đảm bảo tên biến khớp với template EmailJS của bạn
-        from_name:       getValue('name'),
-        from_phone:      getValue('phone'),
-        from_email:      getValue('email'),
-        victim_name:     getValue('victimName'),
-        victim_age:      getValue('victimAge'),
-        incident_type:   subjectLabels[subjectVal] || subjectVal || '(không có)',
-        platform:        platformLabels[platformVal] || platformVal || '(không có)',
-        incident_date:   getValue('incidentDate'),
-        perpetrator:     getValue('perpetrator'),
-        message:         getValue('message'),
-        urgency:         urgencyLabels[urgencyVal] || urgencyVal || '(không có)',
-        to_email:        'tricao5117@gmail.com',
-        sent_at:         new Date().toLocaleString('vi-VN'),
+        from_name: getValue('name'),
+        from_phone: getValue('phone'),
+        from_email: getValue('email'),
+        victim_name: getValue('victimName'),
+        victim_age: getValue('victimAge'),
+        incident_type: subjectLabels[subjectVal] || subjectVal || '(không có)',
+        platform: platformLabels[platformVal] || platformVal || '(không có)',
+        incident_date: getValue('incidentDate'),
+        perpetrator: getValue('perpetrator'),
+        message: getValue('message'),
+        urgency: urgencyLabels[urgencyVal] || urgencyVal || '(không có)',
+        to_email: 'tricao5117@gmail.com',
+        sent_at: new Date().toLocaleString('vi-VN'),
       };
 
       try {
@@ -5370,44 +5622,70 @@
       }
     }
 
-  const phoneInput = document.getElementById("phone");
-  const phoneError = document.getElementById("phone-error");
+    const phoneInput = document.getElementById("phone");
+    const phoneError = document.getElementById("phone-error");
 
-  // Regex số điện thoại VN
-  const phoneRegex = /^(0[3|5|7|8|9])[0-9]{8}$/;
+    // Regex số điện thoại VN
+    const phoneRegex = /^(0[3|5|7|8|9])[0-9]{8}$/;
 
-  phoneInput.addEventListener("input", function () {
-    const value = phoneInput.value.trim();
+    phoneInput.addEventListener("input", function () {
+      const value = phoneInput.value.trim();
 
-    if (value === "") {
-      phoneError.textContent = "Vui lòng nhập số điện thoại";
-      phoneInput.classList.add("is-error");
-      phoneInput.classList.remove("is-valid");
-    }
-    else if (!phoneRegex.test(value)) {
-      phoneError.textContent = "Số điện thoại không hợp lệ";
-      phoneInput.classList.add("is-error");
-      phoneInput.classList.remove("is-valid");
-    }
-    else {
-      phoneError.textContent = "";
-      phoneInput.classList.remove("is-error");
-      phoneInput.classList.add("is-valid");
-    }
-  });
+      if (value === "") {
+        phoneError.textContent = "Vui lòng nhập số điện thoại";
+        phoneInput.classList.add("is-error");
+        phoneInput.classList.remove("is-valid");
+      }
+      else if (!phoneRegex.test(value)) {
+        phoneError.textContent = "Số điện thoại không hợp lệ";
+        phoneInput.classList.add("is-error");
+        phoneInput.classList.remove("is-valid");
+      }
+      else {
+        phoneError.textContent = "";
+        phoneInput.classList.remove("is-error");
+        phoneInput.classList.add("is-valid");
+      }
+    });
 
-  /* ============================================================
-     DOMContentLoaded – Khởi tạo tất cả modules
-  ============================================================ */
-  document.addEventListener('DOMContentLoaded', () => {
-    initNavbar();
-    initScrollAnimations();
-    initBackToTop();
-    initContactForm();
-    initChatbot();
-    updateProgress();
-  });
+    /* ============================================================
+       DOMContentLoaded – Khởi tạo tất cả modules
+    ============================================================ */
+    document.addEventListener('DOMContentLoaded', () => {
+      initNavbar();
+      initScrollAnimations();
+      initBackToTop();
+      initContactForm();
+      initChatbot();
+      updateProgress();
+    });
+
+    /* Dark Mode */
+    (function () {
+      const html = document.documentElement;
+      const btn = document.getElementById('darkToggle');
+      const icon = document.getElementById('darkIcon');
+
+      const apply = (dark) => {
+        html.setAttribute('data-theme', dark ? 'dark' : 'light');
+        icon.className = dark ? 'fas fa-sun' : 'fas fa-moon';
+      };
+
+      // Đọc từ localStorage, nếu chưa có thì theo hệ thống
+      const stored = localStorage.getItem('snk-theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      apply(stored ? stored === 'dark' : prefersDark);
+
+      if (btn) {
+        btn.addEventListener('click', () => {
+          const isDark = html.getAttribute('data-theme') === 'dark';
+          apply(!isDark);
+          localStorage.setItem('snk-theme', !isDark ? 'dark' : 'light');
+        });
+      }
+    })();
 
   </script>
 </body>
+
 </html>
