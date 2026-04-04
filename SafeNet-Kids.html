@@ -38,7 +38,7 @@
    SafeNet Kids – styles.css
    Author: Senior Full-Stack Developer
    Description: Main stylesheet for child online safety website
-   Version: 1.0.0
+   Version: 1.1.0
    
    TABLE OF CONTENTS:
    1.  CSS Variables & Reset
@@ -57,6 +57,9 @@
    14. Back to Top
    15. Scroll Animations
    16. Responsive Breakpoints
+   17. Laws Section
+   18. AI Chatbot
+   19. Dark Mode
 ============================================================ */
 
 
@@ -3347,6 +3350,7 @@
     [data-theme="dark"] .dark-toggle {
       border-color: rgba(255, 255, 255, .2);
     }
+
   </style>
 </head>
 
@@ -3368,9 +3372,11 @@
 
       <!-- Desktop Navigation Links -->
       <ul class="nav-links" id="navLinks" role="list">
-        <button class="nav-drawer-close" id="navCloseBtn" aria-label="Đóng menu">
-          <i class="fas fa-xmark"></i>
-        </button>
+        <li role="none">
+          <button class="nav-drawer-close" id="navCloseBtn" aria-label="Đóng menu">
+            <i class="fas fa-xmark"></i>
+          </button>
+        </li>
         <li><a href="#home" class="nav-link active"><i class="fas fa-house"></i> Trang chủ</a></li>
         <li><a href="#risks" class="nav-link"><i class="fas fa-triangle-exclamation"></i> Tác hại</a></li>
         <li><a href="#tips" class="nav-link"><i class="fas fa-lock"></i> Kỹ năng</a></li>
@@ -4084,7 +4090,9 @@
                 <strong>Email</strong>
                 <p><a href="mailto:tricao5117@gmail.com" class="__cf_email__"
                     data-cfemail="6c0403181e032c1f0d0a090209180705081f421a02"><span class="__cf_email__"
-                      data-cfemail="4612342f2527297377777106212b272f2a6825292b">tricao5117@gmail.com</span></a></p>
+                      data-cfemail="4612342f2527297377777106212b272f2a6825292b"><span class="__cf_email__"
+                        data-cfemail="c9bdbba0aaa8a6fcf8f8fe89aea4a8a0a5e7aaa6a4">tricao5117@gmail.com</span></span></a>
+                </p>
               </div>
             </div>
             <div class="contact-detail-item">
@@ -4113,7 +4121,7 @@
 
             <!-- Form Group: Phone -->
             <div class="form-group">
-              <label class="form-label">
+              <label for="phone" class="form-label">
                 <i class="fa-solid fa-phone"></i>
                 Số điện thoại
               </label>
@@ -4231,7 +4239,8 @@
                 aria-describedby="evidenceHelp" style="padding: 12px; cursor: pointer;" />
               <small id="evidenceHelp"
                 style="color: var(--gray-500); font-size: 0.85rem; margin-top: 4px; display: block;">
-                Chấp nhận: ảnh (JPG, PNG) hoặc PDF. Tối đa 5 tệp.
+                ⚠️ Chấp nhận: ảnh (JPG, PNG) hoặc PDF. Tối đa 5 tệp. <strong>Lưu ý:</strong> Bằng chứng sẽ không được
+                đính kèm tự động — vui lòng gửi ảnh riêng qua email sau khi gửi báo cáo nếu cần.
               </small>
             </div>
 
@@ -4847,6 +4856,7 @@
       initScrollAnimations();
       initRiskCards();
       initContactForm();
+      initPhoneValidation();
       initBackToTop();
       initChatbot();
     });
@@ -4888,15 +4898,18 @@
       const updateNavbar = () => {
         const scrolled = window.scrollY > SCROLL_THRESHOLD;
         navbar.classList.toggle('scrolled', scrolled);
+        // Piggyback back-to-top update here to avoid a second scroll listener
+        if (typeof window._updateBackToTop === 'function') {
+          window._updateBackToTop();
+        }
       };
 
       // Run once on load (in case page reloaded mid-scroll)
       updateNavbar();
 
-      // Use passive listener for performance
+      // Single passive listener handles both navbar + back-to-top
       window.addEventListener('scroll', updateNavbar, { passive: true });
     }
-
 
     /* ============================================================
        3. NAVIGATION – Hamburger / Mobile Menu
@@ -5347,7 +5360,7 @@
     }
 
     /**
-     * Gửi form qua EmailJS đến tricao5117@gmail.com
+     * Gửi form qua EmailJS
      * @param {HTMLFormElement} form
      * @param {HTMLButtonElement} btn
      */
@@ -5400,7 +5413,6 @@
         perpetrator: getValue('perpetrator'),
         message: getValue('message'),
         urgency: urgencyLabels[urgencyVal] || urgencyVal || '(không có)',
-        to_email: 'tricao5117@gmail.com',
         sent_at: new Date().toLocaleString('vi-VN'),
       };
 
@@ -5422,7 +5434,7 @@
         console.error('EmailJS error:', error);
         btn.disabled = false;
         btn.innerHTML = originalText;
-        alert('⚠️ Gửi báo cáo thất bại. Vui lòng thử lại hoặc liên hệ trực tiếp qua email tricao5117@gmail.com');
+        alert('⚠️ Gửi báo cáo thất bại. Vui lòng thử lại sau hoặc gọi trực tiếp đường dây 1800 1567 để được hỗ trợ.');
       }
     }
 
@@ -5430,17 +5442,20 @@
     /* ============================================================
        9. BACK TO TOP BUTTON
        Shows/hides based on scroll position. Smooth scrolls to top.
+       NOTE: visibility update piggybacks on the navbar scroll
+       listener via the global _onScroll dispatcher defined below.
     ============================================================ */
     function initBackToTop() {
       const btn = document.getElementById('backToTop');
       if (!btn) return;
 
-      const SHOW_THRESHOLD = 400;
+      // Expose update fn so global scroll handler can call it
+      window._updateBackToTop = () => {
+        btn.classList.toggle('visible', window.scrollY > 400);
+      };
 
-      // Show/hide on scroll
-      window.addEventListener('scroll', () => {
-        btn.classList.toggle('visible', window.scrollY > SHOW_THRESHOLD);
-      }, { passive: true });
+      // Run once on load
+      window._updateBackToTop();
 
       // Scroll to top on click
       btn.addEventListener('click', () => {
@@ -5583,7 +5598,13 @@
       const container = document.getElementById('chatMessages');
       const msg = document.createElement('div');
       msg.className = 'chat-msg ' + type;
-      msg.innerHTML = text;
+      if (type === 'user') {
+        // Dùng textContent cho input người dùng để ngăn XSS injection
+        msg.textContent = text;
+      } else {
+        // Bot responses đã được kiểm soát nên dùng innerHTML an toàn
+        msg.innerHTML = text;
+      }
       container.appendChild(msg);
       container.scrollTop = container.scrollHeight;
     }
@@ -5622,45 +5643,39 @@
       }
     }
 
-    const phoneInput = document.getElementById("phone");
-    const phoneError = document.getElementById("phone-error");
+    /* ============================================================
+       PHONE VALIDATION – Gộp vào DOMContentLoaded chính phía trên
+       để tránh lỗi null khi script chạy trước DOM parse xong.
+    ============================================================ */
+    function initPhoneValidation() {
+      const phoneInput = document.getElementById('phone');
+      const phoneError = document.getElementById('phone-error');
+      if (!phoneInput || !phoneError) return;
 
-    // Regex số điện thoại VN
-    const phoneRegex = /^(0[3|5|7|8|9])[0-9]{8}$/;
+      // Regex số điện thoại VN
+      const phoneRegex = /^(0[35789])[0-9]{8}$/;
 
-    phoneInput.addEventListener("input", function () {
-      const value = phoneInput.value.trim();
+      phoneInput.addEventListener('input', function () {
+        const value = phoneInput.value.trim();
 
-      if (value === "") {
-        phoneError.textContent = "Vui lòng nhập số điện thoại";
-        phoneInput.classList.add("is-error");
-        phoneInput.classList.remove("is-valid");
-      }
-      else if (!phoneRegex.test(value)) {
-        phoneError.textContent = "Số điện thoại không hợp lệ";
-        phoneInput.classList.add("is-error");
-        phoneInput.classList.remove("is-valid");
-      }
-      else {
-        phoneError.textContent = "";
-        phoneInput.classList.remove("is-error");
-        phoneInput.classList.add("is-valid");
-      }
-    });
+        if (value === '') {
+          phoneError.textContent = '';
+          phoneInput.classList.remove('is-error', 'is-valid');
+        } else if (!phoneRegex.test(value)) {
+          phoneError.textContent = 'Số điện thoại không hợp lệ';
+          phoneInput.classList.add('is-error');
+          phoneInput.classList.remove('is-valid');
+        } else {
+          phoneError.textContent = '';
+          phoneInput.classList.remove('is-error');
+          phoneInput.classList.add('is-valid');
+        }
+      });
+    }
 
     /* ============================================================
-       DOMContentLoaded – Khởi tạo tất cả modules
+       DARK MODE
     ============================================================ */
-    document.addEventListener('DOMContentLoaded', () => {
-      initNavbar();
-      initScrollAnimations();
-      initBackToTop();
-      initContactForm();
-      initChatbot();
-      updateProgress();
-    });
-
-    /* Dark Mode */
     (function () {
       const html = document.documentElement;
       const btn = document.getElementById('darkToggle');
@@ -5668,7 +5683,7 @@
 
       const apply = (dark) => {
         html.setAttribute('data-theme', dark ? 'dark' : 'light');
-        icon.className = dark ? 'fas fa-sun' : 'fas fa-moon';
+        if (icon) icon.className = dark ? 'fas fa-sun' : 'fas fa-moon';
       };
 
       // Đọc từ localStorage, nếu chưa có thì theo hệ thống
