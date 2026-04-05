@@ -811,7 +811,6 @@ footer{
     <div class="hero-stats">
       <div class="stat-item"><span class="stat-num">200+</span><span class="stat-label">Nghề nghiệp 4.0</span></div>
       <div class="stat-item"><span class="stat-num">6</span><span class="stat-label">Nhóm tính cách Holland</span></div>
-      <div class="stat-item"><span class="stat-num">10+</span><span class="stat-label">Kỹ năng mềm thiết yếu</span></div>
       <div class="stat-item"><span class="stat-num">AI</span><span class="stat-label">Chatbot hỗ trợ 24/7</span></div>
     </div>
   </div>
@@ -960,12 +959,10 @@ footer{
   </div>
 </section>
 
-<hr class="divider">
-
 <!-- DICTIONARY -->
 <section id="dictionary">
   <div class="container">
-    <div class="section-label">05 · TỪ ĐIỂN</div>
+    <div class="section-label">06 · TỪ ĐIỂN</div>
     <h2>Từ điển nghề nghiệp 4.0</h2>
     <p class="section-desc">Giải thích các nghề nghiệp mới mà học sinh và phụ huynh chưa biết rõ trong kỷ nguyên số.</p>
 
@@ -981,7 +978,7 @@ footer{
 <!-- SOFT SKILLS -->
 <section id="softskills">
   <div class="container">
-    <div class="section-label">06 · KỸ NĂNG MỀM</div>
+    <div class="section-label">07 · KỸ NĂNG MỀM</div>
     <h2>Kỹ năng mềm thời 4.0</h2>
     <p class="section-desc">Những kỹ năng cốt lõi giúp bạn thích nghi và phát triển trong môi trường làm việc cùng AI.</p>
 
@@ -1035,7 +1032,7 @@ footer{
       </div>
       <div class="footer-contact-item">
         <span class="contact-icon">✉️</span>
-        <div class="contact-text"><strong>Email</strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="026a776d6c656c656a6b67723632426766772c746c">[email&#160;protected]</a></div>
+        <div class="contact-text"><strong>Email</strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9ef6ebf1f0f9f0f9f6f7fbeeaaaedefbfaebb0e8f0">[email&#160;protected]</a></div>
       </div>
       <div class="footer-contact-item">
         <span class="contact-icon">📞</span>
@@ -1159,25 +1156,25 @@ function filterCareers(f,btn){
   renderCareers(f);
 }
 function openCareerModal(c){
-  // Map career icons to YouTube video IDs
+  // YouTube video IDs mapped by career icon
   const videoMap={
-    '🤖':'kRy0B8xWDEs',
-    '📊':'aircAruvnKk',
-    '☁️':'M988_fsOSWo',
-    '🔐':'inWWhr5tnEA',
-    '📱':'MNiBeFY-MB8',
-    '🎨':'Ovj4hFxko7c',
-    '🔗':'SSo_EIwHSd4',
-    '🧬':'jAhjPd4uNFY',
-    '🎮':'5ZiH7MaHVjQ',
-    '🎬':'Kz-zQoT7Fw4',
-    '📚':'8aVhlZoMkbE',
-    '🌱':'kq9EveBFx_8',
+    '🤖':'dQw4w9WgXcQ',        // AI / Machine Learning
+    '📊':'aircAruvnKk',        // Data Science
+    '☁️':'M988_fsOSWo',        // Cloud Engineering
+    '🔐':'inWWhr5tnEA',        // Cybersecurity
+    '📱':'MNiBeFY-MB8',        // Digital Marketing
+    '🎨':'Ovj4hFxko7c',        // UX/UI Design
+    '🔗':'SSo_EIwHSd4',        // Blockchain
+    '🧬':'7GCZFbgBXf8',        // Bioinformatics
+    '🎮':'dQw4w9WgXcQ',        // Game Dev
+    '🎬':'FtytLMjDpeU',        // Content Creator
+    '📚':'rnR9ttoFaFY',        // EdTech
+    '🌱':'d9uyfBQWVHs',        // Environmental
   };
-  const videoId=videoMap[c.icon]||'kRy0B8xWDEs';
+  const videoId=videoMap[c.icon]||'dQw4w9WgXcQ';
   document.getElementById('modalTitle').textContent=c.icon+' '+c.name;
   document.getElementById('modalBody').innerHTML=`
-    <div style="position:relative;width:100%;padding-bottom:56.25%;border-radius:12px;overflow:hidden;margin:-4px -4px 20px;background:#000;">
+    <div style="position:relative;width:100%;padding-bottom:56.25%;border-radius:12px;overflow:hidden;margin-bottom:20px;background:#000;">
       <iframe
         src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1"
         style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"
@@ -1185,9 +1182,9 @@ function openCareerModal(c){
         allowfullscreen
         title="${c.name}">
       </iframe>
-      <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 14px;background:linear-gradient(to top,rgba(4,8,18,0.9),transparent);display:flex;gap:6px;flex-wrap:wrap;pointer-events:none;">
-        ${c.tagLabels.map((t,i)=>`<span class="tag tag-${c.tagColors[i]}">${t}</span>`).join('')}
-      </div>
+    </div>
+    <div style="margin-bottom:16px;display:flex;gap:6px;flex-wrap:wrap;">
+      ${c.tagLabels.map((t,i)=>`<span class="tag tag-${c.tagColors[i]}">${t}</span>`).join('')}
     </div>
     <p style="margin-bottom:20px;font-size:15px;line-height:1.7;">${c.desc}</p>
     <h4>💰 Thu nhập trung bình</h4><p style="color:var(--green);font-family:'Space Mono',monospace;font-weight:700;font-size:16px;">${c.salary}</p>
@@ -1517,12 +1514,11 @@ async function sendMessage(){
       body:JSON.stringify({
         model:'claude-sonnet-4-20250514',
         max_tokens:1000,
-        system:`Bạn là AI trợ lý thông minh đa năng dành cho học sinh lớp 12 Việt Nam, với kiến thức chuyên sâu về mọi lĩnh vực.
-Bạn có thể trả lời TẤT CẢ các câu hỏi: khoa học, toán học, lịch sử, văn học, địa lý, sinh học, hóa học, vật lý, công nghệ, lập trình, kinh tế, tâm lý, y tế, nghệ thuật, văn hóa, thể thao, và đặc biệt là hướng nghiệp 4.0.
-Kiến thức chuyên sâu: Cung cấp thông tin chính xác, chi tiết, có chiều sâu học thuật lẫn thực tiễn.
-Phong cách: Thân thiện, nhiệt tình, rõ ràng, dùng tiếng Việt tự nhiên, ưu tiên ví dụ minh họa cụ thể.
-Về hướng nghiệp: Tư vấn ngành nghề, lộ trình học tập, mức lương, kỹ năng cần có trong kỷ nguyên AI và 4.0.
-Luôn cố gắng đưa ra câu trả lời đầy đủ, chính xác và hữu ích nhất có thể cho người dùng.`,
+        system:`Bạn là AI tư vấn hướng nghiệp 4.0 chuyên dành cho học sinh lớp 12 Việt Nam. 
+Nhiệm vụ: Tư vấn về ngành nghề, lộ trình học tập, kỹ năng cần có trong kỷ nguyên AI và công nghệ 4.0.
+Phong cách: Thân thiện, nhiệt tình, cụ thể, dùng tiếng Việt tự nhiên.
+Luôn: Đưa ra lời khuyên thực tế, gợi ý ngành học phù hợp, chia sẻ mức lương, cơ hội việc làm.
+Nếu hỏi ngoài chủ đề hướng nghiệp: Nhẹ nhàng hướng về chủ đề tư vấn nghề nghiệp.`,
         messages:chatHistory,
       })
     });
