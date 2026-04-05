@@ -422,66 +422,6 @@ h2{
   background:var(--cyan);margin-top:5px;flex-shrink:0;opacity:0.7;
 }
 
-/* ─── EXPERT CORNER ─── */
-#experts{background:var(--bg-deep);}
-.experts-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
-  gap:24px;
-}
-.expert-card{
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:16px;overflow:hidden;
-  transition:all 0.25s;
-}
-.expert-card:hover{
-  border-color:rgba(0,212,255,0.3);
-  transform:translateY(-4px);
-}
-.expert-thumb{
-  height:180px;
-  display:flex;align-items:center;justify-content:center;
-  position:relative;overflow:hidden;
-}
-.thumb-bg{
-  position:absolute;inset:0;
-  opacity:0.15;
-  font-size:120px;
-  display:flex;align-items:center;justify-content:center;
-}
-.play-btn{
-  width:56px;height:56px;border-radius:50%;
-  background:rgba(0,212,255,0.2);
-  border:2px solid var(--cyan);
-  display:flex;align-items:center;justify-content:center;
-  z-index:1;cursor:pointer;
-  transition:all 0.2s;
-}
-.play-btn:hover{background:rgba(0,212,255,0.35);}
-.play-icon{
-  width:0;height:0;
-  border-left:16px solid var(--cyan);
-  border-top:10px solid transparent;
-  border-bottom:10px solid transparent;
-  margin-left:4px;
-}
-.expert-info{padding:20px;}
-.expert-topic{
-  font-size:10px;letter-spacing:2px;
-  font-family:'Space Mono',monospace;
-  color:var(--purple);margin-bottom:8px;text-transform:uppercase;
-}
-.expert-title{
-  font-size:15px;font-weight:600;color:var(--text-primary);
-  margin-bottom:8px;line-height:1.4;
-}
-.expert-name{font-size:13px;color:var(--text-secondary);}
-.expert-duration{
-  font-family:'Space Mono',monospace;font-size:11px;
-  color:var(--text-muted);margin-top:4px;
-}
-
 /* ─── DICTIONARY ─── */
 #dictionary{background:var(--bg-dark);}
 .dict-search{
@@ -838,7 +778,6 @@ footer{
     <a href="#filter">Ngành nghề</a>
     <a href="#holland">Trắc nghiệm</a>
     <a href="#roadmap">Lộ trình</a>
-    <a href="#experts">Chuyên gia</a>
     <a href="#dictionary">Từ điển</a>
     <a href="#softskills">Kỹ năng</a>
   </div>
@@ -872,7 +811,7 @@ footer{
     <div class="hero-stats">
       <div class="stat-item"><span class="stat-num">200+</span><span class="stat-label">Nghề nghiệp 4.0</span></div>
       <div class="stat-item"><span class="stat-num">6</span><span class="stat-label">Nhóm tính cách Holland</span></div>
-      <div class="stat-item"><span class="stat-num">50+</span><span class="stat-label">Chuyên gia chia sẻ</span></div>
+      <div class="stat-item"><span class="stat-num">10+</span><span class="stat-label">Kỹ năng mềm thiết yếu</span></div>
       <div class="stat-item"><span class="stat-num">AI</span><span class="stat-label">Chatbot hỗ trợ 24/7</span></div>
     </div>
   </div>
@@ -1023,23 +962,10 @@ footer{
 
 <hr class="divider">
 
-<!-- EXPERTS -->
-<section id="experts">
-  <div class="container">
-    <div class="section-label">05 · CHUYÊN GIA</div>
-    <h2>Góc chuyên gia</h2>
-    <p class="section-desc">Nghe chia sẻ từ những người đang làm việc thực tế trong các lĩnh vực AI, Data, Digital Marketing và nhiều hơn nữa.</p>
-
-    <div class="experts-grid" id="expertsGrid"></div>
-  </div>
-</section>
-
-<hr class="divider">
-
 <!-- DICTIONARY -->
 <section id="dictionary">
   <div class="container">
-    <div class="section-label">06 · TỪ ĐIỂN</div>
+    <div class="section-label">05 · TỪ ĐIỂN</div>
     <h2>Từ điển nghề nghiệp 4.0</h2>
     <p class="section-desc">Giải thích các nghề nghiệp mới mà học sinh và phụ huynh chưa biết rõ trong kỷ nguyên số.</p>
 
@@ -1055,7 +981,7 @@ footer{
 <!-- SOFT SKILLS -->
 <section id="softskills">
   <div class="container">
-    <div class="section-label">07 · KỸ NĂNG MỀM</div>
+    <div class="section-label">06 · KỸ NĂNG MỀM</div>
     <h2>Kỹ năng mềm thời 4.0</h2>
     <p class="section-desc">Những kỹ năng cốt lõi giúp bạn thích nghi và phát triển trong môi trường làm việc cùng AI.</p>
 
@@ -1084,7 +1010,6 @@ footer{
         <li><a href="#filter">Ngành nghề 4.0</a></li>
         <li><a href="#holland">Trắc nghiệm Holland</a></li>
         <li><a href="#roadmap">Lộ trình sự nghiệp</a></li>
-        <li><a href="#experts">Góc chuyên gia</a></li>
         <li><a href="#dictionary">Từ điển nghề nghiệp</a></li>
         <li><a href="#softskills">Kỹ năng mềm</a></li>
       </ul>
@@ -1110,7 +1035,7 @@ footer{
       </div>
       <div class="footer-contact-item">
         <span class="contact-icon">✉️</span>
-        <div class="contact-text"><strong>Email</strong>huongnghiep40@edu.vn</div>
+        <div class="contact-text"><strong>Email</strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="026a776d6c656c656a6b67723632426766772c746c">[email&#160;protected]</a></div>
       </div>
       <div class="footer-contact-item">
         <span class="contact-icon">📞</span>
@@ -1171,7 +1096,7 @@ footer{
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ─── PARTICLES ─── */
 (function(){
   const c=document.getElementById('particles');
@@ -1234,28 +1159,33 @@ function filterCareers(f,btn){
   renderCareers(f);
 }
 function openCareerModal(c){
-  // Map career icons to relevant Unsplash image keywords
-  const imgMap={
-    '🤖':'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80',
-    '📊':'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80',
-    '☁️':'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80',
-    '🔐':'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&q=80',
-    '📱':'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&q=80',
-    '🎨':'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80',
-    '🔗':'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&q=80',
-    '🧬':'https://images.unsplash.com/photo-1628595351029-c2bf17511435?w=600&q=80',
-    '🎮':'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&q=80',
-    '🎬':'https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=600&q=80',
-    '📚':'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80',
-    '🌱':'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=600&q=80',
+  // Map career icons to YouTube video IDs
+  const videoMap={
+    '🤖':'kRy0B8xWDEs',
+    '📊':'aircAruvnKk',
+    '☁️':'M988_fsOSWo',
+    '🔐':'inWWhr5tnEA',
+    '📱':'MNiBeFY-MB8',
+    '🎨':'Ovj4hFxko7c',
+    '🔗':'SSo_EIwHSd4',
+    '🧬':'jAhjPd4uNFY',
+    '🎮':'5ZiH7MaHVjQ',
+    '🎬':'Kz-zQoT7Fw4',
+    '📚':'8aVhlZoMkbE',
+    '🌱':'kq9EveBFx_8',
   };
-  const imgUrl=imgMap[c.icon]||'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80';
+  const videoId=videoMap[c.icon]||'kRy0B8xWDEs';
   document.getElementById('modalTitle').textContent=c.icon+' '+c.name;
   document.getElementById('modalBody').innerHTML=`
-    <div style="margin:-4px -4px 20px;border-radius:12px;overflow:hidden;height:200px;position:relative;">
-      <img src="${imgUrl}" alt="${c.name}" style="width:100%;height:100%;object-fit:cover;display:block;">
-      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(4,8,18,0.85));"></div>
-      <div style="position:absolute;bottom:12px;left:14px;display:flex;gap:6px;flex-wrap:wrap;">
+    <div style="position:relative;width:100%;padding-bottom:56.25%;border-radius:12px;overflow:hidden;margin:-4px -4px 20px;background:#000;">
+      <iframe
+        src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1"
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        title="${c.name}">
+      </iframe>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 14px;background:linear-gradient(to top,rgba(4,8,18,0.9),transparent);display:flex;gap:6px;flex-wrap:wrap;pointer-events:none;">
         ${c.tagLabels.map((t,i)=>`<span class="tag tag-${c.tagColors[i]}">${t}</span>`).join('')}
       </div>
     </div>
@@ -1417,80 +1347,6 @@ function resetTest(){
   document.getElementById('testContent').style.display='block';
   document.getElementById('testResult').style.display='none';
   renderQuestion();
-}
-
-/* ─── EXPERTS DATA ─── */
-const experts=[
-  {topic:'AI & Machine Learning',title:'Hành trình từ sinh viên Bách Khoa đến AI Engineer tại Google',name:'Nguyễn Minh Tuấn – AI Engineer @ Google',duration:'24:30',bg:'🤖',bgColor:'rgba(0,212,255,0.08)'},
-  {topic:'Data Science',title:'Tại sao Data Science là nghề hot nhất thập kỷ và bạn cần chuẩn bị gì?',name:'Trần Thu Hà – Data Scientist @ VinAI',duration:'18:45',bg:'📊',bgColor:'rgba(0,255,136,0.08)'},
-  {topic:'Digital Marketing',title:'Xây dựng thương hiệu cá nhân 0 đồng – Bí quyết của một Marketer 25 tuổi',name:'Phạm Đức Anh – Head of Growth @ TikTok Vietnam',duration:'31:10',bg:'📱',bgColor:'rgba(255,184,0,0.08)'},
-  {topic:'UX/UI Design',title:'Portfolio của tôi đã giúp tôi được nhận vào Grab như thế nào?',name:'Lê Khánh Linh – Senior Designer @ Grab',duration:'22:15',bg:'🎨',bgColor:'rgba(139,92,246,0.08)'},
-  {topic:'Blockchain & Web3',title:'Web3 là gì? Cơ hội nào cho thế hệ Z trong kỷ nguyên phi tập trung?',name:'Võ Hoàng Nam – Blockchain Dev @ Axie Infinity',duration:'27:50',bg:'🔗',bgColor:'rgba(255,71,87,0.08)'},
-  {topic:'Cybersecurity',title:'Bảo mật mạng – Nghề nghiệp hot bạn chưa biết và cách bắt đầu từ con số 0',name:'Đinh Thế Hùng – Security Architect @ FPT',duration:'35:20',bg:'🔐',bgColor:'rgba(0,212,255,0.06)'},
-];
-
-function renderExperts(){
-  const g=document.getElementById('expertsGrid');
-  experts.forEach(e=>{
-    const div=document.createElement('div');
-    div.className='expert-card';
-    div.style.cursor='pointer';
-    div.innerHTML=`
-      <div class="expert-thumb" style="background:${e.bgColor};">
-        <div class="thumb-bg">${e.bg}</div>
-        <div class="play-btn"><div class="play-icon"></div></div>
-      </div>
-      <div class="expert-info">
-        <div class="expert-topic">${e.topic}</div>
-        <div class="expert-title">${e.title}</div>
-        <div class="expert-name">${e.name}</div>
-        <div class="expert-duration">▶ ${e.duration}</div>
-      </div>`;
-    div.onclick=()=>openExpertModal(e);
-    g.appendChild(div);
-  });
-}
-
-function openExpertModal(e){
-  // YouTube video IDs mapped by topic (demo videos)
-  const videoMap={
-    'AI & Machine Learning':'dQw4w9WgXcQ',
-    'Data Science':'aircAruvnKk',
-    'Digital Marketing':'MNiBeFY-MB8',
-    'UX/UI Design':'Ovj4hFxko7c',
-    'Blockchain & Web3':'SSo_EIwHSd4',
-    'Cybersecurity':'inWWhr5tnEA',
-  };
-  const videoId=videoMap[e.topic]||'dQw4w9WgXcQ';
-  const nameParts=e.name.split(' – ');
-  const personName=nameParts[0]||e.name;
-  const role=nameParts[1]||'';
-  document.getElementById('modalTitle').innerHTML=`<span style="color:var(--purple);font-size:11px;font-family:'Space Mono',monospace;letter-spacing:2px;display:block;margin-bottom:6px;">${e.topic.toUpperCase()}</span>${e.title}`;
-  document.getElementById('modalBody').innerHTML=`
-    <div style="position:relative;width:100%;padding-bottom:56.25%;border-radius:12px;overflow:hidden;margin-bottom:20px;background:#000;">
-      <iframe
-        src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1"
-        style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        title="${e.title}">
-      </iframe>
-    </div>
-    <div style="display:flex;align-items:center;gap:14px;padding:16px;background:var(--bg-card2);border-radius:12px;margin-bottom:20px;border:1px solid var(--border);">
-      <div style="width:52px;height:52px;border-radius:50%;background:${e.bgColor};border:2px solid rgba(139,92,246,0.3);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">${e.bg}</div>
-      <div>
-        <div style="font-weight:700;color:var(--text-primary);font-size:16px;">${personName}</div>
-        <div style="font-size:13px;color:var(--text-muted);margin-top:2px;">${role}</div>
-        <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--cyan);margin-top:4px;">▶ Thời lượng: ${e.duration}</div>
-      </div>
-    </div>
-    <h4>📌 Nội dung chính</h4>
-    <p>Trong video này, chuyên gia chia sẻ về hành trình vào nghề, những thách thức thực tế và lời khuyên dành riêng cho học sinh lớp 12 muốn theo đuổi lĩnh vực ${e.topic}.</p>
-    <h4>🎯 Bạn sẽ học được gì?</h4>
-    <p>• Lộ trình học tập cụ thể từ phổ thông đến khi đi làm<br>• Những kỹ năng cốt lõi cần chuẩn bị<br>• Mức lương và cơ hội thăng tiến thực tế<br>• Kinh nghiệm phỏng vấn và tìm việc tại công ty lớn</p>
-    <h4>💡 Dành cho bạn nào?</h4>
-    <p>Học sinh đang quan tâm đến ngành <strong>${e.topic}</strong> và muốn có cái nhìn thực tế từ người đang làm trong ngành.</p>`;
-  document.getElementById('modalOverlay').classList.add('open');
 }
 
 /* ─── DICTIONARY DATA ─── */
@@ -1661,11 +1517,12 @@ async function sendMessage(){
       body:JSON.stringify({
         model:'claude-sonnet-4-20250514',
         max_tokens:1000,
-        system:`Bạn là AI tư vấn hướng nghiệp 4.0 chuyên dành cho học sinh lớp 12 Việt Nam. 
-Nhiệm vụ: Tư vấn về ngành nghề, lộ trình học tập, kỹ năng cần có trong kỷ nguyên AI và công nghệ 4.0.
-Phong cách: Thân thiện, nhiệt tình, cụ thể, dùng tiếng Việt tự nhiên.
-Luôn: Đưa ra lời khuyên thực tế, gợi ý ngành học phù hợp, chia sẻ mức lương, cơ hội việc làm.
-Nếu hỏi ngoài chủ đề hướng nghiệp: Nhẹ nhàng hướng về chủ đề tư vấn nghề nghiệp.`,
+        system:`Bạn là AI trợ lý thông minh đa năng dành cho học sinh lớp 12 Việt Nam, với kiến thức chuyên sâu về mọi lĩnh vực.
+Bạn có thể trả lời TẤT CẢ các câu hỏi: khoa học, toán học, lịch sử, văn học, địa lý, sinh học, hóa học, vật lý, công nghệ, lập trình, kinh tế, tâm lý, y tế, nghệ thuật, văn hóa, thể thao, và đặc biệt là hướng nghiệp 4.0.
+Kiến thức chuyên sâu: Cung cấp thông tin chính xác, chi tiết, có chiều sâu học thuật lẫn thực tiễn.
+Phong cách: Thân thiện, nhiệt tình, rõ ràng, dùng tiếng Việt tự nhiên, ưu tiên ví dụ minh họa cụ thể.
+Về hướng nghiệp: Tư vấn ngành nghề, lộ trình học tập, mức lương, kỹ năng cần có trong kỷ nguyên AI và 4.0.
+Luôn cố gắng đưa ra câu trả lời đầy đủ, chính xác và hữu ích nhất có thể cho người dùng.`,
         messages:chatHistory,
       })
     });
@@ -1683,14 +1540,17 @@ Nếu hỏi ngoài chủ đề hướng nghiệp: Nhẹ nhàng hướng về ch�
 
 /* ─── INIT ─── */
 renderCareers('all');
-renderExperts();
 renderDict();
 renderSkills();
 renderQuestion();
 
 /* smooth scroll for nav */
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});});
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth'});
+  });
 });
 </script>
 </body>
